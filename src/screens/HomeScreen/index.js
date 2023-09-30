@@ -8,9 +8,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaProvider>
       <AppHeader title={'New Project'}>
-        <>
-          <Button title="sdasd" />
-        </>
+        <></>
         <></>
       </AppHeader>
     </SafeAreaProvider>
