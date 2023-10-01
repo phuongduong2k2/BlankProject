@@ -10,6 +10,7 @@ import NotificationsScreen from '../screens/NotificationsScreen';
 import {AppIcons} from '../constants/AppIcons';
 import AppSvg from '../components/AppSvg';
 import {AppColors} from '../constants/ColorSkin';
+import {AppFonts} from '../constants/AppFonts';
 
 const Tab = createBottomTabNavigator();
 
