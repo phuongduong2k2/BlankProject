@@ -17,6 +17,7 @@ const HomeScreen = () => {
       </AppHeader>
       <View style={{flex: 1}}>
         <Rating />
+        <AppSvg svgSrc={AppIcons.setting.active} />
       </View>
     </SafeAreaProvider>
   );

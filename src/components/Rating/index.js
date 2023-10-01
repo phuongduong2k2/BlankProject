@@ -22,8 +22,8 @@ Rating.propTypes = {
 
 Rating.defaultProps = {
   numberStar: 5,
-  iconActive: AppIcons.star_active,
-  iconInactive: AppIcons.star,
+  iconActive: AppIcons.star.active,
+  iconInactive: AppIcons.star.inactive,
   // numberSelected: 0,
   onSelect: () => {},
   containerStyle: {},
