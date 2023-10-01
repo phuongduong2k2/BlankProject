@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from 'react';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import {
   Animated,
   Button,
@@ -9,11 +9,11 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
-import { AppDimentions } from "../../constants/constants";
-import ProgressBar from "../ProgressBar";
-import { AppIcons } from "../../constants/AppResource";
-import { AppColors } from "../../constants/AppStyle";
+} from 'react-native';
+import {AppDimentions} from '../../constants/constants';
+import ProgressBar from '../ProgressBar';
+import {AppIcons} from '../../constants/AppIcons';
+import {AppColors} from '../../constants/AppStyle';
 
 ProgressView.propTypes = {
   progress: PropTypes.number,
@@ -45,7 +45,7 @@ ProgressView.defaultProps = {
   borderRadius: 8,
   color: AppColors.primary,
   borderColor: AppColors.primary,
-  unfilledColor: "white",
+  unfilledColor: 'white',
   containerStyle: {},
   borderWidth: 1,
 };
@@ -72,14 +72,13 @@ function ProgressView(props) {
     icon && (
       <View
         style={{
-          alignSelf: side === "left" ? undefined : "flex-end",
+          alignSelf: side === 'left' ? undefined : 'flex-end',
           height: 32,
           width: 32,
           marginBottom: AppDimentions.secondPadding,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
         <Image source={icon} />
       </View>
     );
@@ -90,45 +89,40 @@ function ProgressView(props) {
         return (
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
             <View
               style={{
-                width: "50%",
-                height: "100%",
+                width: '50%',
+                height: '100%',
                 paddingVertical: AppDimentions.secondPadding,
-              }}
-            >
+              }}>
               <Text
                 style={{
                   flex: 1,
-                  color: "rgba(38, 38, 38, 1)",
+                  color: 'rgba(38, 38, 38, 1)',
                   fontSize: 16,
-                  fontWeight: "400",
-                }}
-              >
+                  fontWeight: '400',
+                }}>
                 Content title
               </Text>
             </View>
             <TouchableOpacity
               style={{
-                width: "50%",
-                height: "100%",
+                width: '50%',
+                height: '100%',
                 paddingVertical: AppDimentions.secondPadding,
-              }}
-            >
+              }}>
               <Text
                 style={{
-                  alignSelf: "flex-end",
-                  color: "rgba(89, 89, 89, 1)",
+                  alignSelf: 'flex-end',
+                  color: 'rgba(89, 89, 89, 1)',
                   fontSize: 14,
-                  fontWeight: "400",
-                }}
-              >
-                Change action view {">"}
+                  fontWeight: '400',
+                }}>
+                Change action view {'>'}
               </Text>
             </TouchableOpacity>
           </View>
@@ -142,11 +136,10 @@ function ProgressView(props) {
   return (
     <View
       style={{
-        width: "100%",
+        width: '100%',
         paddingHorizontal: AppDimentions.secondPadding,
         ...containerStyle,
-      }}
-    >
+      }}>
       <Button
         title="check"
         onPress={() => {
@@ -156,28 +149,25 @@ function ProgressView(props) {
       {_renderHeader()}
       <View
         style={{
-          flexDirection: "row",
-          width: "100%",
+          flexDirection: 'row',
+          width: '100%',
           paddingBottom: AppDimentions.secondPadding,
-        }}
-      >
+        }}>
         <View
           style={{
             width: 32 + AppDimentions.secondPadding - 4,
 
-            justifyContent: "center",
-          }}
-        >
-          {_renderIcon("left", leftIcon)}
+            justifyContent: 'center',
+          }}>
+          {_renderIcon('left', leftIcon)}
           {!hideValue && (
             <Text
               style={{
                 fontSize: 14,
-                fontWeight: "400",
-                color: "rgba(38, 38, 38, 1)",
+                fontWeight: '400',
+                color: 'rgba(38, 38, 38, 1)',
               }}
-              numberOfLines={1}
-            >
+              numberOfLines={1}>
               Value
             </Text>
           )}
@@ -186,9 +176,8 @@ function ProgressView(props) {
           style={{
             flex: 1,
             height: 32,
-            justifyContent: "center",
-          }}
-        >
+            justifyContent: 'center',
+          }}>
           <ProgressBar
             progress={progress}
             width={width}
@@ -202,20 +191,18 @@ function ProgressView(props) {
         <View
           style={{
             width: 32 + AppDimentions.secondPadding - 4,
-            justifyContent: "center",
-          }}
-        >
-          {_renderIcon("right", rightIcon)}
+            justifyContent: 'center',
+          }}>
+          {_renderIcon('right', rightIcon)}
           {!hideValue && (
             <Text
               style={{
-                alignSelf: "flex-end",
+                alignSelf: 'flex-end',
                 fontSize: 14,
-                fontWeight: "400",
-                color: "rgba(38, 38, 38, 1)",
+                fontWeight: '400',
+                color: 'rgba(38, 38, 38, 1)',
               }}
-              numberOfLines={1}
-            >
+              numberOfLines={1}>
               Value
             </Text>
           )}

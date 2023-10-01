@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import { Animated, Image, Text, View } from "react-native";
-import { AppIcons } from "../../constants/AppResource";
-import PropTypes, { any } from "prop-types";
-import { Controller } from "react-hook-form";
-import { AppColors, AppFontFamily } from "../../constants/AppStyle";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { AppDimentions, AppFontSize } from "../../constants/constants";
+import React, {useEffect, useRef} from 'react';
+import {Animated, Image, Text, View} from 'react-native';
+import {AppIcons} from '../../constants/AppIcons';
+import PropTypes, {any} from 'prop-types';
+import {Controller} from 'react-hook-form';
+import {AppColors, AppFontFamily} from '../../constants/AppStyle';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import {AppDimentions, AppFontSize} from '../../constants/constants';
 
 CustomRadioBox.propTypes = {
   control: PropTypes.any,
@@ -32,16 +32,16 @@ CustomRadioBox.defaultProps = {
   control: any,
   required: {
     value: false,
-    message: "",
+    message: '',
   },
-  name: "",
+  name: '',
   errors: {},
   messageColor: AppColors.error,
   labelLeft: undefined,
   labelRight: undefined,
   checkedIconSource: undefined,
-  fillColor: "red",
-  innerColor: "white",
+  fillColor: 'red',
+  innerColor: 'white',
   iconStyle: {},
   innerIconStyle: {},
   textStyle: {},
@@ -78,7 +78,7 @@ function CustomRadioBox(props) {
         duration: 300,
         useNativeDriver: false,
       }).start();
-      console.log("have error");
+      console.log('have error');
     } else {
       Animated.timing(animated, {
         toValue: 0,
@@ -88,21 +88,20 @@ function CustomRadioBox(props) {
     }
   }, [errors, errors[name]]);
 
-  const renderIconComponent = (isChecked) => (
+  const renderIconComponent = isChecked => (
     <View
       style={{
         height: 16,
         width: 16,
         backgroundColor: disable // Color second side
           ? isChecked
-            ? "white"
-            : "rgba(232, 232, 232, 1)"
-          : "white",
+            ? 'white'
+            : 'rgba(232, 232, 232, 1)'
+          : 'white',
         borderRadius: 100,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
       {/* Color center here */}
       {iconComponent(isChecked, disable)}
     </View>
@@ -112,10 +111,9 @@ function CustomRadioBox(props) {
     <>
       <View
         style={{
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}>
         {labelLeft && (
           <Text
             style={{
@@ -125,44 +123,43 @@ function CustomRadioBox(props) {
               color: AppColors.primaryText,
               ...textStyle,
             }}
-            numberOfLines={1}
-          >
+            numberOfLines={1}>
             {labelLeft}
           </Text>
         )}
         <View>
           <Controller
             control={control}
-            rules={{ required: { ...required } }}
+            rules={{required: {...required}}}
             name={name}
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({field: {onChange, onBlur, value}}) => (
               <BouncyCheckbox
                 size={20}
                 fillColor={
                   // Color outside
                   disable
-                    ? "rgba(217, 217, 217, 1)"
+                    ? 'rgba(217, 217, 217, 1)'
                     : value
                     ? fillColor
-                    : "rgba(232, 232, 232, 1)"
+                    : 'rgba(232, 232, 232, 1)'
                 }
-                unfillColor={"transparent"}
+                unfillColor={'transparent'}
                 disableText
                 style={{
                   borderRadius: 1000,
                 }}
                 disabled={disable}
-                iconImageStyle={{ resizeMode: "contain", zIndex: 0 }}
+                iconImageStyle={{resizeMode: 'contain', zIndex: 0}}
                 iconStyle={{
-                  borderColor: "black",
-                  justifyContent: "center",
-                  alignItems: "center",
+                  borderColor: 'black',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                   ...iconStyle,
                 }}
                 iconComponent={renderIconComponent(value)}
                 checkIconImageSource={checkedIconSource}
-                innerIconStyle={{ borderWidth: 2, ...innerIconStyle }}
-                onPress={(isChecked) => {
+                innerIconStyle={{borderWidth: 2, ...innerIconStyle}}
+                onPress={isChecked => {
                   onChange(isChecked);
                 }}
               />
@@ -178,8 +175,7 @@ function CustomRadioBox(props) {
               color: AppColors.primaryText,
               ...textStyle,
             }}
-            numberOfLines={1}
-          >
+            numberOfLines={1}>
             {labelRight}
           </Text>
         )}
@@ -195,16 +191,14 @@ function CustomRadioBox(props) {
             inputRange: [0, 1],
             outputRange: [0, 1],
           }),
-        }}
-      >
+        }}>
         {errors && errors[name] && (
           <Text
             style={{
               color: messageColor && messageColor,
               fontFamily: AppFontFamily.regular,
               fontSize: AppFontSize.s_12,
-            }}
-          >
+            }}>
             {errors[name].message}
           </Text>
         )}

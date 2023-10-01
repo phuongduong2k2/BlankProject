@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
   Image,
@@ -8,11 +8,11 @@ import {
   TouchableOpacity,
   UIManager,
   View,
-} from "react-native";
-import { AppIcons } from "../../constants/AppResource";
-import PropTypes from "prop-types";
-import { AppDimentions } from "../../constants/constants";
-import Divider from "../Divider";
+} from 'react-native';
+import {AppIcons} from '../../constants/AppIcons';
+import PropTypes from 'prop-types';
+import {AppDimentions} from '../../constants/constants';
+import Divider from '../Divider';
 
 CollapseItem.propTypes = {
   onPress: PropTypes.func,
@@ -23,19 +23,19 @@ CollapseItem.propTypes = {
 
 CollapseItem.defaultProps = {
   onPress: () => {},
-  title: "",
+  title: '',
   prefixIcon: AppIcons.icRatingActive,
   suffixIcon: AppIcons.icCollapseItem,
 };
 
-if (Platform.OS === "android") {
+if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
 }
 
 function CollapseItem(props) {
-  const { onPress, title, prefixIcon, suffixIcon } = props;
+  const {onPress, title, prefixIcon, suffixIcon} = props;
   const [isOpen, setOpen] = useState(false);
   const onCollapseItem = () => {
     onPress();
@@ -56,23 +56,21 @@ function CollapseItem(props) {
   return (
     <View
       style={{
-        width: "100%",
+        width: '100%',
         minHeight: 48,
-        backgroundColor: "white",
-      }}
-    >
+        backgroundColor: 'white',
+      }}>
       <TouchableOpacity
         activeOpacity={1}
         onPress={onCollapseItem}
         style={{
           height: 48,
-          width: "100%",
-          flexDirection: "row",
+          width: '100%',
+          flexDirection: 'row',
           //   backgroundColor: 'red',
-          alignItems: "center",
+          alignItems: 'center',
           paddingHorizontal: AppDimentions.mainPadding,
-        }}
-      >
+        }}>
         <View>
           <Image source={prefixIcon} />
         </View>
@@ -81,9 +79,8 @@ function CollapseItem(props) {
             flex: 1,
             paddingLeft: AppDimentions.thirdPadding,
             fontSize: 14,
-            fontWeight: "500",
-          }}
-        >
+            fontWeight: '500',
+          }}>
           {title}
         </Text>
         <Animated.View
@@ -92,27 +89,25 @@ function CollapseItem(props) {
               {
                 rotate: animated.interpolate({
                   inputRange: [0, 1],
-                  outputRange: ["0deg", "-180deg"],
+                  outputRange: ['0deg', '-180deg'],
                 }),
               },
             ],
-          }}
-        >
+          }}>
           <Image source={suffixIcon} />
         </Animated.View>
       </TouchableOpacity>
       <View
         style={{
-          flexDirection: "row",
-          position: "absolute",
+          flexDirection: 'row',
+          position: 'absolute',
           height: 2,
-          width: "100%",
+          width: '100%',
           paddingLeft: isOpen ? AppDimentions.mainPadding : 0,
           top: 46,
-        }}
-      >
+        }}>
         {isOpen && (
-          <Image source={AppIcons.icRatingActive} style={{ opacity: 0 }} />
+          <Image source={AppIcons.icRatingActive} style={{opacity: 0}} />
         )}
         <Divider
           style={{
@@ -125,24 +120,21 @@ function CollapseItem(props) {
         <View
           style={{
             paddingHorizontal: AppDimentions.mainPadding,
-            flexDirection: "row",
-          }}
-        >
-          <Image source={AppIcons.icRatingActive} style={{ opacity: 0 }} />
+            flexDirection: 'row',
+          }}>
+          <Image source={AppIcons.icRatingActive} style={{opacity: 0}} />
           <View
             style={{
               marginLeft: AppDimentions.thirdPadding,
               flex: 1,
-            }}
-          >
+            }}>
             {[1, 2, 3, 4, 5].map((item, index) => (
               <TouchableOpacity
                 key={index}
                 style={{
                   height: 40,
-                  justifyContent: "center",
-                }}
-              >
+                  justifyContent: 'center',
+                }}>
                 <Text numberOfLines={1} style={{}}>
                   · Menu item {item}
                 </Text>

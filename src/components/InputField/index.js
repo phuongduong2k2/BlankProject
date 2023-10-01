@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import PropTypes, {any, oneOfType} from 'prop-types';
-import {AppIcons} from '../../constants/AppResource';
+import {AppIcons} from '../../constants/AppIcons';
 import {AppColors, AppFontFamily, AppTextStyle} from '../../constants/AppStyle';
 import {Controller, useForm} from 'react-hook-form';
 import {

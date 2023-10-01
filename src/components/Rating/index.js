@@ -8,10 +8,13 @@ import {
   View,
 } from 'react-native';
 import PropTypes, {any, number} from 'prop-types';
-import {AppIcons} from '../../constants/AppResource';
+import {AppIcons} from '../../constants/AppIcons';
+import AppSvg from '../AppSvg';
 
 Rating.propTypes = {
   numberStar: PropTypes.number,
+  iconActive: PropTypes.any,
+  iconInactive: PropTypes.any,
   // numberSelected: PropTypes.number,
   onSelect: PropTypes.func,
   containerStyle: PropTypes.object,
@@ -19,13 +22,16 @@ Rating.propTypes = {
 
 Rating.defaultProps = {
   numberStar: 5,
+  iconActive: AppIcons.star_active,
+  iconInactive: AppIcons.star,
   // numberSelected: 0,
   onSelect: () => {},
   containerStyle: {},
 };
 
 function Rating(props) {
-  const {numberStar, onSelect, containerStyle} = props;
+  const {numberStar, onSelect, containerStyle, iconActive, iconInactive} =
+    props;
   const [selected, setSelected] = useState(0);
 
   const handleSelect = number => {
@@ -49,9 +55,7 @@ function Rating(props) {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Image
-            source={i <= selected ? AppIcons.icRatingActive : AppIcons.icRating}
-          />
+          <AppSvg svgSrc={i <= selected ? iconActive : iconInactive} />
         </TouchableOpacity>,
       );
     }
@@ -60,15 +64,13 @@ function Rating(props) {
 
   return (
     <View style={{alignSelf: 'flex-start'}}>
-      <Text>Rating {`(number star : ${numberStar})`}</Text>
       <View
         style={{
           flexDirection: 'row',
           width: '100%',
           padding: 6,
-          borderWidth: 1,
-          ...containerStyle,
           backgroundColor: 'white',
+          ...containerStyle,
         }}>
         {_renderContent()}
       </View>
