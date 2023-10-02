@@ -21,3 +21,11 @@ export const InputType = {
   checkBox: 'checkBox',
   radio: 'radio',
 };
+
+export const SnackBarStatus = {
+  success: 'success',
+  error: 'error',
+  warning: 'warning',
+  info: 'info',
+  default: 'default',
+};
