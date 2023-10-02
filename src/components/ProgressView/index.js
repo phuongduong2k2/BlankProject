@@ -14,6 +14,7 @@ import {AppDimentions} from '../../constants/constants';
 import ProgressBar from '../ProgressBar';
 import {AppIcons} from '../../constants/AppIcons';
 import {AppColors} from '../../constants/AppStyle';
+import AppSvg from '../AppSvg';
 
 ProgressView.propTypes = {
   progress: PropTypes.number,
@@ -79,7 +80,7 @@ function ProgressView(props) {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Image source={icon} />
+        <AppSvg svgSrc={icon} />
       </View>
     );
 

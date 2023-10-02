@@ -1,14 +1,26 @@
 import React, {createRef, useEffect, useState} from 'react';
-import {ActivityIndicator, View} from 'react-native';
+import {ActivityIndicator, Text, View} from 'react-native';
 import ReactNativeModal from 'react-native-modal';
-import {AppColors} from '../../constants/AppStyle';
+import {AppColors} from '../../constants/ColorSkin';
 
 const ref = createRef();
 
 const LoadingPopup = () => {
+  const [label, setLabel] = useState('Loading...');
+  const [indicatorComponent, setIndicatorComponent] = useState(() => () => {
+    return <ActivityIndicator color={AppColors.primary} size={'large'} />;
+  });
   useEffect(() => {
     ref.current = {
-      showPopup: () => {
+      showPopup: data => {
+        if (data) {
+          if (data.label) {
+            setLabel(data.label);
+          }
+          if (data.indicatorComponent) {
+            setIndicatorComponent(() => data.indicatorComponent);
+          }
+        }
         setVisible(true);
       },
       hidePopup: () => {
@@ -35,7 +47,8 @@ const LoadingPopup = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <ActivityIndicator color={AppColors.primary} size={'large'} />
+        {indicatorComponent()}
+        <Text>{label}</Text>
       </View>
     </ReactNativeModal>
   );
@@ -44,9 +57,9 @@ const LoadingPopup = () => {
 export default LoadingPopup;
 
 export const LoadingPopupUtils = {
-  showPopup: () => {
+  showPopup: data => {
     if (ref.current) {
-      ref.current.showPopup();
+      ref.current.showPopup(data);
     }
   },
   hidePopup: () => {

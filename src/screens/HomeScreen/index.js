@@ -16,6 +16,7 @@ import {baseApiUrl} from '../../../env.json';
 import axiosClient from '../../axios/AxiosClient';
 import FormContainer from '../../components/FormContainer';
 import CustomInputField from '../../components/InputField';
+import {LoadingPopupUtils} from '../../components/LoadingPopup';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,18 @@ const HomeScreen = () => {
             onPress={async () => {
               const data = await axiosClient.get(`${baseApiUrl}produts`);
               console.log(data);
+            }}
+          />
+          <Button
+            title="popup"
+            onPress={() => {
+              LoadingPopupUtils.showPopup({
+                indicatorComponent: () => (
+                  <View
+                    style={{height: 20, width: 20, backgroundColor: 'red'}}
+                  />
+                ),
+              });
             }}
           />
           <FormContainer
