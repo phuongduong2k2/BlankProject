@@ -11,7 +11,7 @@ AppSvg.propTypes = {
 
 AppSvg.defaultProps = {
   svgSrc: null,
-  size: 24,
+  size: '100%',
   style: {},
 };
 

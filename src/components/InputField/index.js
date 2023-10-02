@@ -1,25 +1,19 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
-  Button,
-  Image,
   Keyboard,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import PropTypes, {any, oneOfType} from 'prop-types';
+import PropTypes, {any} from 'prop-types';
 import {AppIcons} from '../../constants/AppIcons';
-import {AppColors, AppFontFamily, AppTextStyle} from '../../constants/AppStyle';
-import {Controller, useForm} from 'react-hook-form';
-import {
-  AppDimentions,
-  AppFontSize,
-  AppLineHeight,
-  KeyboardTypes,
-} from '../../constants/constants';
+import {Controller} from 'react-hook-form';
+import {AppDimentions, KeyboardTypes} from '../../constants/constants';
 import styles from './style';
+import {AppColors} from '../../constants/ColorSkin';
+import AppSvg from '../AppSvg';
 
 CustomInputField.propTypes = {
   name: PropTypes.string,
@@ -60,12 +54,12 @@ CustomInputField.defaultProps = {
   name: '',
   status: 'default',
   style: {},
-  backgroundColor: AppColors.white,
+  backgroundColor: AppColors.background.white,
   borderWidth: 1,
   borderColor: 'transparent',
   borRadius: 8,
-  prefixIcon: AppIcons.icSearch.active,
-  suffixIcon: AppIcons.icClear,
+  prefixIcon: AppIcons.search,
+  suffixIcon: AppIcons.close_circle,
   height: undefined,
   width: '100%',
   placeholder: 'Placeholder',
@@ -174,7 +168,9 @@ function CustomInputField(props) {
           style={{
             ...styles.container,
             backgroundColor:
-              status === 'disable' ? AppColors.disable : AppColors.white,
+              status === 'disable'
+                ? AppColors.grey1
+                : AppColors.background.white,
             height: height ? height : label ? 64 : 48,
             borderRadius: borRadius,
             width: width,
@@ -182,7 +178,7 @@ function CustomInputField(props) {
             borderColor: errors && errors[name] ? alertColor : borderColor,
           }}>
           <View style={{...styles.centerContainer}}>
-            <Image source={prefixIcon} style={{resizeMode: 'contain'}} />
+            <AppSvg svgSrc={prefixIcon} />
           </View>
           <View style={{...styles.containerInput}}>
             {!isFocused && (
@@ -208,10 +204,10 @@ function CustomInputField(props) {
                     ...styles.label,
                     color:
                       status === 'disable'
-                        ? AppColors.subtitle
+                        ? AppColors.typography.subtitle
                         : isFocused
                         ? AppColors.primary
-                        : AppColors.subtitle,
+                        : AppColors.typography.subtitle,
                   }}>
                   {label}
                 </Text>
@@ -256,7 +252,7 @@ function CustomInputField(props) {
               Keyboard.dismiss();
               onReset(name);
             }}>
-            <Image source={suffixIcon} style={{resizeMode: 'contain'}} />
+            <AppSvg svgSrc={suffixIcon} />
           </TouchableOpacity>
         </View>
       </View>

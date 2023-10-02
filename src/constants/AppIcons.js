@@ -12,6 +12,8 @@ import microphone from '../../assets/icons/microphone/microphone.svg';
 import microphoneActive from '../../assets/icons/microphone/active/microphone.svg';
 import setting from '../../assets/icons/setting/setting.svg';
 import settingActive from '../../assets/icons/setting/active/setting.svg';
+import search from '../../assets/icons/search/search.svg';
+import closeCircle from '../../assets/icons/close-circle/close-circle.svg';
 
 export const AppIcons = {
   right_circle: rightCircle,
@@ -40,4 +42,6 @@ export const AppIcons = {
     inactive: setting,
     active: settingActive,
   },
+  search: search,
+  close_circle: closeCircle,
 };

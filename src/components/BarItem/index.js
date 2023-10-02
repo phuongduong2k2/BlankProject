@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import { Animated, Image, Text, TouchableOpacity, View } from "react-native";
-import PropTypes from "prop-types";
-import { AppColors, AppFontFamily } from "../../constants/AppStyle";
-import { AppFontSize } from "../../constants/constants";
-import { AppIcons } from "../../constants/AppResource";
+import React, {useEffect, useRef} from 'react';
+import {Animated, Text, TouchableOpacity, View} from 'react-native';
+import PropTypes from 'prop-types';
+import {AppIcons} from '../../constants/AppIcons';
+import {AppColors} from '../../constants/ColorSkin';
+import AppFontSize from '../../constants/AppFontSize';
+import AppFonts from '../../constants/AppFonts';
+import AppSvg from '../AppSvg';
 
 BarItem.propTypes = {
   title: PropTypes.string,
@@ -19,16 +21,16 @@ BarItem.propTypes = {
 };
 
 BarItem.defaultProps = {
-  title: "",
+  title: '',
   onSelected: () => {},
   isSelected: false,
   width: undefined,
-  unactiveColor: AppColors.subtitle,
+  unactiveColor: AppColors.typography.subtitle,
   activeColor: AppColors.primary,
   duration: 300,
   isRow: false,
   isReverse: false,
-  iconSrc: AppIcons.icRatingActive,
+  iconSrc: AppIcons.star.active,
 };
 
 function BarItem(props) {
@@ -60,27 +62,23 @@ function BarItem(props) {
       onPress={onSelected}
       activeOpacity={1}
       style={{
-        backgroundColor: "white",
+        backgroundColor: 'white',
         width: width,
         paddingVertical: 4,
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: isRow ? (isReverse ? "row-reverse" : "row") : undefined,
-      }}
-    >
-      <View style={{ height: 20, aspectRatio: 1 }}>
-        <Image source={iconSrc} style={{ resizeMode: "contain" }} />
-      </View>
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: isRow ? (isReverse ? 'row-reverse' : 'row') : undefined,
+      }}>
+      <AppSvg svgSrc={iconSrc} size={20} />
       <Animated.Text
         style={{
-          fontFamily: AppFontFamily.regular,
+          fontFamily: AppFonts.regular,
           color: animatedTextColor.interpolate({
             inputRange: [0, 1],
             outputRange: [unactiveColor, activeColor],
           }),
           fontSize: AppFontSize.s_14,
-        }}
-      >
+        }}>
         {title}
       </Animated.Text>
     </TouchableOpacity>

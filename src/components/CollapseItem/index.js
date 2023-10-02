@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
-  Image,
   LayoutAnimation,
   Platform,
   Text,
@@ -13,6 +12,7 @@ import {AppIcons} from '../../constants/AppIcons';
 import PropTypes from 'prop-types';
 import {AppDimentions} from '../../constants/constants';
 import Divider from '../Divider';
+import AppSvg from '../AppSvg';
 
 CollapseItem.propTypes = {
   onPress: PropTypes.func,
@@ -71,9 +71,7 @@ function CollapseItem(props) {
           alignItems: 'center',
           paddingHorizontal: AppDimentions.mainPadding,
         }}>
-        <View>
-          <Image source={prefixIcon} />
-        </View>
+        <AppSvg svgSrc={prefixIcon} />
         <Text
           style={{
             flex: 1,
@@ -94,7 +92,7 @@ function CollapseItem(props) {
               },
             ],
           }}>
-          <Image source={suffixIcon} />
+          <AppSvg svgSrc={suffixIcon} />
         </Animated.View>
       </TouchableOpacity>
       <View
@@ -107,7 +105,7 @@ function CollapseItem(props) {
           top: 46,
         }}>
         {isOpen && (
-          <Image source={AppIcons.icRatingActive} style={{opacity: 0}} />
+          <AppSvg svgSrc={AppIcons.star.active} style={{opactity: 0}} />
         )}
         <Divider
           style={{
@@ -122,7 +120,7 @@ function CollapseItem(props) {
             paddingHorizontal: AppDimentions.mainPadding,
             flexDirection: 'row',
           }}>
-          <Image source={AppIcons.icRatingActive} style={{opacity: 0}} />
+          <AppSvg svgSrc={AppIcons.star.active} style={{opactity: 0}} />
           <View
             style={{
               marginLeft: AppDimentions.thirdPadding,

@@ -5,3 +5,13 @@ export const AppDimentions = {
   thirdPadding: 12,
   fourthPadding: 8,
 };
+
+export const KeyboardTypes = {
+  default: 'default',
+  numberPad: 'number-pad',
+  decimalPad: 'decimal-pad',
+  numeric: 'numeric',
+  emailAddress: 'email-address',
+  phonePad: 'phone-pad',
+  url: 'url',
+};

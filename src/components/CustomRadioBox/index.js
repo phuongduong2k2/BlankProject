@@ -1,11 +1,13 @@
 import React, {useEffect, useRef} from 'react';
-import {Animated, Image, Text, View} from 'react-native';
+import {Animated, Text, View} from 'react-native';
 import {AppIcons} from '../../constants/AppIcons';
 import PropTypes, {any} from 'prop-types';
 import {Controller} from 'react-hook-form';
-import {AppColors, AppFontFamily} from '../../constants/AppStyle';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import {AppDimentions, AppFontSize} from '../../constants/constants';
+import {AppDimentions} from '../../constants/constants';
+import AppFonts from '../../constants/AppFonts';
+import AppFontSize from '../../constants/AppFontSize';
+import {AppColors} from '../../constants/ColorSkin';
 
 CustomRadioBox.propTypes = {
   control: PropTypes.any,
@@ -118,9 +120,9 @@ function CustomRadioBox(props) {
           <Text
             style={{
               marginRight: AppDimentions.fourthPadding,
-              fontFamily: AppFontFamily.regular,
+              fontFamily: AppFonts.regular,
               fontSize: AppFontSize.s_14,
-              color: AppColors.primaryText,
+              color: AppColors.typography.title,
               ...textStyle,
             }}
             numberOfLines={1}>
@@ -170,9 +172,9 @@ function CustomRadioBox(props) {
           <Text
             style={{
               marginLeft: AppDimentions.fourthPadding - 1,
-              fontFamily: AppFontFamily.regular,
+              fontFamily: AppFonts.regular,
               fontSize: AppFontSize.s_14,
-              color: AppColors.primaryText,
+              color: AppColors.typography.title,
               ...textStyle,
             }}
             numberOfLines={1}>
@@ -196,7 +198,7 @@ function CustomRadioBox(props) {
           <Text
             style={{
               color: messageColor && messageColor,
-              fontFamily: AppFontFamily.regular,
+              fontFamily: AppFonts.regular,
               fontSize: AppFontSize.s_12,
             }}>
             {errors[name].message}
