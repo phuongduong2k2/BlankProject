@@ -15,3 +15,9 @@ export const KeyboardTypes = {
   phonePad: 'phone-pad',
   url: 'url',
 };
+
+export const InputType = {
+  textInput: 'textInput',
+  checkBox: 'checkBox',
+  radio: 'radio',
+};

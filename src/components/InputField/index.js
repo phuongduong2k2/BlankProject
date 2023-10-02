@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
   Keyboard,
+  LayoutAnimation,
   Text,
   TextInput,
   TouchableOpacity,
@@ -132,20 +133,31 @@ function CustomInputField(props) {
   // Animated show error
   const animated = useRef(new Animated.Value(0)).current;
 
+  const firstTime = useRef(true);
+
   useEffect(() => {
-    if (errors && errors[name]) {
+    // Collapse 1 time
+    console.log(firstTime.current);
+    if (firstTime.current && isFocused) {
+      // if (isFocused) {
       Animated.timing(animated, {
         toValue: 1,
         duration: 300,
         useNativeDriver: false,
       }).start();
-    } else {
-      Animated.timing(animated, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: false,
-      }).start();
+      // } else {
+      //   Animated.timing(animated, {
+      //     toValue: 0,
+      //     duration: 300,
+      //     useNativeDriver: false,
+      //   }).start();
+      // }
+      firstTime.current = false;
     }
+  }, [isFocused]);
+
+  useEffect(() => {
+    LayoutAnimation.easeInEaseOut();
   }, [errors, errors[name]]);
 
   // Input Ref
@@ -154,7 +166,11 @@ function CustomInputField(props) {
   return (
     <>
       {aboveLabel && <Text style={{...styles.aboveLabel}}>{aboveLabel}</Text>}
-      <View style={{flexDirection: 'row', width: '100%'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          width: '100%',
+        }}>
         {leftLabel && (
           <View
             style={{
@@ -166,7 +182,6 @@ function CustomInputField(props) {
         )}
         <View
           style={{
-            ...styles.container,
             backgroundColor:
               status === 'disable'
                 ? AppColors.grey1
@@ -176,9 +191,10 @@ function CustomInputField(props) {
             width: width,
             borderWidth: borderWidth,
             borderColor: errors && errors[name] ? alertColor : borderColor,
+            ...styles.container,
           }}>
           <View style={{...styles.centerContainer}}>
-            <AppSvg svgSrc={prefixIcon} />
+            <AppSvg svgSrc={prefixIcon} size={16} />
           </View>
           <View style={{...styles.containerInput}}>
             {!isFocused && (
@@ -194,10 +210,13 @@ function CustomInputField(props) {
               />
             )}
             {label && (
-              <View
+              <Animated.View
                 style={{
                   marginBottom: 4,
-                  height: 16,
+                  height: animated.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, 16],
+                  }),
                 }}>
                 <Text
                   style={{
@@ -211,35 +230,37 @@ function CustomInputField(props) {
                   }}>
                   {label}
                 </Text>
-              </View>
+              </Animated.View>
             )}
-            <View
-              style={{
-                height: 22,
-              }}>
-              {control && name && (
-                <Controller
-                  control={control}
-                  rules={rules}
-                  render={({field: {onChange, onBlur, value}}) => (
-                    <TextInput
-                      ref={inputRef}
-                      keyboardType={keyboardType}
-                      placeholder={placeholder}
-                      style={{...styles.textInput}}
-                      onBlur={onBlur}
-                      onChangeText={value => {
-                        onChange(value);
-                        onChangeText(name, value);
-                      }}
-                      value={value}
-                      editable={!(status === 'disable')}
-                    />
-                  )}
-                  name={name}
-                />
-              )}
-            </View>
+            {
+              <View
+                style={{
+                  height: 22,
+                }}>
+                {control && name && (
+                  <Controller
+                    control={control}
+                    rules={rules}
+                    render={({field: {onChange, onBlur, value}}) => (
+                      <TextInput
+                        ref={inputRef}
+                        keyboardType={keyboardType}
+                        placeholder={placeholder}
+                        style={{...styles.textInput}}
+                        onBlur={onBlur}
+                        onChangeText={value => {
+                          onChange(value);
+                          onChangeText(name, value);
+                        }}
+                        value={value}
+                        editable={!(status === 'disable')}
+                      />
+                    )}
+                    name={name}
+                  />
+                )}
+              </View>
+            }
           </View>
           <TouchableOpacity
             style={{
@@ -252,21 +273,14 @@ function CustomInputField(props) {
               Keyboard.dismiss();
               onReset(name);
             }}>
-            <AppSvg svgSrc={suffixIcon} />
+            <AppSvg svgSrc={suffixIcon} size={16} />
           </TouchableOpacity>
         </View>
       </View>
-      <Animated.View
+
+      <View
         style={{
           marginTop: AppDimentions.fourthPadding,
-          height: animated.interpolate({
-            inputRange: [0, 1],
-            outputRange: [5, 16],
-          }),
-          opacity: animated.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 1],
-          }),
         }}>
         {errors && errors[name] && (
           <Text
@@ -274,7 +288,7 @@ function CustomInputField(props) {
             {errors[name].message}
           </Text>
         )}
-      </Animated.View>
+      </View>
     </>
   );
 }

@@ -1,11 +1,8 @@
-import React, {createContext} from 'react';
-import {Controller, useForm} from 'react-hook-form';
-import {Button, Text, TextInput, View} from 'react-native';
-import CustomInputField from '../CustomInputField';
-import PropTypes, {any, oneOfType} from 'prop-types';
+import React from 'react';
+import {useForm} from 'react-hook-form';
+import {Button, View} from 'react-native';
+import PropTypes from 'prop-types';
 import {InputType} from '../../constants/constants';
-import CustomRadioBox from '../CustomRadioBox';
-import {AppColors} from '../../constants/AppStyle';
 
 FormContainer.propTypes = {
   onSubmitting: PropTypes.func,
