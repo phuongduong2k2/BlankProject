@@ -1,78 +1,89 @@
-import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-import PropTypes from 'prop-types'
-import { AppColors } from '../../constants/ColorSkin'
-import AppSvg from '../AppSvg'
-import { AppIcons } from '../../constants/AppIcons'
+import React from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import PropTypes from 'prop-types';
+import {AppColors} from '../../constants/ColorSkin';
+import AppSvg from '../AppSvg';
 
 AppButton.propTypes = {
-    onPress: PropTypes.func,
-    backgroundColor: PropTypes.string,
-    title: PropTypes.string,
-    prefixIcon: PropTypes.any,
-    suffixIcon: PropTypes.any,
-    width: PropTypes.number,
-    height: PropTypes.number,
-    textStyle: PropTypes.object,
-    iconSize: PropTypes.number,
-    borderStyle: PropTypes.exact({
-        borderColor: PropTypes.string,
-        borderType: PropTypes.string,
-        borderWidth: PropTypes.number,
-        borderRadius: PropTypes.number,
-    })
-}
+  onPress: PropTypes.func,
+  backgroundColor: PropTypes.string,
+  title: PropTypes.string,
+  icon: PropTypes.any,
+  isReverse: PropTypes.bool,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  textStyle: PropTypes.object,
+  iconSize: PropTypes.number,
+  borderStyle: PropTypes.exact({
+    borderColor: PropTypes.string,
+    borderType: PropTypes.string,
+    borderWidth: PropTypes.number,
+    borderRadius: PropTypes.number,
+  }),
+};
 
 AppButton.defaultProps = {
-    backgroundColor: AppColors.primary,
-    title: '',
-    prefixIcon: undefined,
-    suffixIcon: undefined,
-    width: 96,
-    height: 48,
-    textStyle: {
-        color: 'white'
-    },
-    iconSize: 24,
-    borderStyle: {
-        borderColor: AppColors.primary,
-        borderType: 'solid',
-        borderWidth: 1,
-        borderRadius: 8
-    }
-}
+  backgroundColor: AppColors.primary,
+  title: '',
+  icon: undefined,
+  isReverse: false,
+  width: 96,
+  height: 48,
+  textStyle: {
+    color: 'white',
+  },
+  iconSize: 24,
+  borderStyle: {
+    borderColor: AppColors.primary,
+    borderType: 'solid',
+    borderWidth: 1,
+    borderRadius: 8,
+  },
+};
 
 function AppButton(props) {
+    const { 
+        onPress,
+        backgroundColor,
+        width,
+        height,
+        borderStyle,
+        icon,
+        iconSize,
+        isReverse,
+        title,
+        textStyle
+    } = props
   return (
-    <TouchableOpacity
-        onPress={props.onPress}
-    >
-        <View
+    <TouchableOpacity onPress={onPress}>
+      <View
+        style={{
+          backgroundColor: backgroundColor,
+          alignSelf: 'flex-start',
+          width: title ? width : height,
+          height: height,
+          borderRadius: title ? borderStyle.borderRadius : 100,
+          borderStyle: borderStyle.borderType,
+          borderWidth: borderStyle.borderWidth,
+          borderColor: borderStyle.borderColor,
+          flexDirection: isReverse ? 'row-reverse' : 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingHorizontal: title ? 24 : null,
+        }}>
+        {icon && <AppSvg svgSrc={icon} size={iconSize} />}
+        {title && (
+          <Text
             style={{
-                backgroundColor: props.backgroundColor,
-                alignSelf:'flex-start',
-                width: props.title ? props.width : props.height,
-                height: props.height,
-                borderRadius: props.title ? props.borderStyle.borderRadius : 100,
-                borderStyle: props.borderStyle.borderType,
-                borderWidth: props.borderStyle.borderWidth,
-                borderColor: props.borderStyle.borderColor,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                paddingHorizontal: props.title ? 24 : null
-            }}
-        >   
-            {props.prefixIcon && <AppSvg svgSrc={props.prefixIcon} size={props.iconSize}/>}
-            {props.title && <Text style={{
-                ...props.textStyle,
-                paddingHorizontal: 4
-            }}>{props.title}</Text>}
-            {props.suffixIcon && <AppSvg svgSrc={props.suffixIcon} size={props.iconSize}/>}
-        </View>
+              ...textStyle,
+              paddingHorizontal: 4,
+            }}>
+            {title}
+          </Text>
+        )}
+      </View>
     </TouchableOpacity>
-    
-  )
+  );
 }
 
-export default AppButton
+export default AppButton;

@@ -17,6 +17,9 @@ import axiosClient from '../../axios/AxiosClient';
 import FormContainer from '../../components/FormContainer';
 import CustomInputField from '../../components/InputField';
 import {LoadingPopupUtils} from '../../components/LoadingPopup';
+import AppButton from '../../components/AppButton';
+import { AppColors } from '../../constants/ColorSkin';
+import AppRadioButton from '../../components/AppRadioButton';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -48,7 +51,8 @@ const HomeScreen = () => {
               borderColor: AppColors.grey4,
               borderRadius: 8,
             }}
-            prefixIcon={AppIcons.chrome}
+            icon={AppIcons.chrome}
+            // isReverse
             title={'Button'}
             width={124}
             height={48}
@@ -60,8 +64,8 @@ const HomeScreen = () => {
               console.log('parent :', isSelected);
             }}
             label='Checked'
-            isReverse
-            // disabled
+            // isReverse
+            disabled
           />
           <Button
             title="call api"

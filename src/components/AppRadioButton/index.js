@@ -9,10 +9,10 @@ AppRadioButton.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
   size: PropTypes.number,
-  borderStyle: {
+  borderStyle: PropTypes.exact({
     borderWidth: PropTypes.number,
     borderColor: PropTypes.string,
-  },
+  }),
 };
 
 AppRadioButton.defaultProps = {
