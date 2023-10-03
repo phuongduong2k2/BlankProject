@@ -69,14 +69,12 @@ function AppButton(props) {
           flexDirection: isReverse ? 'row-reverse' : 'row',
           alignItems: 'center',
           justifyContent: 'center',
-          paddingHorizontal: title ? 0 : null,
         }}>
         {icon && <AppSvg svgSrc={icon} size={iconSize} />}
         {title && (
           <Text
             style={{
               ...textStyle,
-              paddingHorizontal: 4,
             }}>
             {title}
           </Text>
