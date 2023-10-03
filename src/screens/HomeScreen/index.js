@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Button,
+  FlatList,
   KeyboardAvoidingView,
   ScrollView,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -23,24 +25,22 @@ import AppButton from '../../components/AppButton';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const {config} = useSelector(state => state.app);
+  const {config, data} = useSelector(state => state.app);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStatus, setCurrentStatus] = useState('');
   return (
     <SafeAreaProvider>
       <AppHeader title={'New Project'}>
-        <>
-          <Button
-            title="sdasd"
-            onPress={() => {
-              dispatch({type: 'GET_ALL_CONFIG'});
-            }}
-          />
-        </>
+        <></>
         <></>
       </AppHeader>
       <ScrollView>
         <View style={{flex: 1}}>
           <Rating />
 
+          {data?.map(item => (
+            <Text key={item.id}>{item.products[0].title}</Text>
+          ))}
           <AppButton
             onPress={() => {
               console.log('Click');
@@ -60,13 +60,14 @@ const HomeScreen = () => {
               fontSize: 14,
             }}
           />
-          <Text>adsdsfddsf</Text>
+          <Button
+            title="call api"
+            onPress={() => {
+              dispatch({type: 'GET_DATA'});
+            }}
+          />
           <AppSvg svgSrc={AppIcons.setting.active} size={24} />
-          <AppStepContainer>
-            <AppStepItem />
-            <AppStepItem />
-            <AppStepItem />
-          </AppStepContainer>
+
           <Button
             title="call api"
             onPress={async () => {
