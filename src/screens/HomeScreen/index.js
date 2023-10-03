@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {createRef, useState} from 'react';
 import {
   Button,
   FlatList,
@@ -18,7 +18,9 @@ import {baseApiUrl} from '../../../env.json';
 import FormContainer from '../../components/FormContainer';
 import CustomInputField from '../../components/InputField';
 import {LoadingPopupUtils} from '../../components/LoadingPopup';
-import AppStepContainer from '../../components/AppStepContainer';
+import AppStepContainer, {
+  AppStepContainerUtils,
+} from '../../components/AppStepContainer';
 import AppStepItem from '../../components/AppStepItem';
 import BaseDA from '../../axios/BaseDA';
 import AppButton from '../../components/AppButton';
@@ -41,6 +43,62 @@ const HomeScreen = () => {
           {data?.map(item => (
             <Text key={item.id}>{item.products[0].title}</Text>
           ))}
+
+          <AppStepContainer
+            currentStep={currentStep}
+            currentStatus={currentStatus}
+            duration={300}>
+            <AppStepItem
+              iconActive={AppIcons.rice.active}
+              iconInactive={AppIcons.rice.inactive}
+            />
+            <AppStepItem
+              iconActive={AppIcons.rice.active}
+              iconInactive={AppIcons.rice.inactive}
+            />
+            <AppStepItem
+              iconActive={AppIcons.rice.active}
+              iconInactive={AppIcons.rice.inactive}
+            />
+            <AppStepItem
+              iconActive={AppIcons.rice.active}
+              iconInactive={AppIcons.rice.inactive}
+            />
+            <AppStepItem
+              iconActive={AppIcons.rice.active}
+              iconInactive={AppIcons.rice.inactive}
+            />
+            <AppStepItem
+              iconActive={AppIcons.rice.active}
+              iconInactive={AppIcons.rice.inactive}
+            />
+          </AppStepContainer>
+          <View style={{flexDirection: 'row'}}>
+            <AppButton
+              title="Back Step"
+              onPress={() => {
+                setCurrentStep(currentStep - 1);
+              }}
+            />
+            <AppButton
+              title="Next Step"
+              onPress={() => {
+                setCurrentStep(currentStep + 1);
+              }}
+            />
+            <AppButton
+              title="Set Success"
+              onPress={() => {
+                AppStepContainerUtils.setSuccess();
+              }}
+            />
+            <AppButton
+              title="Set Failed"
+              onPress={() => {
+                AppStepContainerUtils.setFailed();
+              }}
+            />
+          </View>
           <AppButton
             onPress={() => {
               console.log('Click');

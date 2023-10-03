@@ -1,8 +1,5 @@
 import {StyleSheet} from 'react-native';
-import AppFontSize from '../../constants/AppFontSize';
-import {AppColors} from '../../constants/ColorSkin';
 import {AppDimentions} from '../../constants/constants';
-import AppFonts from '../../constants/AppFonts';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,7 +28,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  messageText: {fontFamily: AppFonts.regular, fontSize: AppFontSize.s_12},
 });
 
 export default styles;

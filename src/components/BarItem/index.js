@@ -3,9 +3,8 @@ import {Animated, Text, TouchableOpacity, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {AppIcons} from '../../constants/AppIcons';
 import {AppColors} from '../../constants/ColorSkin';
-import AppFontSize from '../../constants/AppFontSize';
-import AppFonts from '../../constants/AppFonts';
 import AppSvg from '../AppSvg';
+import TextStyle from '../../constants/TextStyle';
 
 BarItem.propTypes = {
   title: PropTypes.string,
@@ -72,12 +71,11 @@ function BarItem(props) {
       <AppSvg svgSrc={iconSrc} size={20} />
       <Animated.Text
         style={{
-          fontFamily: AppFonts.regular,
+          ...TextStyle.button.btn_2,
           color: animatedTextColor.interpolate({
             inputRange: [0, 1],
             outputRange: [unactiveColor, activeColor],
           }),
-          fontSize: AppFontSize.s_14,
         }}>
         {title}
       </Animated.Text>
