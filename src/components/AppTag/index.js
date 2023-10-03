@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import {AppColors} from '../../constants/ColorSkin';
 import AppSvg from '../AppSvg';
 
-AppButton.propTypes = {
-  onPress: PropTypes.func,
+AppTag.propTypes = {
   backgroundColor: PropTypes.string,
   title: PropTypes.string,
   icon: PropTypes.any,
@@ -22,26 +21,26 @@ AppButton.propTypes = {
   }),
 };
 
-AppButton.defaultProps = {
-  backgroundColor: AppColors.primary,
+AppTag.defaultProps = {
+  backgroundColor: AppColors.primaryBackground,
   title: '',
   icon: undefined,
   isReverse: false,
-  width: 96,
+  width: 95,
   height: 48,
   textStyle: {
-    color: 'white',
+    color: AppColors.primarySub,
   },
   iconSize: 24,
   borderStyle: {
-    borderColor: AppColors.primary,
+    borderColor: AppColors.primaryBorder,
     borderType: 'solid',
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 48,
   },
 };
 
-function AppButton(props) {
+function AppTag(props) {
     const { 
         onPress,
         backgroundColor,
@@ -55,11 +54,9 @@ function AppButton(props) {
         textStyle
     } = props
   return (
-    <TouchableOpacity onPress={onPress}>
       <View
         style={{
           backgroundColor: backgroundColor,
-          alignSelf: 'flex-start',
           width: title ? width : height,
           height: height,
           borderRadius: title ? borderStyle.borderRadius : 100,
@@ -80,8 +77,7 @@ function AppButton(props) {
           </Text>
         )}
       </View>
-    </TouchableOpacity>
   );
 }
 
-export default AppButton;
+export default AppTag;
