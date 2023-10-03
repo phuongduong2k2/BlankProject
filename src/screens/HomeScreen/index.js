@@ -39,6 +39,23 @@ const HomeScreen = () => {
       <ScrollView>
         <View style={{flex: 1}}>
           <Rating />
+          <AppButton
+            onPress={() => {
+              console.log('Click');
+            }}
+            backgroundColor={AppColors.grey4}
+            borderStyle={{
+              borderWidth: 1,
+              borderType: 'solid',
+              borderColor: AppColors.grey4,
+              borderRadius: 8,
+            }}
+            icon={AppIcons.chrome}
+            // isReverse
+            title={'Button'}
+            width={124}
+            height={48}
+          />
           <AppSvg svgSrc={AppIcons.setting.active} size={24} />
           {/* <AppStepContainer>
             <AppStepItem />
