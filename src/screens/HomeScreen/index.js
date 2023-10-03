@@ -17,6 +17,9 @@ import axiosClient from '../../axios/AxiosClient';
 import FormContainer from '../../components/FormContainer';
 import CustomInputField from '../../components/InputField';
 import {LoadingPopupUtils} from '../../components/LoadingPopup';
+import AppButton from '../../components/AppButton';
+import { AppColors } from '../../constants/ColorSkin';
+import AppRadioButton from '../../components/AppRadioButton';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -37,8 +40,33 @@ const HomeScreen = () => {
       <ScrollView>
         <View style={{flex: 1}}>
           <Rating />
+          <AppButton
+            onPress={() => {
+              console.log('Click');
+            }}
+            backgroundColor={AppColors.grey4}
+            borderStyle={{
+              borderWidth: 1,
+              borderType: 'solid',
+              borderColor: AppColors.grey4,
+              borderRadius: 8,
+            }}
+            icon={AppIcons.chrome}
+            // isReverse
+            title={'Button'}
+            width={124}
+            height={48}
+          />
           <AppSvg svgSrc={AppIcons.setting.active} size={24} />
           <Text>{config}</Text>
+          <AppRadioButton
+            onChange={isSelected => {
+              console.log('parent :', isSelected);
+            }}
+            label='Checked'
+            // isReverse
+            disabled
+          />
           <Button
             title="call api"
             onPress={async () => {
