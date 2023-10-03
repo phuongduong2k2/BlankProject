@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Switch, Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AppHeader from '../../components/AppHeader';
 import Rating from '../../components/Rating';
@@ -8,6 +8,8 @@ import {AppIcons} from '../../constants/AppIcons';
 import AppTag from '../../components/AppTag';
 import AppNumberPicker from '../../components/AppNumberPicker';
 import { AppColors } from '../../constants/ColorSkin';
+import AppPaginationItem from '../../components/AppPaginationItem';
+import AppSwitch from '../../components/AppSwitch';
 
 const FavoritesScreen = () => {
   return (
@@ -48,6 +50,14 @@ const FavoritesScreen = () => {
             height={40}
             color= 'black'
           />
+          <AppSwitch
+            hasLabel
+            // isReverse
+            onChange={(value) => {
+              console.log(value)
+            }}
+          />
+          
         </View>
       </ScrollView>
     </SafeAreaProvider>
