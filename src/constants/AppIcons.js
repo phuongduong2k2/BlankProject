@@ -14,7 +14,8 @@ import setting from '../../assets/icons/setting/setting.svg';
 import settingActive from '../../assets/icons/setting/active/setting.svg';
 import search from '../../assets/icons/search/search.svg';
 import closeCircle from '../../assets/icons/close-circle/close-circle.svg';
-import chrome from '../../assets/icons/chrome/chrome.svg'
+import chrome from '../../assets/icons/chrome/chrome.svg';
+import tag from '../../assets/icons/tag/tags.svg';
 
 export const AppIcons = {
   right_circle: rightCircle,
@@ -45,5 +46,6 @@ export const AppIcons = {
   },
   search: search,
   close_circle: closeCircle,
-  chrome: chrome
+  chrome: chrome,
+  tag: tag
 };
