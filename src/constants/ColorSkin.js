@@ -1,124 +1,82 @@
 export const AppColors = {
   // Primary
-  primary: 'rgba(51, 102, 255, 1)',
-  primarySub: 'rgba(102, 144, 255, 1)',
-  primaryBorder: 'rgba(173, 200, 255, 1)',
-  primaryBackground: 'rgba(214, 228, 255, 1)',
+  primary: '#1890FF',
+  primaryHover: '#40A9FF',
+  primaryActive: '#096DD9',
+  primaryTagBg: '#E6F7FF)',
+  primaryBorder: '#91D5FF',
 
   // Secondary 1
-  secondary1: 'rgba(252, 107, 3, 1)',
-  secondarySub1: 'rgba(253, 122, 28, 1)',
-  secondaryBorder1: 'rgba(254, 211, 179, 1)',
-  secondaryBackground1: 'rgba(255, 243, 235, 1)',
+  secondary1: '#2EB553',
+  secondaryHover1: '#4DD077',
+  secondaryActive1: '#039732',
+  secondaryTagBg1: '#EBFAEF',
+  secondaryBorder1: '#B3EBC5',
 
   // Secondary 2
-  secondary2: 'rgba(57, 172, 109, 1)',
-  secondarySub2: 'rgba(64, 191, 121, 1)',
-  secondaryBorder2: 'rgba(198, 236, 215, 1)',
-  secondaryBackground2: 'rgba(232, 247, 239, 1)',
+  secondary2: '#13C2C2',
+  secondaryHover2: '#36CFC9',
+  secondaryActive2: '#08979C',
+  secondaryTagBg2: '#E7F9F9',
+  secondaryBorder2: '#87E8DE',
 
   // Secondary 3
-  secondary3: 'rgba(222, 168, 33, 1)',
-  secondarySub3: 'rgba(225, 177, 55, 1)',
-  secondaryBorder3: 'rgba(245, 229, 188, 1)',
-  secondaryBackground3: 'rgba(251, 245, 228, 1)',
+  secondary3: '#FA8C16',
+  secondaryHover3: '#FA8C16',
+  secondaryActive3: '#D46B08',
+  secondaryTagBg3: '#FFF7E6',
+  secondaryBorder3: '#FFD591',
 
   // Secondary 4
-  secondary4: 'rgba(172, 103, 228, 1)',
-  secondarySub4: 'rgba(184, 125, 232, 1)',
-  secondaryBorder4: 'rgba(231, 212, 247, 1)',
-  secondaryBackground4: 'rgba(246, 238, 252, 1)',
+  secondary4: '#FFD666',
+  secondaryHover4: '#FFD666',
+  secondaryActive4: '#FAAD14',
+  secondaryTagBg4: '#FFFBE6',
+  secondaryBorder4: '#FFE58F',
 
   // Alert info
-  info: 'rgba(63, 164, 252, 1)',
-  infoSub: 'rgba(110, 194, 253, 1)',
-  infoBorder: 'rgba(178, 231, 254, 1)',
-  infoBackground: 'rgba(216, 245, 254, 1)',
+  infoPrimary: '#1890FF',
+  infoHover: '#40A9FF',
+  infoActive: '#096DD9',
+  infoTagBg: '#E6F7FF',
+  infoBorder: '#91D5FF',
 
   // Alert success
-  success: 'rgba(60, 193, 68, 1)',
-  successSub: 'rgba(108, 217, 105, 1)',
-  successBorder: 'rgba(194, 248, 180, 1)',
-  successBackground: 'rgba(227, 251, 217, 1)',
+  successPrimary: '#2EB553',
+  successHover: '#4DD077',
+  successActive: '#039732',
+  successTagBg: '#EBFAEF',
+  successBorder: '#B3EBC5',
 
   // Alert warning
-  warning: 'rgba(255, 183, 68, 1)',
-  warningSub: 'rgba(255, 206, 114, 1)',
-  warningBorder: 'rgba(255, 235, 180, 1)',
-  warningBackground: 'rgba(255, 246, 217, 1)',
+  warningPrimary: '#FA8C16',
+  warningHover: '#FA8C16',
+  warningActive: '#D46B08',
+  warningTagBg: '#FFF7E6',
+  warningBorder: '#FFD591',
 
   // Alert error
-  error: 'rgba(255, 61, 61, 1)',
-  errorSub: 'rgba(255, 122, 109, 1)',
-  errorBorder: 'rgba(255, 197, 177, 1)',
-  errorBackground: 'rgba(255, 229, 216, 1)',
+  errorPrimary: '#F5222D',
+  errorHover: '#FF4D4F',
+  errorActive: '#CF1322',
+  errorTagBg: '#FFF1F0',
+  errorBorder: '#FFA39E',
 
   // Background Light Theme
   background: {
-    white: 'rgba(255, 255, 255, 1)',
-    paper: 'rgba(255, 255, 255, 1)',
-    greyLight1: 'rgba(145, 158, 171, 0.12)',
-    greyLight2: 'rgba(145, 158, 171, 0.12)',
-    greyLight3: 'rgba(223, 227, 232, 1)',
-    overlay: 'rgba(22, 28, 36, 0.6)',
+    grey9: '#262626',
+    disable: '#D9D9D9',
+    grey4: '#E8E8E8',
+    grey3: '#F3F3F3',
+    grey1: '#FFFFFF',
   },
 
-  // Border Light Theme
-  border: 'rgba(22, 28, 36, 0.16)',
-  divider: 'rgba(22, 28, 36, 0.08)',
-
-  // State Light Theme
-  state: {
-    disable: 'rgba(22, 28, 36, 0.04)',
-    selected: 'rgba(22, 28, 36, 0.08)',
-    hover: 'rgba(22, 28, 36, 0.04)',
-  },
-
-  // Common Light Theme White
-  commonWhite: {
-    white: 'rgba(255, 255, 255, 1)',
-    whiteTrans80: 'rgba(255, 255, 255, 0.8)',
-    whiteTrans64: 'rgba(255, 255, 255, 0.64)',
-    whiteTrans48: 'rgba(255, 255, 255, 0.48)',
-    whiteTrans32: 'rgba(255, 255, 255, 0.32)',
-    whiteTrans24: 'rgba(255, 255, 255, 0.24)',
-    whiteTrans16: 'rgba(255, 255, 255, 0.16)',
-    whiteTrans12: 'rgba(255, 255, 255, 0.12)',
-    whiteTrans8: 'rgba(255, 255, 255, 0.08)',
-  },
-
-  // Typography Light Theme
+  // Typpgraphy
   typography: {
-    disable: 'rgba(22, 28, 36, 0.24)',
-    placeholder: 'rgba(22, 28, 36, 0.4)',
-    subtitle: 'rgba(22, 28, 36, 0.6)',
-    body: 'rgba(22, 28, 36, 0.72)',
-    label: 'rgba(22, 28, 36, 0.88)',
-    title: 'rgba(22, 28, 36, 1)',
+    title: '#262626',
+    primary: '#595959',
+    secondary: '#8C8C8C',
+    subtitle: '#BFBFBF',
+    disable: '#D9D9D9',
   },
-
-  // Common Light Theme Black
-  commonBlack: {
-    black: 'rgba(0, 0, 0, 1)',
-    blackTrans80: 'rgba(0, 0, 0, 0.8)',
-    blackTrans64: 'rgba(0, 0, 0, 0.64)',
-    blackTrans48: 'rgba(0, 0, 0, 0.48)',
-    blackTrans32: 'rgba(0, 0, 0, 0.32)',
-    blackTrans24: 'rgba(0, 0, 0, 0.24)',
-    blackTrans16: 'rgba(0, 0, 0, 0.16)',
-    blackTrans12: 'rgba(0, 0, 0, 0.12)',
-    blackTrans8: 'rgba(0, 0, 0, 0.08)',
-  },
-
-  // Grey
-  grey9: 'rgba(22, 28, 36, 1)',
-  grey8: 'rgba(33, 43, 54, 1)',
-  grey7: 'rgba(69, 79, 91, 1)',
-  grey6: 'rgba(99, 115, 129, 1)',
-  grey5: 'rgba(145, 158, 171, 1)',
-  grey4: 'rgba(196, 205, 213, 1)',
-  grey3: 'rgba(223, 227, 232, 1)',
-  grey2: 'rgba(145, 158, 171, 0.12)',
-  grey1: 'rgba(248, 249, 250, 1)',
-  grey0: 'rgba(255, 255, 255, 1)',
 };
