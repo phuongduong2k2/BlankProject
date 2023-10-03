@@ -1,15 +1,15 @@
 import axios from 'axios';
-const axiosClient = axios.create({
+const BaseDA = axios.create({
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
   },
 });
 
-axiosClient.interceptors.request.use(async config => {
+BaseDA.interceptors.request.use(async config => {
   return config;
 });
 
-axiosClient.interceptors.response.use(
+BaseDA.interceptors.response.use(
   response => {
     if (response && response.data) {
       return response.data;
@@ -17,9 +17,9 @@ axiosClient.interceptors.response.use(
     return response;
   },
   err => {
-    console.log('[axiosClient.js] : ', err);
+    console.log('[BaseDA.js] : ', err);
     return err;
   },
 );
 
-export default axiosClient;
+export default BaseDA;

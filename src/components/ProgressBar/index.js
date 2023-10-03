@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import * as Progress from "react-native-progress";
-import PropTypes from "prop-types";
-import { AppColors } from "../../constants/AppStyle";
-import { Animated, View } from "react-native";
+import React, {useEffect, useRef, useState} from 'react';
+import * as Progress from 'react-native-progress';
+import PropTypes from 'prop-types';
+import {Animated, View} from 'react-native';
+import {AppColors} from '../../constants/ColorSkin';
 
 ProgressBar.propTypes = {
   progress: PropTypes.number,
@@ -22,7 +22,7 @@ ProgressBar.defaultProps = {
   borderRadius: 8,
   color: AppColors.primary,
   borderColor: AppColors.primary,
-  unfilledColor: "white",
+  unfilledColor: 'white',
   borderWidth: 1,
 };
 function ProgressBar(props) {
@@ -58,23 +58,22 @@ function ProgressBar(props) {
 
   return (
     <View
-      onLayout={(event) => {
-        var { width } = event.nativeEvent.layout;
+      onLayout={event => {
+        var {width} = event.nativeEvent.layout;
         setWidthContainer(width);
       }}
-      style={{ justifyContent: "center", width: "100%" }}
-    >
+      style={{justifyContent: 'center', width: '100%'}}>
       <Progress.Bar
         progress={progress}
         width={width === null || width === undefined ? null : width}
         height={height}
         borderRadius={borderRadius}
-        color={"transparent"}
-        style={{ borderWidth: borderWidth }}
+        color={'transparent'}
+        style={{borderWidth: borderWidth}}
         borderColor={borderColor}
         unfilledColor={unfilledColor}
         animationType="timing"
-        animationConfig={{ duration: 150 }}
+        animationConfig={{duration: 150}}
       />
       {/* Thanh Progress thay thế */}
       <Animated.View
@@ -87,7 +86,7 @@ function ProgressBar(props) {
           }),
           borderRadius: 100,
           backgroundColor: color,
-          position: "absolute",
+          position: 'absolute',
         }}
       />
     </View>
