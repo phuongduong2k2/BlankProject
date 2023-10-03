@@ -1,5 +1,11 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {
+  Button,
+  KeyboardAvoidingView,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AppHeader from '../../components/AppHeader';
 import AppSvg from '../../components/AppSvg';
@@ -8,6 +14,12 @@ import Rating from '../../components/Rating';
 import {useDispatch, useSelector} from 'react-redux';
 import {baseApiUrl} from '../../../env.json';
 import axiosClient from '../../axios/AxiosClient';
+import FormContainer from '../../components/FormContainer';
+import CustomInputField from '../../components/InputField';
+import {LoadingPopupUtils} from '../../components/LoadingPopup';
+import AppButton from '../../components/AppButton';
+import { AppColors } from '../../constants/ColorSkin';
+import AppRadioButton from '../../components/AppRadioButton';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -25,18 +37,86 @@ const HomeScreen = () => {
         </>
         <></>
       </AppHeader>
-      <View style={{flex: 1}}>
-        <Rating />
-        <AppSvg svgSrc={AppIcons.setting.active} />
-        <Text>{config}</Text>
-        <Button
-          title="call api"
-          onPress={async () => {
-            const data = await axiosClient.get(`${baseApiUrl}produts`);
-            console.log(data);
-          }}
-        />
-      </View>
+      <ScrollView>
+        <View style={{flex: 1}}>
+          <Rating />
+          <AppButton
+            onPress={() => {
+              console.log('Click');
+            }}
+            backgroundColor={AppColors.grey4}
+            borderStyle={{
+              borderWidth: 1,
+              borderType: 'solid',
+              borderColor: AppColors.grey4,
+              borderRadius: 8,
+            }}
+            icon={AppIcons.chrome}
+            // isReverse
+            title={'Button'}
+            width={124}
+            height={48}
+          />
+          <AppSvg svgSrc={AppIcons.setting.active} size={24} />
+          <Text>{config}</Text>
+          <AppRadioButton
+            onChange={isSelected => {
+              console.log('parent :', isSelected);
+            }}
+            label='Checked'
+            // isReverse
+            disabled
+          />
+          <Button
+            title="call api"
+            onPress={async () => {
+              const data = await axiosClient.get(`${baseApiUrl}produts`);
+              console.log(data);
+            }}
+          />
+          <Button
+            title="popup"
+            onPress={() => {
+              LoadingPopupUtils.showPopup({
+                indicatorComponent: () => (
+                  <View
+                    style={{height: 20, width: 20, backgroundColor: 'red'}}
+                  />
+                ),
+              });
+            }}
+          />
+          <FormContainer
+            fields={[{name: 'name'}, {name: 'city'}]}
+            onSubmitting={res => {
+              console.log('submiting', res);
+            }}>
+            <CustomInputField
+              name={'name'}
+              placeholder={'Type your name'}
+              label={'Name'}
+              rules={{
+                required: {
+                  value: true,
+                  message:
+                    'This name is required ads dasd as da sda sda sd asd asd asd asjd fasd ofj poasdjf asdj fkja lskdfj aksd f;ka s;df lksaf jalskdfj aks ;dflka sdf;',
+                },
+              }}
+            />
+            <CustomInputField
+              name={'city'}
+              placeholder={'Type your city'}
+              label={'City'}
+              rules={{
+                required: {
+                  value: true,
+                  message: 'fasdfasdnkfj',
+                },
+              }}
+            />
+          </FormContainer>
+        </View>
+      </ScrollView>
     </SafeAreaProvider>
   );
 };

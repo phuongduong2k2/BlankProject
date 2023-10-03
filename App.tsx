@@ -6,18 +6,28 @@
  */
 
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {Platform, SafeAreaView, Text, UIManager} from 'react-native';
 import MainNavigation from './src/navigation/MainNavigation';
 import {Provider} from 'react-redux';
 import store from './src/redux/store';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import LoadingPopup from './src/components/LoadingPopup';
 
+if (Platform.OS === 'android') {
+  if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
 function App(): JSX.Element {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <Provider store={store}>
-        <MainNavigation />
-      </Provider>
-    </SafeAreaView>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <SafeAreaView style={{flex: 1}}>
+        <Provider store={store}>
+          <MainNavigation />
+          <LoadingPopup />
+        </Provider>
+      </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
 

@@ -13,7 +13,8 @@ import {
 import {AppDimentions} from '../../constants/constants';
 import ProgressBar from '../ProgressBar';
 import {AppIcons} from '../../constants/AppIcons';
-import {AppColors} from '../../constants/AppStyle';
+import AppSvg from '../AppSvg';
+import {AppColors} from '../../constants/ColorSkin';
 
 ProgressView.propTypes = {
   progress: PropTypes.number,
@@ -79,7 +80,7 @@ function ProgressView(props) {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Image source={icon} />
+        <AppSvg svgSrc={icon} />
       </View>
     );
 
@@ -140,12 +141,6 @@ function ProgressView(props) {
         paddingHorizontal: AppDimentions.secondPadding,
         ...containerStyle,
       }}>
-      <Button
-        title="check"
-        onPress={() => {
-          console.log(preProgress);
-        }}
-      />
       {_renderHeader()}
       <View
         style={{

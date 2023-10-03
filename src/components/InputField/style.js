@@ -1,22 +1,26 @@
 import {StyleSheet} from 'react-native';
+import AppFontSize from '../../constants/AppFontSize';
+import {AppColors} from '../../constants/ColorSkin';
+import {AppDimentions} from '../../constants/constants';
+import AppFonts from '../../constants/AppFonts';
 
 const styles = StyleSheet.create({
   aboveLabel: {
-    fontFamily: AppFontFamily.medium,
+    fontFamily: AppFonts.medium,
     marginBottom: AppDimentions.fourthPadding,
-    color: AppColors.title,
+    color: AppColors.typography.title,
     fontSize: AppFontSize.s_14,
   },
   leftLabel: {
-    fontFamily: AppFontFamily.medium,
+    fontFamily: AppFonts.medium,
     marginBottom: AppDimentions.fourthPadding,
-    color: AppColors.title,
+    color: AppColors.typography.title,
     fontSize: AppFontSize.s_14,
   },
   label: {
-    fontFamily: AppFontFamily.regular,
+    fontFamily: AppFonts.regular,
     fontSize: AppFontSize.s_12,
-    lineHeight: AppLineHeight.l_16,
+    // lineHeight: AppLineHeight.l_16,
   },
   container: {
     flexDirection: 'row',
@@ -25,12 +29,18 @@ const styles = StyleSheet.create({
     paddingLeft: AppDimentions.secondPadding,
     paddingVertical: 2,
   },
-  containerInput: {},
+  containerInput: {
+    flex: 1,
+    marginLeft: AppDimentions.fourthPadding,
+    height: '100%',
+    justifyContent: 'center',
+  },
   overLay: {
     backgroundColor: 'transparent',
     position: 'absolute',
     height: '100%',
     width: '100%',
+    top: 0,
     zIndex: 1,
   },
   centerContainer: {
@@ -41,12 +51,12 @@ const styles = StyleSheet.create({
   textInput: {
     margin: 0,
     padding: 0,
-    color: AppColors.primaryText,
+    color: AppColors.typography.title,
     fontSize: AppFontSize.s_14,
     // lineHeight: AppLineHeight.l_22,
-    fontFamily: AppFontFamily.regular,
+    fontFamily: AppFonts.regular,
   },
-  messageText: {fontFamily: AppFontFamily.regular, fontSize: AppFontSize.s_12},
+  messageText: {fontFamily: AppFonts.regular, fontSize: AppFontSize.s_12},
 });
 
 export default styles;
