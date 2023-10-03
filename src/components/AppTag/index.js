@@ -57,7 +57,6 @@ function AppTag(props) {
       <View
         style={{
           backgroundColor: backgroundColor,
-          alignSelf: 'flex-start',
           width: title ? width : height,
           height: height,
           borderRadius: title ? borderStyle.borderRadius : 100,
