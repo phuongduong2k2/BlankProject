@@ -15,6 +15,7 @@ import {AppDimentions, KeyboardTypes} from '../../constants/constants';
 import styles from './style';
 import {AppColors} from '../../constants/ColorSkin';
 import AppSvg from '../AppSvg';
+import TextStyle from '../../constants/TextStyle';
 
 CustomInputField.propTypes = {
   name: PropTypes.string,
@@ -55,7 +56,7 @@ CustomInputField.defaultProps = {
   name: '',
   status: 'default',
   style: {},
-  backgroundColor: AppColors.background.white,
+  backgroundColor: AppColors.background.grey1,
   borderWidth: 1,
   borderColor: 'transparent',
   borRadius: 8,
@@ -68,7 +69,7 @@ CustomInputField.defaultProps = {
   label: undefined,
   aboveLabel: undefined,
   leftLabel: undefined,
-  alertColor: AppColors.error,
+  alertColor: AppColors.errorPrimary,
   control: any,
   errors: {},
   rules: {
@@ -165,7 +166,16 @@ function CustomInputField(props) {
 
   return (
     <>
-      {aboveLabel && <Text style={{...styles.aboveLabel}}>{aboveLabel}</Text>}
+      {aboveLabel && (
+        <Text
+          style={{
+            ...TextStyle.label.l_3,
+            color: AppColors.typography.title,
+            marginBottom: AppDimentions.fourthPadding,
+          }}>
+          {aboveLabel}
+        </Text>
+      )}
       <View
         style={{
           flexDirection: 'row',
@@ -177,7 +187,14 @@ function CustomInputField(props) {
               marginRight: AppDimentions.firstPadding,
               justifyContent: 'center',
             }}>
-            <Text style={{...styles.leftLabel}}>Left Label</Text>
+            <Text
+              style={{
+                ...TextStyle.label.l_3,
+                color: AppColors.typography.title,
+                marginBottom: AppDimentions.fourthPadding,
+              }}>
+              Left Label
+            </Text>
           </View>
         )}
         <View
@@ -185,7 +202,7 @@ function CustomInputField(props) {
             backgroundColor:
               status === 'disable'
                 ? AppColors.grey1
-                : AppColors.background.white,
+                : AppColors.background.grey1,
             height: height ? height : label ? 64 : 48,
             borderRadius: borRadius,
             width: width,
@@ -220,12 +237,12 @@ function CustomInputField(props) {
                 }}>
                 <Text
                   style={{
-                    ...styles.label,
+                    ...TextStyle.label.l_5,
                     color:
                       status === 'disable'
                         ? AppColors.typography.subtitle
                         : isFocused
-                        ? AppColors.primary
+                        ? AppColors.infoPrimary
                         : AppColors.typography.subtitle,
                   }}>
                   {label}
@@ -246,7 +263,7 @@ function CustomInputField(props) {
                         ref={inputRef}
                         keyboardType={keyboardType}
                         placeholder={placeholder}
-                        style={{...styles.textInput}}
+                        style={{...TextStyle.body.b_2, margin: 0, padding: 0}}
                         onBlur={onBlur}
                         onChangeText={value => {
                           onChange(value);
@@ -284,7 +301,10 @@ function CustomInputField(props) {
         }}>
         {errors && errors[name] && (
           <Text
-            style={{...styles.messageText, color: alertColor && alertColor}}>
+            style={{
+              ...TextStyle.subtitle.s_3,
+              color: alertColor && alertColor,
+            }}>
             {errors[name].message}
           </Text>
         )}
