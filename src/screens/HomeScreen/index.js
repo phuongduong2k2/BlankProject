@@ -40,12 +40,12 @@ const HomeScreen = () => {
       <ScrollView>
         <View style={{flex: 1}}>
           <Rating />
-          
+
           <AppButton
             onPress={() => {
               console.log('Click');
             }}
-            backgroundColor='transparent'
+            backgroundColor="transparent"
             borderStyle={{
               borderWidth: 0,
             }}
@@ -57,16 +57,16 @@ const HomeScreen = () => {
             height={40}
             textStyle={{
               color: 'black',
-              fontSize: 14
+              fontSize: 14,
             }}
           />
           <Text>adsdsfddsf</Text>
           <AppSvg svgSrc={AppIcons.setting.active} size={24} />
-          {/* <AppStepContainer>
+          <AppStepContainer>
             <AppStepItem />
             <AppStepItem />
             <AppStepItem />
-          </AppStepContainer> */}
+          </AppStepContainer>
           <Button
             title="call api"
             onPress={async () => {
