@@ -47,7 +47,7 @@ function AppSwitch(props) {
             style={{
               width: width,
               height: height,
-              backgroundColor: active ? AppColors.primary : AppColors.background.greyLight3,
+              backgroundColor: active ? AppColors.primary : AppColors.background.disable,
               borderRadius: height,
               alignItems: 'center',
               justifyContent: (active || hasContainLabel) ? 'flex-start' : 'flex-end',
