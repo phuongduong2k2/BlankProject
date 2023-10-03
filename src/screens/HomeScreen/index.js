@@ -13,13 +13,12 @@ import {AppIcons} from '../../constants/AppIcons';
 import Rating from '../../components/Rating';
 import {useDispatch, useSelector} from 'react-redux';
 import {baseApiUrl} from '../../../env.json';
-import axiosClient from '../../axios/AxiosClient';
 import FormContainer from '../../components/FormContainer';
 import CustomInputField from '../../components/InputField';
 import {LoadingPopupUtils} from '../../components/LoadingPopup';
-import AppButton from '../../components/AppButton';
-import { AppColors } from '../../constants/ColorSkin';
-import AppRadioButton from '../../components/AppRadioButton';
+import AppStepContainer from '../../components/AppStepContainer';
+import AppStepItem from '../../components/AppStepItem';
+import BaseDA from '../../axios/BaseDA';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -62,19 +61,15 @@ const HomeScreen = () => {
           />
           <Text>adsdsfddsf</Text>
           <AppSvg svgSrc={AppIcons.setting.active} size={24} />
-          <Text>{config}</Text>
-          <AppRadioButton
-            onChange={isSelected => {
-              console.log('parent :', isSelected);
-            }}
-            label='Checked'
-            // isReverse
-            disabled
-          />
+          {/* <AppStepContainer>
+            <AppStepItem />
+            <AppStepItem />
+            <AppStepItem />
+          </AppStepContainer> */}
           <Button
             title="call api"
             onPress={async () => {
-              const data = await axiosClient.get(`${baseApiUrl}produts`);
+              const data = await BaseDA.get(`${baseApiUrl}productss`);
               console.log(data);
             }}
           />
