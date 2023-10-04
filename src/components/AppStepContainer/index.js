@@ -4,19 +4,24 @@ import {AppDimentions} from '../../constants/constants';
 import PropTypes from 'prop-types';
 
 AppStepContainer.propTypes = {
-  currentStep: PropTypes.number,
   duration: PropTypes.number,
-  currentStatus: PropTypes.string,
+  style: PropTypes.object,
+  onDone: PropTypes.func,
+  onReset: PropTypes.func,
+  require: PropTypes.bool,
 };
 
 AppStepContainer.defaultProps = {
-  currentStep: 0,
   duration: 300,
-  currentStatus: '',
+  style: {},
+  onDone: () => {},
+  onReset: () => {},
+  require: false,
 };
 const ref = createRef(null);
 function AppStepContainer(props) {
-  const {children, currentStep, duration, currentStatus} = props;
+  const {children, duration, style, onDone, onReset, require} = props;
+  const [currentStep, setCurrentStep] = useState(0);
 
   let numberStep = 1;
   const [statusChild, setStatusChild] = useState([]);
@@ -26,15 +31,47 @@ function AppStepContainer(props) {
   }
 
   useEffect(() => {
-    let arr = [];
-    for (let i = 0; i < numberStep; i++) {
-      arr.push('phuong');
-    }
-    setStatusChild(arr);
+    initialStatus();
   }, []);
 
+  const initialStatus = () => {
+    let arr = [];
+    for (let i = 0; i < numberStep; i++) {
+      arr.push(undefined);
+    }
+    setStatusChild(arr);
+  };
+
+  const handleReset = () => {
+    setCurrentStep(0);
+    initialStatus();
+    onReset();
+  };
+
   useEffect(() => {
+    // console.log(currentStep, numberStep);
+    if (!statusChild.includes(undefined) && currentStep === numberStep - 1) {
+      onDone();
+    }
     ref.current = {
+      nextStep: () => {
+        if (currentStep < numberStep - 1) {
+          setCurrentStep(currentStep + 1);
+        } else {
+          if (require) {
+            if (!statusChild.includes(undefined)) {
+              handleReset();
+            }
+          } else {
+            handleReset();
+          }
+        }
+      },
+      backStep: () => {
+        if (currentStep > 0) {
+          setCurrentStep(currentStep - 1);
+        }
+      },
       setSuccess: () => {
         const newStatus = [...statusChild];
         const x = newStatus.map((item, index) =>
@@ -67,11 +104,8 @@ function AppStepContainer(props) {
       style={{
         backgroundColor: 'white',
         paddingVertical: AppDimentions.secondPadding,
+        ...style,
       }}>
-      <Text>{currentStep}</Text>
-      {statusChild.map(item => (
-        <Text>{item}</Text>
-      ))}
       {_renderStepItem()}
     </View>
   );
@@ -80,6 +114,21 @@ function AppStepContainer(props) {
 export default AppStepContainer;
 
 export const AppStepContainerUtils = {
+  nextStep: () => {
+    if (ref.current) {
+      ref.current.nextStep();
+    }
+  },
+  backStep: () => {
+    if (ref.current) {
+      ref.current.backStep();
+    }
+  },
+  jumpStep: step => {
+    if (ref.current) {
+      ref.current.jumpStep(step);
+    }
+  },
   setSuccess: () => {
     if (ref.current) {
       ref.current.setSuccess();
