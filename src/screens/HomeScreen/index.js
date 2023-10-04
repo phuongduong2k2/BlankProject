@@ -28,8 +28,6 @@ import AppButton from '../../components/AppButton';
 const HomeScreen = () => {
   const dispatch = useDispatch();
   const {config, data} = useSelector(state => state.app);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [currentStatus, setCurrentStatus] = useState('');
   return (
     <SafeAreaProvider>
       <AppHeader title={'New Project'}>
@@ -43,57 +41,45 @@ const HomeScreen = () => {
           {data?.map(item => (
             <Text key={item.id}>{item.products[0].title}</Text>
           ))}
-
           <AppStepContainer
-            currentStep={currentStep}
-            currentStatus={currentStatus}
+            onDone={() => {
+              console.log('Done step');
+            }}
+            onReset={() => {
+              console.log('Reset step');
+            }}
             duration={300}>
-            <AppStepItem
-              iconActive={AppIcons.rice.active}
-              iconInactive={AppIcons.rice.inactive}
-            />
-            <AppStepItem
-              iconActive={AppIcons.rice.active}
-              iconInactive={AppIcons.rice.inactive}
-            />
-            <AppStepItem
-              iconActive={AppIcons.rice.active}
-              iconInactive={AppIcons.rice.inactive}
-            />
-            <AppStepItem
-              iconActive={AppIcons.rice.active}
-              iconInactive={AppIcons.rice.inactive}
-            />
-            <AppStepItem
-              iconActive={AppIcons.rice.active}
-              iconInactive={AppIcons.rice.inactive}
-            />
-            <AppStepItem
-              iconActive={AppIcons.rice.active}
-              iconInactive={AppIcons.rice.inactive}
-            />
+            <AppStepItem />
+            <AppStepItem />
+            <AppStepItem />
+            <AppStepItem />
+            <AppStepItem />
+            <AppStepItem />
           </AppStepContainer>
           <View style={{flexDirection: 'row'}}>
             <AppButton
               title="Back Step"
+              backgroundColor={'grey'}
               onPress={() => {
-                setCurrentStep(currentStep - 1);
+                AppStepContainerUtils.backStep();
               }}
             />
             <AppButton
               title="Next Step"
               onPress={() => {
-                setCurrentStep(currentStep + 1);
+                AppStepContainerUtils.nextStep();
               }}
             />
             <AppButton
               title="Set Success"
+              backgroundColor={'green'}
               onPress={() => {
                 AppStepContainerUtils.setSuccess();
               }}
             />
             <AppButton
               title="Set Failed"
+              backgroundColor={'red'}
               onPress={() => {
                 AppStepContainerUtils.setFailed();
               }}

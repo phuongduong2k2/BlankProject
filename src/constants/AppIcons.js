@@ -20,6 +20,8 @@ import minus from '../../assets/icons/minus/minus.svg';
 import whiteMinus from '../../assets/icons/minus/white/minus.svg';
 import plus from '../../assets/icons/plus/plus.svg';
 import whitePlus from '../../assets/icons/plus/white/plus.svg';
+import successStep from '../../assets/icons/success_step/success_step.svg';
+import failedStep from '../../assets/icons/failed_step/failed_step.svg';
 
 export const AppIcons = {
   right_circle: rightCircle,
@@ -54,10 +56,12 @@ export const AppIcons = {
   tag: tag,
   minus: {
     black: minus,
-    white: whiteMinus
+    white: whiteMinus,
   },
   plus: {
     black: plus,
-    white: whitePlus
-  }
+    white: whitePlus,
+  },
+  success_step: successStep,
+  failed_step: failedStep,
 };
