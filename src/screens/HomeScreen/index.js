@@ -43,7 +43,7 @@ const HomeScreen = () => {
           ))}
           <AppStepContainer
             onDone={() => {
-              console.log('Done step');
+              console.log('Done step ');
             }}
             onReset={() => {
               console.log('Reset step');
