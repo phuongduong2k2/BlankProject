@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@miblanchard/react-native-slider": "^2.3.1",
+    "@react-native-community/datetimepicker": "^7.6.0",
     "@react-native/js-polyfills": "^0.73.1",
     "@react-native/metro-babel-transformer": "^0.73.12",
     "@react-native/metro-config": "^0.73.1",
@@ -20,6 +21,7 @@
     "@reduxjs/toolkit": "^1.9.6",
     "axios": "^1.5.1",
     "babel-plugin-inline-import": "^3.0.0",
+    "core-js": "^3.33.0",
     "metro-config": "^0.79.1",
     "metro-runtime": "^0.79.1",
     "moment": "^2.29.4",
@@ -28,6 +30,7 @@
     "react-hook-form": "^7.46.2",
     "react-native": "0.71.7",
     "react-native-bouncy-checkbox": "^3.0.7",
+    "react-native-calendars": "^1.1301.0",
     "react-native-gesture-handler": "^2.13.1",
     "react-native-modal": "^13.0.1",
     "react-native-progress": "^5.0.0",

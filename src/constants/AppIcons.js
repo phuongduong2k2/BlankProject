@@ -22,6 +22,9 @@ import plus from '../../assets/icons/plus/plus.svg';
 import whitePlus from '../../assets/icons/plus/white/plus.svg';
 import successStep from '../../assets/icons/success_step/success_step.svg';
 import failedStep from '../../assets/icons/failed_step/failed_step.svg';
+import arrowCalendarLeft from '../../assets/icons/calendar_arrow/left.svg';
+import arrowCalendarRight from '../../assets/icons/calendar_arrow/right.svg';
+import arrowCalendarDown from '../../assets/icons/calendar_arrow/down.svg';
 
 export const AppIcons = {
   right_circle: rightCircle,
@@ -64,4 +67,7 @@ export const AppIcons = {
   },
   success_step: successStep,
   failed_step: failedStep,
+  arrow_calendar_left: arrowCalendarLeft,
+  arrow_calendar_right: arrowCalendarRight,
+  arrow_calendar_down: arrowCalendarDown,
 };
