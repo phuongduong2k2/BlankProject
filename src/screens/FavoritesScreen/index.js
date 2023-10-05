@@ -11,6 +11,8 @@ import {AppColors} from '../../constants/ColorSkin';
 import AppPaginationItem from '../../components/AppPaginationItem';
 import AppSwitch from '../../components/AppSwitch';
 import AppActionSheet, { AppActionSheetUtils } from '../../components/AppActionSheet';
+import AppMediaView from '../../components/AppMediaView';
+import AppListTile from '../../components/AppListTile';
 
 const FavoritesScreen = () => {
   const data = [
@@ -80,6 +82,8 @@ const FavoritesScreen = () => {
             }}
           />
         </View>
+        <AppListTile/>
+        
       </ScrollView>
       <AppActionSheet
         title={'A short description of the actions'}
