@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect, createRef} from 'react';
 import PropTypes from 'prop-types';
 import {View} from 'react-native';
 import ActionState from './ActionState';
@@ -14,14 +14,25 @@ AppActionSheet.propTypes = {
     PropTypes.shape({
       title: PropTypes.string,
       color: PropTypes.string,
-      action: PropTypes.string
-    })
+      action: PropTypes.string,
+    }),
   ),
 };
 
+const ref = createRef();
+
 function AppActionSheet(props) {
   const {title, data, onSelected} = props;
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    ref.current = {
+        onPress: () => {
+            setIsVisible(isVisible => !isVisible);
+        }
+    }
+  }, []);
+
   return (
     <ReactNativeModal
       backdropOpacity={0.3}
@@ -31,11 +42,11 @@ function AppActionSheet(props) {
       isVisible={isVisible}
       hasBackdrop
       onBackdropPress={() => {
-        setIsVisible(isVisible => !isVisible)
+        setIsVisible(isVisible => !isVisible);
       }}
       style={{
         justifyContent: 'flex-end',
-        margin: 0
+        margin: 0,
       }}>
       <View
         style={{
@@ -68,19 +79,17 @@ function AppActionSheet(props) {
               />
             </View>
           )}
-          {
-            data.map((item,index) => {
-                return (
-                    <ActionState
-                    key={index}
-                    title={item.title}
-                    color={item.color}
-                    action={item.action}
-                    onSelected={onSelected}
-                    />
-                )
-            })
-          }
+          {data.map((item, index) => {
+            return (
+              <ActionState
+                key={index}
+                title={item.title}
+                color={item.color}
+                action={item.action}
+                onSelected={onSelected}
+              />
+            );
+          })}
         </View>
         <View
           style={{
@@ -109,3 +118,11 @@ function AppActionSheet(props) {
 }
 
 export default AppActionSheet;
+
+export const AppActionSheetUtils = {
+    onPress: () => {
+        if (ref.current) {
+            ref.current.onPress();
+        }
+    }
+}
