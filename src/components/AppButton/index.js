@@ -27,7 +27,7 @@ AppButton.defaultProps = {
   title: '',
   icon: undefined,
   isReverse: false,
-  width: 96,
+  width: undefined,
   height: 48,
   textStyle: {
     color: 'white',
@@ -59,7 +59,7 @@ function AppButton(props) {
       <View
         style={{
           backgroundColor: backgroundColor,
-          alignSelf: 'flex-start',
+          alignSelf: width == undefined ? 'auto' :  'flex-start',
           width: title ? width : height,
           height: height,
           borderRadius: title ? borderStyle.borderRadius : 100,
