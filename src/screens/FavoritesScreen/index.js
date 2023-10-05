@@ -10,10 +10,9 @@ import AppNumberPicker from '../../components/AppNumberPicker';
 import {AppColors} from '../../constants/ColorSkin';
 import AppPaginationItem from '../../components/AppPaginationItem';
 import AppSwitch from '../../components/AppSwitch';
-import AppActionSheet from '../../components/AppActionSheet';
+import AppActionSheet, { AppActionSheetUtils } from '../../components/AppActionSheet';
 
 const FavoritesScreen = () => {
-  const [isShowModal, setIsShowModal] = useState(false);
   const data = [
     {
       title: 'Action1',
@@ -52,7 +51,7 @@ const FavoritesScreen = () => {
           <AppRating />
           <AppButton
             onPress={() => {
-              setIsShowModal(isShowModal => !isShowModal);
+              AppActionSheetUtils.onPress();
             }}
             icon={AppIcons.chrome}
             iconSize={16}
@@ -82,16 +81,16 @@ const FavoritesScreen = () => {
           />
         </View>
       </ScrollView>
-      {isShowModal && <AppActionSheet
+      <AppActionSheet
         title={'A short description of the actions'}
         data={data}
         onSelected={(action) => {
           if (typeof action === 'string'){
             console.log(action);
           }
-          setIsShowModal(isShowModal=>!isShowModal);
+          AppActionSheetUtils.onPress();
         }}
-      />}
+      />
     </SafeAreaProvider>
   );
 };
