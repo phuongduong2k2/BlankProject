@@ -27,8 +27,12 @@ function AppActionSheet(props) {
       backdropOpacity={0.3}
       onModalHide={() => {}}
       animationIn={'fadeInUp'}
+      animationOut={'fadeOutDown'}
       isVisible={isVisible}
       hasBackdrop
+      onBackdropPress={() => {
+        setIsVisible(isVisible => !isVisible)
+      }}
       style={{
         justifyContent: 'flex-end',
         margin: 0
