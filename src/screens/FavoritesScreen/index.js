@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState} from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AppHeader from '../../components/AppHeader';
@@ -10,8 +10,32 @@ import AppNumberPicker from '../../components/AppNumberPicker';
 import {AppColors} from '../../constants/ColorSkin';
 import AppPaginationItem from '../../components/AppPaginationItem';
 import AppSwitch from '../../components/AppSwitch';
+import AppActionSheet from '../../components/AppActionSheet';
 
 const FavoritesScreen = () => {
+  const [isShowModal, setIsShowModal] = useState(false);
+  const data = [
+    {
+      title: 'Action1',
+      color: AppColors.infoActive,
+      action: 'GET',
+    },
+    {
+      title: 'Action2',
+      color: AppColors.infoActive,
+      action: 'POST',
+    },
+    {
+      title: 'Action3',
+      color: AppColors.infoActive,
+      action: 'PUT',
+    },
+    {
+      title: 'Action4',
+      color: AppColors.infoActive,
+      action: 'PATCH',
+    },
+  ];
   return (
     <SafeAreaProvider>
       <AppHeader title={'Longnp Test'}>
@@ -28,7 +52,7 @@ const FavoritesScreen = () => {
           <AppRating />
           <AppButton
             onPress={() => {
-              console.log('Click');
+              setIsShowModal(isShowModal => !isShowModal);
             }}
             icon={AppIcons.chrome}
             iconSize={16}
@@ -58,6 +82,16 @@ const FavoritesScreen = () => {
           />
         </View>
       </ScrollView>
+      {isShowModal && <AppActionSheet
+        title={'A short description of the actions'}
+        data={data}
+        onSelected={(action) => {
+          if (typeof action === 'string'){
+            console.log(action);
+          }
+          setIsShowModal(isShowModal=>!isShowModal);
+        }}
+      />}
     </SafeAreaProvider>
   );
 };
