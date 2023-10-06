@@ -4,6 +4,8 @@ import AppMediaView from '../../components/AppMediaView';
 import AppContentText from '../../components/AppContentText';
 import AppScrollBar from '../../components/AppScrollBar';
 import { AppColors } from '../../constants/ColorSkin';
+import AppDateElement from '../../components/AppDateElement';
+import AppFontSize from '../../constants/AppFontSize';
 
 const SettingScreen = () => {
   return (
@@ -26,6 +28,18 @@ const SettingScreen = () => {
 
       <AppScrollBar
       isHorizontal={true}
+      />
+
+      <AppDateElement
+        title={'21'}
+        withEventBadge={true}
+        dateStyle={{
+          backgroundColor: AppColors.primary,
+
+        }}
+        textStyle={{
+          color: 'white',
+        }}
       />
 
     </View>
