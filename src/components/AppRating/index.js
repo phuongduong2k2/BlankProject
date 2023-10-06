@@ -55,7 +55,7 @@ function AppRating(props) {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <AppSvg svgSrc={i <= selected ? iconActive : iconInactive} />
+          <AppSvg SvgSrc={i <= selected ? iconActive : iconInactive} />
         </TouchableOpacity>,
       );
     }

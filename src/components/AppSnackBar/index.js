@@ -37,8 +37,6 @@ const AppSnackBar = () => {
           status,
           primaryColor,
         } = data;
-        console.log(textIconBtn);
-        return;
         let pmColor;
         if (primaryColor) {
           pmColor = primaryColor;
@@ -143,7 +141,7 @@ const AppSnackBar = () => {
           : AppIcons.snackBarIcons.default_filled;
         break;
     }
-    return <AppSvg svgSrc={icon} size={24} />;
+    return <AppSvg SvgSrc={icon} size={24} />;
   };
 
   const _renderInsideButton = () => {
@@ -156,7 +154,7 @@ const AppSnackBar = () => {
         <Text style={{color: 'white', fontWeight: '400'}}>{textIconBtn}</Text>
       );
     } else {
-      return <AppSvg svgSrc={textIconBtn} size={16} />;
+      return <AppSvg SvgSrc={textIconBtn} size={16} />;
     }
   };
 

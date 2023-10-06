@@ -154,7 +154,7 @@ function AppStepItem(props) {
               justifyContent: 'center',
               alignItems: 'center',
             }}></Animated.View>
-          {status !== undefined && <AppSvg svgSrc={iconIndicator} size={10} />}
+          {status !== undefined && <AppSvg SvgSrc={iconIndicator} size={10} />}
         </View>
         <Animated.View
           style={{

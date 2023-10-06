@@ -211,7 +211,7 @@ function AppTextInput(props) {
             ...styles.container,
           }}>
           <View style={{...styles.centerContainer}}>
-            <AppSvg svgSrc={prefixIcon} size={16} />
+            <AppSvg SvgSrc={prefixIcon} size={16} />
           </View>
           <View style={{...styles.containerInput}}>
             {!isFocused && (
@@ -290,7 +290,7 @@ function AppTextInput(props) {
               Keyboard.dismiss();
               onReset(name);
             }}>
-            <AppSvg svgSrc={suffixIcon} size={16} />
+            <AppSvg SvgSrc={suffixIcon} size={16} />
           </TouchableOpacity>
         </View>
       </View>

@@ -71,7 +71,7 @@ function AppCollapseItem(props) {
           alignItems: 'center',
           paddingHorizontal: AppDimentions.mainPadding,
         }}>
-        <AppSvg svgSrc={prefixIcon} />
+        <AppSvg SvgSrc={prefixIcon} />
         <Text
           style={{
             flex: 1,
@@ -92,7 +92,7 @@ function AppCollapseItem(props) {
               },
             ],
           }}>
-          <AppSvg svgSrc={suffixIcon} />
+          <AppSvg SvgSrc={suffixIcon} />
         </Animated.View>
       </TouchableOpacity>
       <View
@@ -105,7 +105,7 @@ function AppCollapseItem(props) {
           top: 46,
         }}>
         {isOpen && (
-          <AppSvg svgSrc={AppIcons.star.active} style={{opactity: 0}} />
+          <AppSvg SvgSrc={AppIcons.star.active} style={{opactity: 0}} />
         )}
         <AppDivider
           style={{
@@ -120,7 +120,7 @@ function AppCollapseItem(props) {
             paddingHorizontal: AppDimentions.mainPadding,
             flexDirection: 'row',
           }}>
-          <AppSvg svgSrc={AppIcons.star.active} style={{opactity: 0}} />
+          <AppSvg SvgSrc={AppIcons.star.active} style={{opactity: 0}} />
           <View
             style={{
               marginLeft: AppDimentions.thirdPadding,

@@ -68,7 +68,7 @@ function AppBarItem(props) {
         alignItems: 'center',
         flexDirection: isRow ? (isReverse ? 'row-reverse' : 'row') : undefined,
       }}>
-      <AppSvg svgSrc={iconSrc} size={20} />
+      <AppSvg SvgSrc={iconSrc} size={20} />
       <Animated.Text
         style={{
           ...TextStyle.button.btn_2,

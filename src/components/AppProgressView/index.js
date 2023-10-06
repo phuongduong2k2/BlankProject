@@ -80,7 +80,7 @@ function AppProgressView(props) {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <AppSvg svgSrc={icon} />
+        <AppSvg SvgSrc={icon} />
       </View>
     );
 
