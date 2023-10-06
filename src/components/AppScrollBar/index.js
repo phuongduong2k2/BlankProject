@@ -4,38 +4,27 @@ import { AppColors } from '../../constants/ColorSkin'
 import PropTypes from "prop-types";
 
 AppScrollBar.propTypes = {
-    style: PropTypes.exact({
-        width: PropTypes.number,
-        height: PropTypes.number,
-        borderRadius: PropTypes.number,
-        transform: PropTypes.string,
-        backgroundColor: PropTypes.string,
-    }),
+    style: PropTypes.object,
+    isHorizontal: PropTypes.bool
 }
 
 AppScrollBar.defaultProps = {
-    style: {
-        width: 6,
-        height: 70,
-        borderRadius: 8,
-        transform: '90deg',
-        backgroundColor: AppColors.background.disable,
-    },
+    style: {},
+    isHorizontal: false
 }
 
 function AppScrollBar(props)  {
 
-    const {style} = props;
+    const {style, isHorizontal} = props;
 
   return (
-    <View style={{
-        // width: 14,
-        // height: 'auto',
-        // justifyContent: 'center',
-        // backgroundColor: 'pink'
-    }}>
-      <View style={style}></View>
-    </View>
+      <View style={{
+          width: isHorizontal ? 70:  6,
+          height: isHorizontal ? 6 :70,
+          borderRadius: 8,
+          backgroundColor: AppColors.background.disable,
+          ...style
+      }}></View>
   )
 }
 
