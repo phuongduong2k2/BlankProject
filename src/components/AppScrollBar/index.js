@@ -29,10 +29,10 @@ function AppScrollBar(props)  {
 
   return (
     <View style={{
-        width: 14,
-        height: 'auto',
-        justifyContent: 'center',
-        backgroundColor: 'pink'
+        // width: 14,
+        // height: 'auto',
+        // justifyContent: 'center',
+        // backgroundColor: 'pink'
     }}>
       <View style={style}></View>
     </View>
