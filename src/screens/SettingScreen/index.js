@@ -25,7 +25,7 @@ const SettingScreen = () => {
       />
 
       <AppScrollBar
-
+      isHorizontal={true}
       />
 
     </View>
