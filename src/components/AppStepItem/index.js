@@ -1,36 +1,17 @@
-import React, {createRef, useEffect, useRef, useState} from 'react';
-import {Animated, Text, View} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {Animated, Button, Text, View} from 'react-native';
 import AppSvg from '../AppSvg';
 import {AppDimentions} from '../../constants/constants';
 import {AppColors} from '../../constants/ColorSkin';
-import TextStyle from '../../constants/TextStyle';
-import PropTypes from 'prop-types';
 import {AppIcons} from '../../constants/AppIcons';
+import AppStepItemProps from './type';
 
-AppStepItem.propTypes = {
-  successIconSrc: PropTypes.any,
-  failedIconSrc: PropTypes.any,
-  timeLine: PropTypes.string,
-  title: PropTypes.string,
-  renderActionView: PropTypes.func,
-  successColor: PropTypes.string,
-  failedColor: PropTypes.string,
-  backgroundColor: PropTypes.string,
-  style: PropTypes.object,
-};
-
-AppStepItem.defaultProps = {
-  successIconSrc: AppIcons.success_step,
-  failedIconSrc: AppIcons.failed_step,
-  timeLine: '8:42',
-  title: 'Content title',
-  renderActionView: () => <Text>Action View</Text>,
-  successColor: AppColors.successPrimary,
-  failedColor: AppColors.errorPrimary,
-  backgroundColor: AppColors.background.grey3,
-  style: {},
-};
-
+/**
+ *
+ * @author phuongduong
+ * @param {AppStepItemProps} props
+ * @returns
+ */
 function AppStepItem(props) {
   const {
     currentStep,
@@ -51,8 +32,6 @@ function AppStepItem(props) {
   const animated = useRef(new Animated.Value(0)).current;
   const focusedAnimated = useRef(new Animated.Value(0)).current;
   const [colorIndicator, setColorIndicator] = useState(backgroundColor);
-
-  const [iconIndicator, setIconIndicator] = useState(null);
 
   useEffect(() => {
     // Scale Anim
@@ -89,18 +68,29 @@ function AppStepItem(props) {
   useEffect(() => {
     switch (status) {
       case 'success':
-        setColorIndicator(successColor);
-        setIconIndicator(successIconSrc);
+        setColorIndicator(successColor ?? AppColors.successPrimary);
         break;
       case 'failed':
-        setColorIndicator(failedColor);
-        setIconIndicator(failedIconSrc);
+        setColorIndicator(failedColor ?? AppColors.errorPrimary);
         break;
       default:
-        setColorIndicator(backgroundColor);
-        setIconIndicator(null);
+        setColorIndicator(backgroundColor ?? AppColors.background.grey3);
     }
   }, [status]);
+
+  const _renderIconStep = () => {
+    if (status !== undefined) {
+      if (status === 'success') {
+        return (
+          <AppSvg SvgSrc={successIconSrc ?? AppIcons.success_step} size={10} />
+        );
+      } else if (status === 'failed') {
+        return (
+          <AppSvg SvgSrc={failedIconSrc ?? AppIcons.failed_step} size={10} />
+        );
+      }
+    }
+  };
 
   return (
     <View
@@ -109,6 +99,12 @@ function AppStepItem(props) {
         paddingHorizontal: AppDimentions.secondPadding,
         ...style,
       }}>
+      <Button
+        title="casc"
+        onPress={() => {
+          console.log(successIconSrc);
+        }}
+      />
       <View
         style={{
           alignItems: 'center',
@@ -154,7 +150,7 @@ function AppStepItem(props) {
               justifyContent: 'center',
               alignItems: 'center',
             }}></Animated.View>
-          {status !== undefined && <AppSvg SvgSrc={iconIndicator} size={10} />}
+          {_renderIconStep()}
         </View>
         <Animated.View
           style={{
@@ -193,7 +189,7 @@ function AppStepItem(props) {
           height: 25,
           justifyContent: 'center',
         }}>
-        {renderActionView()}
+        {renderActionView && renderActionView()}
       </View>
     </View>
   );
