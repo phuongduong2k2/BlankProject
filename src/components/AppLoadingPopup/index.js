@@ -5,7 +5,7 @@ import {AppColors} from '../../constants/ColorSkin';
 
 const ref = createRef();
 
-const LoadingPopup = () => {
+const AppLoadingPopup = () => {
   const [label, setLabel] = useState('Loading...');
   const [indicatorComponent, setIndicatorComponent] = useState(() => () => {
     return <ActivityIndicator color={AppColors.primary} size={'large'} />;
@@ -54,9 +54,9 @@ const LoadingPopup = () => {
   );
 };
 
-export default LoadingPopup;
+export default AppLoadingPopup;
 
-export const LoadingPopupUtils = {
+export const AppLoadingPopupUtils = {
   showPopup: data => {
     if (ref.current) {
       ref.current.showPopup(data);

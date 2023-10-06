@@ -11,12 +11,12 @@ import {
   View,
 } from 'react-native';
 import {AppDimentions} from '../../constants/constants';
-import ProgressBar from '../ProgressBar';
+import AppProgressBar from '../AppProgressBar';
 import {AppIcons} from '../../constants/AppIcons';
 import AppSvg from '../AppSvg';
 import {AppColors} from '../../constants/ColorSkin';
 
-ProgressView.propTypes = {
+AppProgressView.propTypes = {
   progress: PropTypes.number,
   with: PropTypes.any,
   hideValue: PropTypes.bool,
@@ -33,7 +33,7 @@ ProgressView.propTypes = {
   borderWidth: PropTypes.number,
 };
 
-ProgressView.defaultProps = {
+AppProgressView.defaultProps = {
   progress: 0,
   with: null,
   hideValue: false,
@@ -51,7 +51,7 @@ ProgressView.defaultProps = {
   borderWidth: 1,
 };
 
-function ProgressView(props) {
+function AppProgressView(props) {
   const {
     progress,
     width,
@@ -173,7 +173,7 @@ function ProgressView(props) {
             height: 32,
             justifyContent: 'center',
           }}>
-          <ProgressBar
+          <AppProgressBar
             progress={progress}
             width={width}
             height={height}
@@ -207,4 +207,4 @@ function ProgressView(props) {
   );
 }
 
-export default ProgressView;
+export default AppProgressView;

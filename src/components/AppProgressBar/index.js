@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Animated, View} from 'react-native';
 import {AppColors} from '../../constants/ColorSkin';
 
-ProgressBar.propTypes = {
+AppProgressBar.propTypes = {
   progress: PropTypes.number,
   with: PropTypes.any,
   height: PropTypes.number,
@@ -15,7 +15,7 @@ ProgressBar.propTypes = {
   borderWidth: PropTypes.number,
 };
 
-ProgressBar.defaultProps = {
+AppProgressBar.defaultProps = {
   progress: 0,
   with: null,
   height: 8,
@@ -25,7 +25,7 @@ ProgressBar.defaultProps = {
   unfilledColor: 'white',
   borderWidth: 1,
 };
-function ProgressBar(props) {
+function AppProgressBar(props) {
   const {
     progress,
     width,
@@ -93,4 +93,4 @@ function ProgressBar(props) {
   );
 }
 
-export default ProgressBar;
+export default AppProgressBar;

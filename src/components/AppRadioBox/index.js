@@ -9,7 +9,7 @@ import AppFonts from '../../constants/AppFonts';
 import AppFontSize from '../../constants/AppFontSize';
 import {AppColors} from '../../constants/ColorSkin';
 
-CustomRadioBox.propTypes = {
+AppRadioBox.propTypes = {
   control: PropTypes.any,
   required: PropTypes.exact({
     value: PropTypes.bool,
@@ -30,7 +30,7 @@ CustomRadioBox.propTypes = {
   iconComponent: PropTypes.func,
 };
 
-CustomRadioBox.defaultProps = {
+AppRadioBox.defaultProps = {
   control: any,
   required: {
     value: false,
@@ -51,7 +51,7 @@ CustomRadioBox.defaultProps = {
   iconComponent: () => {},
 };
 
-function CustomRadioBox(props) {
+function AppRadioBox(props) {
   const {
     control,
     required,
@@ -209,4 +209,4 @@ function CustomRadioBox(props) {
   );
 }
 
-export default CustomRadioBox;
+export default AppRadioBox;

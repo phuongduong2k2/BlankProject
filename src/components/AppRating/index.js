@@ -11,7 +11,7 @@ import PropTypes, {any, number} from 'prop-types';
 import {AppIcons} from '../../constants/AppIcons';
 import AppSvg from '../AppSvg';
 
-Rating.propTypes = {
+AppRating.propTypes = {
   numberStar: PropTypes.number,
   iconActive: PropTypes.any,
   iconInactive: PropTypes.any,
@@ -20,7 +20,7 @@ Rating.propTypes = {
   containerStyle: PropTypes.object,
 };
 
-Rating.defaultProps = {
+AppRating.defaultProps = {
   numberStar: 5,
   iconActive: AppIcons.star.active,
   iconInactive: AppIcons.star.inactive,
@@ -29,7 +29,7 @@ Rating.defaultProps = {
   containerStyle: {},
 };
 
-function Rating(props) {
+function AppRating(props) {
   const {numberStar, onSelect, containerStyle, iconActive, iconInactive} =
     props;
   const [selected, setSelected] = useState(0);
@@ -78,4 +78,4 @@ function Rating(props) {
   );
 }
 
-export default Rating;
+export default AppRating;

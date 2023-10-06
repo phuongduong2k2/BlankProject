@@ -1,21 +1,21 @@
 import React from 'react';
-import SliderContainer from '../SliderContainer';
-import CustomSlider from '../CustomSlider';
+import AppSliderContainer from '../AppSliderContainer';
+import AppSlider from '../AppSlider';
 import PropTypes from 'prop-types';
 
-RangeSlider.propTypes = {};
+AppRangeSlider.propTypes = {};
 
-RangeSlider.defaultProps = {};
+AppRangeSlider.defaultProps = {};
 
-function RangeSlider(props) {
+function AppRangeSlider(props) {
   const {} = props;
   return (
-    <SliderContainer
+    <AppSliderContainer
       sliderValue={[6, 18]}
       onValueChange={value => {
         console.log('change', value);
       }}>
-      <CustomSlider
+      <AppSlider
         animateTransitions
         maximumValue={20}
         minimumValue={4}
@@ -24,8 +24,8 @@ function RangeSlider(props) {
           console.log(value);
         }}
       />
-    </SliderContainer>
+    </AppSliderContainer>
   );
 }
 
-export default RangeSlider;
+export default AppRangeSlider;

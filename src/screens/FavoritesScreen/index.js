@@ -2,12 +2,12 @@ import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AppHeader from '../../components/AppHeader';
-import Rating from '../../components/Rating';
+import AppRating from '../../components/AppRating';
 import AppButton from '../../components/AppButton';
 import {AppIcons} from '../../constants/AppIcons';
 import AppTag from '../../components/AppTag';
 import AppNumberPicker from '../../components/AppNumberPicker';
-import { AppColors } from '../../constants/ColorSkin';
+import {AppColors} from '../../constants/ColorSkin';
 import AppPaginationItem from '../../components/AppPaginationItem';
 import AppSwitch from '../../components/AppSwitch';
 
@@ -24,9 +24,8 @@ const FavoritesScreen = () => {
           style={{
             flex: 1,
             alignItems: 'flex-start',
-
           }}>
-          <Rating />
+          <AppRating />
           <AppButton
             onPress={() => {
               console.log('Click');
@@ -43,21 +42,20 @@ const FavoritesScreen = () => {
           />
           <AppTag title={'Tag'} icon={AppIcons.tag} isReverse />
           <AppNumberPicker
-            onChange={(number) => {
-              console.log(number)
+            onChange={number => {
+              console.log(number);
             }}
-            backgroundColor= 'transparent'
+            backgroundColor="transparent"
             height={40}
-            color= 'black'
+            color="black"
           />
           <AppSwitch
             hasLabel
             // isReverse
-            onChange={(value) => {
-              console.log(value)
+            onChange={value => {
+              console.log(value);
             }}
           />
-          
         </View>
       </ScrollView>
     </SafeAreaProvider>

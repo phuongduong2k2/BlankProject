@@ -12,12 +12,12 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AppHeader from '../../components/AppHeader';
 import AppSvg from '../../components/AppSvg';
 import {AppIcons} from '../../constants/AppIcons';
-import Rating from '../../components/Rating';
+import AppRating from '../../components/AppRating';
 import {useDispatch, useSelector} from 'react-redux';
 import {baseApiUrl} from '../../../env.json';
-import FormContainer from '../../components/FormContainer';
+import AppFormContainer from '../../components/AppFormContainer';
 import AppTextInput from '../../components/AppTextInput';
-import {LoadingPopupUtils} from '../../components/LoadingPopup';
+import {AppLoadingPopupUtils} from '../../components/AppLoadingPopup';
 import AppStepContainer, {
   AppStepContainerUtils,
 } from '../../components/AppStepContainer';
@@ -36,7 +36,7 @@ const HomeScreen = () => {
       </AppHeader>
       <ScrollView>
         <View style={{flex: 1}}>
-          <Rating />
+          <AppRating />
 
           {data?.map(item => (
             <Text key={item.id}>{item.products[0].title}</Text>
@@ -122,16 +122,10 @@ const HomeScreen = () => {
           <Button
             title="popup"
             onPress={() => {
-              LoadingPopupUtils.showPopup({
-                indicatorComponent: () => (
-                  <View
-                    style={{height: 20, width: 20, backgroundColor: 'red'}}
-                  />
-                ),
-              });
+              AppLoadingPopupUtils.showPopup();
             }}
           />
-          <FormContainer
+          <AppFormContainer
             fields={[{name: 'name'}, {name: 'city'}]}
             onSubmitting={res => {
               console.log('submiting', res);
@@ -159,7 +153,7 @@ const HomeScreen = () => {
                 },
               }}
             />
-          </FormContainer>
+          </AppFormContainer>
         </View>
       </ScrollView>
     </SafeAreaProvider>

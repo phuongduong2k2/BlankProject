@@ -1,14 +1,14 @@
 import React, {createRef, useEffect, useRef, useState} from 'react';
 import {Animated, Image, Text, TouchableOpacity, View} from 'react-native';
-import {AppDimentions, SnackBarStatus} from '../../constants/constants';
+import {AppDimentions, AppSnackBarStatus} from '../../constants/constants';
 import {AppIcons} from '../../constants/AppIcons';
 
 const ref = createRef();
 
-const SnackBar = () => {
+const AppSnackBar = () => {
   const [state, setState] = useState({
     isVisible: false,
-    status: SnackBarStatus.default,
+    status: AppSnackBarStatus.default,
     isSoft: false,
   });
   const [title, setTitle] = useState('');
@@ -43,35 +43,35 @@ const SnackBar = () => {
       success: data => {
         initialState({
           ...data,
-          status: SnackBarStatus.success,
+          status: AppSnackBarStatus.success,
           primaryColor: 'rgba(46, 181, 83, 1)',
         });
       },
       error: data => {
         initialState({
           ...data,
-          status: SnackBarStatus.error,
+          status: AppSnackBarStatus.error,
           primaryColor: 'rgba(245, 34, 45, 1)',
         });
       },
       warning: data => {
         initialState({
           ...data,
-          status: SnackBarStatus.warning,
+          status: AppSnackBarStatus.warning,
           primaryColor: 'rgba(250, 140, 22, 1)',
         });
       },
       info: data => {
         initialState({
           ...data,
-          status: SnackBarStatus.info,
+          status: AppSnackBarStatus.info,
           primaryColor: 'rgba(24, 144, 255, 1)',
         });
       },
       default: data => {
         initialState({
           ...data,
-          status: SnackBarStatus.default,
+          status: AppSnackBarStatus.default,
           primaryColor: 'rgba(38, 38, 38, 1)',
         });
       },
@@ -121,22 +121,22 @@ const SnackBar = () => {
   const _renderImage = isSoft => {
     let icon = null;
     switch (state.status) {
-      case SnackBarStatus.error:
+      case AppSnackBarStatus.error:
         icon = !isSoft
           ? AppIcons.icSnackError.filled
           : AppIcons.icSnackError.normal;
         break;
-      case SnackBarStatus.success:
+      case AppSnackBarStatus.success:
         icon = !isSoft
           ? AppIcons.icSnackSuccess.filled
           : AppIcons.icSnackSuccess.normal;
         break;
-      case SnackBarStatus.warning:
+      case AppSnackBarStatus.warning:
         icon = !isSoft
           ? AppIcons.icSnackWarning.filled
           : AppIcons.icSnackWarning.normal;
         break;
-      case SnackBarStatus.info:
+      case AppSnackBarStatus.info:
         icon = !isSoft
           ? AppIcons.icSnackInfo.filled
           : AppIcons.icSnackInfo.normal;
@@ -253,9 +253,9 @@ const SnackBar = () => {
   );
 };
 
-export default SnackBar;
+export default AppSnackBar;
 
-export const SnackBarUtils = {
+export const AppSnackBarUtils = {
   success: data => {
     if (ref.current) {
       ref.current.success(data);

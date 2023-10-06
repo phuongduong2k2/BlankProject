@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Animated, Button, Text, View } from "react-native";
-import { AppColors } from "../../constants/AppStyle";
-import PropTypes from "prop-types";
+import React, {useEffect, useRef, useState} from 'react';
+import {Animated, Button, Text, View} from 'react-native';
+import {AppColors} from '../../constants/AppStyle';
+import PropTypes from 'prop-types';
 
-BarContainer.propTypes = {
+AppBarContainer.propTypes = {
   style: PropTypes.object,
   duration: PropTypes.number,
   haveBottomIndicator: PropTypes.bool,
@@ -11,7 +11,7 @@ BarContainer.propTypes = {
   isReverse: PropTypes.bool,
 };
 
-BarContainer.defaultProps = {
+AppBarContainer.defaultProps = {
   style: {},
   duration: 300,
   haveBottomIndicator: true,
@@ -19,21 +19,21 @@ BarContainer.defaultProps = {
   isReverse: false,
 };
 
-function BarContainer(props) {
-  const { children, style, duration, haveBottomIndicator, isRow, isReverse } =
+function AppBarContainer(props) {
+  const {children, style, duration, haveBottomIndicator, isRow, isReverse} =
     props;
   const [isSelected, setSelected] = useState(0);
 
   const firstTime = useRef(true).current;
 
-  const handleSelected = (index) => {
+  const handleSelected = index => {
     setSelected(index);
   };
 
-  const _renderBarItem = () =>
+  const _renderAppBarItem = () =>
     React.Children.map(children, (child, index) => {
       return React.cloneElement(child, {
-        width: Array.isArray(children) ? `${100 / children.length}%` : "100%",
+        width: Array.isArray(children) ? `${100 / children.length}%` : '100%',
         isSelected: isSelected === index,
         duration: duration,
         isRow: isRow,
@@ -61,13 +61,12 @@ function BarContainer(props) {
       <View
         style={{
           height: 48,
-          flexDirection: "row",
-          alignItems: "center",
+          flexDirection: 'row',
+          alignItems: 'center',
           ...style,
-          width: "100%",
-        }}
-      >
-        {_renderBarItem()}
+          width: '100%',
+        }}>
+        {_renderAppBarItem()}
 
         {haveBottomIndicator && (
           <Animated.View
@@ -76,15 +75,15 @@ function BarContainer(props) {
               left: animated.interpolate({
                 inputRange: [0, children?.length - 1],
                 outputRange: [
-                  "0%",
+                  '0%',
                   `${((children?.length - 1) / children?.length) * 100}%`,
                 ],
               }),
               backgroundColor: AppColors.primary,
               width: Array.isArray(children)
                 ? `${100 / children.length}%`
-                : "100%",
-              position: "absolute",
+                : '100%',
+              position: 'absolute',
               bottom: 0,
             }}
           />
@@ -95,4 +94,4 @@ function BarContainer(props) {
   );
 }
 
-export default BarContainer;
+export default AppBarContainer;

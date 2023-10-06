@@ -11,21 +11,21 @@ import {
 import {AppIcons} from '../../constants/AppIcons';
 import PropTypes from 'prop-types';
 import {AppDimentions} from '../../constants/constants';
-import Divider from '../Divider';
+import AppDivider from '../AppDivider';
 import AppSvg from '../AppSvg';
 
-CollapseItem.propTypes = {
+AppCollapseItem.propTypes = {
   onPress: PropTypes.func,
   title: PropTypes.string,
   prefixIcon: PropTypes.any,
   suffixIcon: PropTypes.any,
 };
 
-CollapseItem.defaultProps = {
+AppCollapseItem.defaultProps = {
   onPress: () => {},
   title: '',
   prefixIcon: AppIcons.icRatingActive,
-  suffixIcon: AppIcons.icCollapseItem,
+  suffixIcon: AppIcons.icAppCollapseItem,
 };
 
 if (Platform.OS === 'android') {
@@ -34,10 +34,10 @@ if (Platform.OS === 'android') {
   }
 }
 
-function CollapseItem(props) {
+function AppCollapseItem(props) {
   const {onPress, title, prefixIcon, suffixIcon} = props;
   const [isOpen, setOpen] = useState(false);
-  const onCollapseItem = () => {
+  const onAppCollapseItem = () => {
     onPress();
     setOpen(!isOpen);
     LayoutAnimation.easeInEaseOut();
@@ -62,7 +62,7 @@ function CollapseItem(props) {
       }}>
       <TouchableOpacity
         activeOpacity={1}
-        onPress={onCollapseItem}
+        onPress={onAppCollapseItem}
         style={{
           height: 48,
           width: '100%',
@@ -107,7 +107,7 @@ function CollapseItem(props) {
         {isOpen && (
           <AppSvg svgSrc={AppIcons.star.active} style={{opactity: 0}} />
         )}
-        <Divider
+        <AppDivider
           style={{
             flex: 1,
             marginLeft: isOpen ? AppDimentions.thirdPadding : 0,
@@ -145,4 +145,4 @@ function CollapseItem(props) {
   );
 }
 
-export default CollapseItem;
+export default AppCollapseItem;

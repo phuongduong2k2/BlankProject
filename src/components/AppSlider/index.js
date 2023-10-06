@@ -4,7 +4,7 @@ import {Dimensions, Text, TouchableHighlight, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {AppColors} from '../../constants/AppStyle';
 
-CustomSlider.propTypes = {
+AppSlider.propTypes = {
   disabled: PropTypes.bool,
   onValueChange: PropTypes.any,
   value: PropTypes.any,
@@ -36,7 +36,7 @@ CustomSlider.propTypes = {
   animateTransitions: PropTypes.any,
 };
 
-CustomSlider.defaultProps = {
+AppSlider.defaultProps = {
   disabled: false,
   onValueChange: undefined,
   value: 0.5,
@@ -67,7 +67,7 @@ CustomSlider.defaultProps = {
   step: undefined,
 };
 
-function CustomSlider(props) {
+function AppSlider(props) {
   const {
     value,
     onValueChange,
@@ -169,4 +169,4 @@ function CustomSlider(props) {
   );
 }
 
-export default CustomSlider;
+export default AppSlider;

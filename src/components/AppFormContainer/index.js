@@ -4,21 +4,21 @@ import {Button, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {InputType} from '../../constants/constants';
 
-FormContainer.propTypes = {
+AppFormContainer.propTypes = {
   onSubmitting: PropTypes.func,
   fields: PropTypes.arrayOf(PropTypes.object),
   customSubmitButton: PropTypes.func,
   onChangeForm: PropTypes.func,
 };
 
-FormContainer.defaultProps = {
+AppFormContainer.defaultProps = {
   onSubmitting: () => {},
   fields: [{}],
   customSubmitButton: () => {},
   onChangeForm: () => {},
 };
 
-function FormContainer(props) {
+function AppFormContainer(props) {
   const {children, onSubmitting, fields, customSubmitButton, onChangeForm} =
     props;
 
@@ -90,4 +90,4 @@ function FormContainer(props) {
   );
 }
 
-export default FormContainer;
+export default AppFormContainer;

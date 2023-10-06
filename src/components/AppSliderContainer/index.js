@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
 
-SliderContainer.propTypes = {
+AppSliderContainer.propTypes = {
   caption: PropTypes.string,
   children: PropTypes.element,
   sliderValue: PropTypes.arrayOf(PropTypes.number),
@@ -10,7 +10,7 @@ SliderContainer.propTypes = {
   onValueChange: PropTypes.func,
 };
 
-SliderContainer.defaultProps = {
+AppSliderContainer.defaultProps = {
   caption: '',
   children: <></>,
   sliderValue: [],
@@ -18,7 +18,7 @@ SliderContainer.defaultProps = {
   onValueChange: () => {},
 };
 
-function SliderContainer(props) {
+function AppSliderContainer(props) {
   const {sliderValue, onValueChange} = props;
   const [value, setValue] = useState(sliderValue);
 
@@ -57,4 +57,4 @@ function SliderContainer(props) {
   );
 }
 
-export default SliderContainer;
+export default AppSliderContainer;

@@ -6,7 +6,7 @@ import {AppColors} from '../../constants/ColorSkin';
 import AppSvg from '../AppSvg';
 import TextStyle from '../../constants/TextStyle';
 
-BarItem.propTypes = {
+AppBarItem.propTypes = {
   title: PropTypes.string,
   onSelected: PropTypes.func,
   isSelected: PropTypes.bool,
@@ -19,7 +19,7 @@ BarItem.propTypes = {
   iconSrc: PropTypes.any,
 };
 
-BarItem.defaultProps = {
+AppBarItem.defaultProps = {
   title: '',
   onSelected: () => {},
   isSelected: false,
@@ -32,7 +32,7 @@ BarItem.defaultProps = {
   iconSrc: AppIcons.star.active,
 };
 
-function BarItem(props) {
+function AppBarItem(props) {
   const {
     title,
     onSelected,
@@ -83,4 +83,4 @@ function BarItem(props) {
   );
 }
 
-export default BarItem;
+export default AppBarItem;
