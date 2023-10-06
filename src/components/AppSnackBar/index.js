@@ -1,7 +1,9 @@
 import React, {createRef, useEffect, useRef, useState} from 'react';
-import {Animated, Image, Text, TouchableOpacity, View} from 'react-native';
+import {Animated, Text, TouchableOpacity, View} from 'react-native';
 import {AppDimentions, AppSnackBarStatus} from '../../constants/constants';
 import {AppIcons} from '../../constants/AppIcons';
+import AppSvg from '../AppSvg';
+import AppSnackBarProps from './type';
 
 const ref = createRef();
 
@@ -23,60 +25,54 @@ const AppSnackBar = () => {
 
   const animated = useRef(new Animated.Value(0)).current;
 
-  const initialState = data => {
-    const {title, isSoft, duration, textIconBtn, func, status, primaryColor} =
-      data;
-    setTimer(duration);
-    setTextIconBtn(textIconBtn);
-    setTitle(title);
-    setState({
-      isVisible: true,
-      status: status,
-      isSoft: isSoft,
-    });
-    setPrimaryColor(primaryColor);
-    setOnPress(() => func);
-  };
-
   useEffect(() => {
     ref.current = {
-      success: data => {
-        initialState({
-          ...data,
-          status: AppSnackBarStatus.success,
-          primaryColor: 'rgba(46, 181, 83, 1)',
+      show: data => {
+        const {
+          title,
+          isSoft,
+          duration,
+          textIconBtn,
+          func,
+          status,
+          primaryColor,
+        } = data;
+        console.log(textIconBtn);
+        return;
+        let pmColor;
+        if (primaryColor) {
+          pmColor = primaryColor;
+        } else {
+          switch (data.status) {
+            case 'success':
+              pmColor = 'rgba(46, 181, 83, 1)';
+              break;
+            case 'failed':
+              pmColor = 'rgba(245, 34, 45, 1)';
+              break;
+            case 'warning':
+              pmColor = 'rgba(250, 140, 22, 1)';
+              break;
+            case 'info':
+              pmColor = 'rgba(24, 144, 255, 1)';
+              break;
+            default:
+              pmColor = 'rgba(38, 38, 38, 1)';
+          }
+        }
+        setTimer(duration);
+        setTextIconBtn(textIconBtn);
+        setTitle(title);
+        setState({
+          isVisible: true,
+          status: status,
+          isSoft: isSoft,
         });
-      },
-      error: data => {
-        initialState({
-          ...data,
-          status: AppSnackBarStatus.error,
-          primaryColor: 'rgba(245, 34, 45, 1)',
-        });
-      },
-      warning: data => {
-        initialState({
-          ...data,
-          status: AppSnackBarStatus.warning,
-          primaryColor: 'rgba(250, 140, 22, 1)',
-        });
-      },
-      info: data => {
-        initialState({
-          ...data,
-          status: AppSnackBarStatus.info,
-          primaryColor: 'rgba(24, 144, 255, 1)',
-        });
-      },
-      default: data => {
-        initialState({
-          ...data,
-          status: AppSnackBarStatus.default,
-          primaryColor: 'rgba(38, 38, 38, 1)',
-        });
+        setPrimaryColor(pmColor);
+        setOnPress(() => func ?? (() => {}));
       },
     };
-  }, []);
+  }, [state]);
 
   useEffect(() => {
     let interval;
@@ -103,13 +99,13 @@ const AppSnackBar = () => {
       Animated.timing(animated, {
         toValue: 1,
         duration: 200,
-        useNativeDriver: true,
+        useNativeDriver: false,
       }).start();
     } else {
       Animated.timing(animated, {
         toValue: 0,
         duration: 200,
-        useNativeDriver: true,
+        useNativeDriver: false,
       }).start(() => {
         iCount.current = 0;
         setTimer(iCount.current);
@@ -121,33 +117,33 @@ const AppSnackBar = () => {
   const _renderImage = isSoft => {
     let icon = null;
     switch (state.status) {
-      case AppSnackBarStatus.error:
+      case 'failed':
         icon = !isSoft
-          ? AppIcons.icSnackError.filled
-          : AppIcons.icSnackError.normal;
+          ? AppIcons.snackBarIcons.close
+          : AppIcons.snackBarIcons.close_filled;
         break;
-      case AppSnackBarStatus.success:
+      case 'success':
         icon = !isSoft
-          ? AppIcons.icSnackSuccess.filled
-          : AppIcons.icSnackSuccess.normal;
+          ? AppIcons.snackBarIcons.check
+          : AppIcons.snackBarIcons.check_filled;
         break;
-      case AppSnackBarStatus.warning:
+      case 'warning':
         icon = !isSoft
-          ? AppIcons.icSnackWarning.filled
-          : AppIcons.icSnackWarning.normal;
+          ? AppIcons.snackBarIcons.warning
+          : AppIcons.snackBarIcons.warning_filled;
         break;
-      case AppSnackBarStatus.info:
+      case 'info':
         icon = !isSoft
-          ? AppIcons.icSnackInfo.filled
-          : AppIcons.icSnackInfo.normal;
+          ? AppIcons.snackBarIcons.info
+          : AppIcons.snackBarIcons.info_filled;
         break;
       default:
         icon = !isSoft
-          ? AppIcons.icSnackDefault.filled
-          : AppIcons.icSnackDefault.normal;
+          ? AppIcons.snackBarIcons.default
+          : AppIcons.snackBarIcons.default_filled;
         break;
     }
-    return <Image source={icon} style={{resizeMode: 'contain'}} />;
+    return <AppSvg svgSrc={icon} size={24} />;
   };
 
   const _renderInsideButton = () => {
@@ -160,7 +156,7 @@ const AppSnackBar = () => {
         <Text style={{color: 'white', fontWeight: '400'}}>{textIconBtn}</Text>
       );
     } else {
-      return <Image source={6} style={{resizeMode: 'contain'}} />;
+      return <AppSvg svgSrc={textIconBtn} size={16} />;
     }
   };
 
@@ -233,10 +229,10 @@ const AppSnackBar = () => {
               justifyContent: 'center',
             }}
             onPress={() => {
-              setState({
-                ...state,
-                isVisible: false,
-              });
+              // setState({
+              //   ...state,
+              //   isVisible: false,
+              // });
               onPress();
             }}>
             <View
@@ -256,29 +252,13 @@ const AppSnackBar = () => {
 export default AppSnackBar;
 
 export const AppSnackBarUtils = {
-  success: data => {
+  /**
+   * @author phuongduong
+   * @param {AppSnackBarProps} data
+   */
+  show: data => {
     if (ref.current) {
-      ref.current.success(data);
-    }
-  },
-  error: data => {
-    if (ref.current) {
-      ref.current.error(data);
-    }
-  },
-  warning: data => {
-    if (ref.current) {
-      ref.current.warning(data);
-    }
-  },
-  info: data => {
-    if (ref.current) {
-      ref.current.info(data);
-    }
-  },
-  default: data => {
-    if (ref.current) {
-      ref.current.default(data);
+      ref.current.show(data);
     }
   },
 };

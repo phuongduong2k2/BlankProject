@@ -24,6 +24,7 @@ import AppStepContainer, {
 import AppStepItem from '../../components/AppStepItem';
 import BaseDA from '../../axios/BaseDA';
 import AppButton from '../../components/AppButton';
+import {AppSnackBarUtils} from '../../components/AppSnackBar';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -110,8 +111,6 @@ const HomeScreen = () => {
               dispatch({type: 'GET_DATA'});
             }}
           />
-          <AppSvg svgSrc={AppIcons.setting.active} size={24} />
-
           <Button
             title="call api"
             onPress={async () => {
@@ -154,6 +153,37 @@ const HomeScreen = () => {
               }}
             />
           </AppFormContainer>
+          <Button
+            title="snackbar success"
+            onPress={() => {
+              AppSnackBarUtils.show({
+                title: 'test',
+                status: 'success',
+                duration: 1000,
+              });
+            }}
+          />
+          <Button
+            title="snackbar failed"
+            onPress={() => {
+              AppSnackBarUtils.show({
+                title: 'test',
+                status: 'failed',
+                duration: 1000,
+                textIconBtn: AppIcons.arrow_calendar_down,
+              });
+            }}
+          />
+          <Button
+            title="snackbar warning"
+            onPress={() => {
+              AppSnackBarUtils.show({
+                title: 'test',
+                status: 'warning',
+                duration: 1000,
+              });
+            }}
+          />
         </View>
       </ScrollView>
     </SafeAreaProvider>

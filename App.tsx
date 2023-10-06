@@ -12,6 +12,7 @@ import {Provider} from 'react-redux';
 import store from './src/redux/store';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import AppLoadingPopup from './src/components/AppLoadingPopup';
+import AppSnackBar from './src/components/AppSnackBar';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -25,6 +26,7 @@ function App(): JSX.Element {
         <Provider store={store}>
           <MainNavigation />
           <AppLoadingPopup />
+          <AppSnackBar />
         </Provider>
       </SafeAreaView>
     </GestureHandlerRootView>
