@@ -34,7 +34,7 @@ function FormContainer(props) {
   // const textInput = (field, index, errors) => {
   //   const { label, name, placeholder, rules, aboveLabel, leftLabel } = field;
   //   return (
-  //     <CustomInputField
+  //     <AppTextInput
   //       control={control}
   //       onReset={resetField}
   //       rules={{ ...rules }}

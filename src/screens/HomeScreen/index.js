@@ -16,7 +16,7 @@ import Rating from '../../components/Rating';
 import {useDispatch, useSelector} from 'react-redux';
 import {baseApiUrl} from '../../../env.json';
 import FormContainer from '../../components/FormContainer';
-import CustomInputField from '../../components/InputField';
+import AppTextInput from '../../components/AppTextInput';
 import {LoadingPopupUtils} from '../../components/LoadingPopup';
 import AppStepContainer, {
   AppStepContainerUtils,
@@ -136,7 +136,7 @@ const HomeScreen = () => {
             onSubmitting={res => {
               console.log('submiting', res);
             }}>
-            <CustomInputField
+            <AppTextInput
               name={'name'}
               placeholder={'Type your name'}
               label={'Name'}
@@ -148,7 +148,7 @@ const HomeScreen = () => {
                 },
               }}
             />
-            <CustomInputField
+            <AppTextInput
               name={'city'}
               placeholder={'Type your city'}
               label={'City'}

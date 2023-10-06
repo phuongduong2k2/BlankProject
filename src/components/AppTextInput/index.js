@@ -17,7 +17,7 @@ import {AppColors} from '../../constants/ColorSkin';
 import AppSvg from '../AppSvg';
 import TextStyle from '../../constants/TextStyle';
 
-CustomInputField.propTypes = {
+AppTextInput.propTypes = {
   name: PropTypes.string,
   status: PropTypes.string,
   style: PropTypes.object,
@@ -52,7 +52,7 @@ CustomInputField.propTypes = {
   onChangeText: PropTypes.func,
 };
 
-CustomInputField.defaultProps = {
+AppTextInput.defaultProps = {
   name: '',
   status: 'default',
   style: {},
@@ -86,7 +86,7 @@ CustomInputField.defaultProps = {
   onChangeText: () => {},
 };
 
-function CustomInputField(props) {
+function AppTextInput(props) {
   const {
     name,
     status,
@@ -313,4 +313,4 @@ function CustomInputField(props) {
   );
 }
 
-export default CustomInputField;
+export default AppTextInput;
