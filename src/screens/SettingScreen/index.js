@@ -3,6 +3,7 @@ import {Text, View} from 'react-native';
 import AppMediaView from '../../components/AppMediaView';
 import AppContentText from '../../components/AppContentText';
 import AppScrollBar from '../../components/AppScrollBar';
+import { AppColors } from '../../constants/ColorSkin';
 
 const SettingScreen = () => {
   return (
