@@ -70,7 +70,7 @@ const BottomTabNavigation = () => {
               return (
                 <AppSvg
                   size={20}
-                  svgSrc={focused ? screen.icon.active : screen.icon.inactive}
+                  SvgSrc={focused ? screen.icon.active : screen.icon.inactive}
                 />
               );
             },

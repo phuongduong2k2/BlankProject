@@ -92,7 +92,7 @@ const NotificationsScreen = () => {
             )}`}
           </Text>
           <TouchableOpacity style={{height: 20, width: 20, marginLeft: 4}}>
-            <AppSvg svgSrc={AppIcons.arrow_calendar_down} />
+            <AppSvg SvgSrc={AppIcons.arrow_calendar_down} />
           </TouchableOpacity>
         </View>
         <View
@@ -116,7 +116,7 @@ const NotificationsScreen = () => {
                 .format('YYYY-MM-DD');
               setDateNow(dateNextMonth);
             }}>
-            <AppSvg svgSrc={AppIcons.arrow_calendar_left} />
+            <AppSvg SvgSrc={AppIcons.arrow_calendar_left} />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -132,7 +132,7 @@ const NotificationsScreen = () => {
                 .format('YYYY-MM-DD');
               setDateNow(dateNextMonth);
             }}>
-            <AppSvg svgSrc={AppIcons.arrow_calendar_right} />
+            <AppSvg SvgSrc={AppIcons.arrow_calendar_right} />
           </TouchableOpacity>
         </View>
       </View>

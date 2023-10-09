@@ -11,7 +11,8 @@ import MainNavigation from './src/navigation/MainNavigation';
 import {Provider} from 'react-redux';
 import store from './src/redux/store';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import LoadingPopup from './src/components/LoadingPopup';
+import AppLoadingPopup from './src/components/AppLoadingPopup';
+import AppSnackBar from './src/components/AppSnackBar';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -24,7 +25,8 @@ function App(): JSX.Element {
       <SafeAreaView style={{flex: 1}}>
         <Provider store={store}>
           <MainNavigation />
-          <LoadingPopup />
+          <AppLoadingPopup />
+          <AppSnackBar />
         </Provider>
       </SafeAreaView>
     </GestureHandlerRootView>

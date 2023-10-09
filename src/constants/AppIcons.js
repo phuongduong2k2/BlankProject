@@ -26,6 +26,18 @@ import arrowCalendarLeft from '../../assets/icons/calendar_arrow/left.svg';
 import arrowCalendarRight from '../../assets/icons/calendar_arrow/right.svg';
 import arrowCalendarDown from '../../assets/icons/calendar_arrow/down.svg';
 
+// SnackBar Icons
+import snackBarDefault from '../../assets/icons/snack_bar_icons/default/default.svg';
+import snackBarDefaultFilled from '../../assets/icons/snack_bar_icons/default/default_filled.svg';
+import snackBarCheck from '../../assets/icons/snack_bar_icons/check/check.svg';
+import snackBarCheckFilled from '../../assets/icons/snack_bar_icons/check/check_filled.svg';
+import snackBarClose from '../../assets/icons/snack_bar_icons/close/close.svg';
+import snackBarCloseFilled from '../../assets/icons/snack_bar_icons/close/close_filled.svg';
+import snackBarInfo from '../../assets/icons/snack_bar_icons/info/info.svg';
+import snackBarInfoFilled from '../../assets/icons/snack_bar_icons/info/info_filled.svg';
+import snackBarWarning from '../../assets/icons/snack_bar_icons/warning/warning.svg';
+import snackBarWarningFilled from '../../assets/icons/snack_bar_icons/warning/warning_filled.svg';
+
 export const AppIcons = {
   right_circle: rightCircle,
   arrow_left: arrowLeft,
@@ -70,4 +82,16 @@ export const AppIcons = {
   arrow_calendar_left: arrowCalendarLeft,
   arrow_calendar_right: arrowCalendarRight,
   arrow_calendar_down: arrowCalendarDown,
+  snackBarIcons: {
+    default: snackBarDefault,
+    default_filled: snackBarDefaultFilled,
+    check: snackBarCheck,
+    check_filled: snackBarCheckFilled,
+    warning: snackBarWarning,
+    warning_filled: snackBarWarningFilled,
+    info: snackBarInfo,
+    info_filled: snackBarInfoFilled,
+    close: snackBarClose,
+    close_filled: snackBarCloseFilled,
+  },
 };

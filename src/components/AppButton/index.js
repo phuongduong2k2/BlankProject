@@ -42,18 +42,18 @@ AppButton.defaultProps = {
 };
 
 function AppButton(props) {
-    const { 
-        onPress,
-        backgroundColor,
-        width,
-        height,
-        borderStyle,
-        icon,
-        iconSize,
-        isReverse,
-        title,
-        textStyle
-    } = props
+  const {
+    onPress,
+    backgroundColor,
+    width,
+    height,
+    borderStyle,
+    icon,
+    iconSize,
+    isReverse,
+    title,
+    textStyle,
+  } = props;
   return (
     <TouchableOpacity onPress={onPress}>
       <View
@@ -70,7 +70,7 @@ function AppButton(props) {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        {icon && <AppSvg svgSrc={icon} size={iconSize} />}
+        {icon && <AppSvg SvgSrc={icon} size={iconSize} />}
         {title && (
           <Text
             style={{

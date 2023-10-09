@@ -28,7 +28,7 @@
     "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-hook-form": "^7.46.2",
-    "react-native": "0.71.7",
+    "react-native": "0.72.2",
     "react-native-bouncy-checkbox": "^3.0.7",
     "react-native-calendars": "^1.1301.0",
     "react-native-gesture-handler": "^2.13.1",

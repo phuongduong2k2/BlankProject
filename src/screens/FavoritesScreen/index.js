@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AppHeader from '../../components/AppHeader';
-import Rating from '../../components/Rating';
+import AppRating from '../../components/AppRating';
 import AppButton from '../../components/AppButton';
 import {AppIcons} from '../../constants/AppIcons';
 import AppTag from '../../components/AppTag';
@@ -50,7 +50,7 @@ const FavoritesScreen = () => {
             flex: 1,
             alignItems: 'flex-start',
           }}>
-          <Rating />
+          <AppRating />
           <AppButton
             onPress={() => {
               AppActionSheetUtils.onPress();
