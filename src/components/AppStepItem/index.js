@@ -6,6 +6,16 @@ import {AppColors} from '../../constants/ColorSkin';
 import {AppIcons} from '../../constants/AppIcons';
 import AppStepItemProps from './type';
 
+AppStepItem.defaultProps = {
+  title: 'TimeLine',
+  successColor: AppColors.successPrimary,
+  failedColor: AppColors.errorPrimary,
+  backgroundColor: AppColors.background.grey3,
+  successIconSrc: AppIcons.success_step,
+  failedIconSrc: AppIcons.failed_step,
+  status: undefined,
+};
+
 /**
  *
  * @author phuongduong
@@ -68,26 +78,22 @@ function AppStepItem(props) {
   useEffect(() => {
     switch (status) {
       case 'success':
-        setColorIndicator(successColor ?? AppColors.successPrimary);
+        setColorIndicator(successColor);
         break;
       case 'failed':
-        setColorIndicator(failedColor ?? AppColors.errorPrimary);
+        setColorIndicator(failedColor);
         break;
       default:
-        setColorIndicator(backgroundColor ?? AppColors.background.grey3);
+        setColorIndicator(backgroundColor);
     }
   }, [status]);
 
   const _renderIconStep = () => {
     if (status !== undefined) {
       if (status === 'success') {
-        return (
-          <AppSvg SvgSrc={successIconSrc ?? AppIcons.success_step} size={10} />
-        );
+        return <AppSvg SvgSrc={successIconSrc} size={10} />;
       } else if (status === 'failed') {
-        return (
-          <AppSvg SvgSrc={failedIconSrc ?? AppIcons.failed_step} size={10} />
-        );
+        return <AppSvg SvgSrc={failedIconSrc} size={10} />;
       }
     }
   };
@@ -99,12 +105,6 @@ function AppStepItem(props) {
         paddingHorizontal: AppDimentions.secondPadding,
         ...style,
       }}>
-      <Button
-        title="casc"
-        onPress={() => {
-          console.log(successIconSrc);
-        }}
-      />
       <View
         style={{
           alignItems: 'center',
