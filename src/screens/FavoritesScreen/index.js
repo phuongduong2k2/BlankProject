@@ -8,10 +8,10 @@ import {AppIcons} from '../../constants/AppIcons';
 import AppTag from '../../components/AppTag';
 import AppNumberPicker from '../../components/AppNumberPicker';
 import {AppColors} from '../../constants/ColorSkin';
-import AppPaginationItem from '../../components/AppPaginationItem';
 import AppSwitch from '../../components/AppSwitch';
-import AppActionSheet, { AppActionSheetUtils } from '../../components/AppActionSheet';
-import AppMediaView from '../../components/AppMediaView';
+import AppActionSheet, {
+  AppActionSheetUtils,
+} from '../../components/AppActionSheet';
 import AppListTile from '../../components/AppListTile';
 
 const FavoritesScreen = () => {
@@ -40,9 +40,8 @@ const FavoritesScreen = () => {
   return (
     <SafeAreaProvider>
       <AppHeader title={'Longnp Test'}>
-        <>
-          <Text>Test</Text>
-        </>
+        <></>
+        <></>
       </AppHeader>
       <ScrollView>
         <View
@@ -82,14 +81,19 @@ const FavoritesScreen = () => {
             }}
           />
         </View>
-        <AppListTile/>
-        
+        <AppListTile
+          // contentAlign="right"
+          mediaUri={'https://avatars.githubusercontent.com/u/114985376?v=4'}
+          title='Content title'
+          // subTitle='Student'
+          textButton='Change action view'
+        />
       </ScrollView>
       <AppActionSheet
         title={'A short description of the actions'}
         data={data}
-        onSelected={(action) => {
-          if (typeof action === 'string'){
+        onSelected={action => {
+          if (typeof action === 'string') {
             console.log(action);
           }
           AppActionSheetUtils.onPress();
