@@ -1,4 +1,3 @@
-import {ReactElement} from 'react';
 import {StyleProp, ViewStyle} from 'react-native';
 
 export default interface AppStepItemProps {
