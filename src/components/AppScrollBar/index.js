@@ -2,17 +2,21 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { AppColors } from '../../constants/ColorSkin'
 import PropTypes from "prop-types";
+import AppScrollBarProps from './type';
 
-AppScrollBar.propTypes = {
-    style: PropTypes.object,
-    isHorizontal: PropTypes.bool
-}
+// AppScrollBar.propTypes = {
+//     style: PropTypes.object,
+//     isHorizontal: PropTypes.bool
+// }
 
-AppScrollBar.defaultProps = {
-    style: {},
-    isHorizontal: false
-}
-
+// AppScrollBar.defaultProps = {
+//     style: {},
+//     isHorizontal: false
+// }
+/**
+ * 
+ * @param {AppScrollBarProps} props 
+ */
 function AppScrollBar(props)  {
 
     const {style, isHorizontal} = props;
