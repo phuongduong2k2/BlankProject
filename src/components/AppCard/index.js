@@ -4,8 +4,9 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import {AppColors} from '../../constants/ColorSkin';
 import AppButton from '../AppButton';
 import AppSvg from '../AppSvg';
+import TextStyle from '../../constants/TextStyle';
 
-TestCard.PropTypes = {
+AppCard.PropTypes = {
   ContentTitle: PropTypes.string,
   SubTitle: PropTypes.string,
   BodyContent: PropTypes.string,
@@ -15,20 +16,22 @@ TestCard.PropTypes = {
   iconTopSrc: PropTypes.any,
   iconBottomSrc: PropTypes.any,
   iconSize: PropTypes.number,
+  alignItems: PropTypes.string,
 };
-TestCard.defaultProps = {
-  ContentTitle: '',
-  SubTitle: '',
-  BodyContent: '',
+AppCard.defaultProps = {
+  ContentTitle: 'ContentTitle',
+  SubTitle: 'SubTitle',
+  BodyContent: 'BodyContent',
   Button: false,
   iconLeftSrc: undefined,
   iconRightSrc: undefined,
   iconTopSrc: undefined,
   iconBottomSrc: undefined,
+  alignItems: '',
   iconSize: 40,
 };
 
-function TestCard(props) {
+function AppCard(props) {
   const {
     ContentTitle,
     SubTitle,
@@ -39,56 +42,63 @@ function TestCard(props) {
     iconRightSrc,
     iconBottomSrc,
     iconTopSrc,
+    alignItems,
   } = props;
   return (
     <View
       style={{
         backgroundColor: 'white',
-        borderColor: 'black',
-        borderWidth: 1,
         flexDirection: 'row',
       }}>
-      {iconLeftSrc ? <AppSvg svgSrc={iconLeftSrc} size={iconSize} /> : null}
-      <View style={{}}>
-        {iconTopSrc ? <AppSvg svgSrc={iconTopSrc} size={iconSize} /> : null}
-        <Text
-          style={{fontSize: 16, lineHeight: 24, fontWeight: 50, paddingTop: 8}}>
+      {iconLeftSrc ? <AppSvg SvgSrc={iconLeftSrc} size={iconSize} /> : null}
+      <View
+        style={{
+          alignItems: alignItems,
+        }}>
+        {iconTopSrc ? <AppSvg SvgSrc={iconTopSrc} size={iconSize} /> : null}
+        <Text style={{...TextStyle.title.t_3, paddingTop: 8}}>
           {ContentTitle}
         </Text>
         <Text
           style={{
-            fontSize: 12,
-            lineHeight: 16,
-            fontWeight: 400,
+            ...TextStyle.subtitle.s_3,
             paddingTop: 4,
           }}>
           {SubTitle}
         </Text>
         <Text
           style={{
-            fontSize: 14,
-            lineHeight: 22,
-            fontWeight: 400,
+            ...TextStyle.body.b_2,
             paddingTop: 8,
             paddingBottom: 8,
           }}>
           {BodyContent}
         </Text>
+        {iconBottomSrc ? (
+          <AppSvg SvgSrc={iconBottomSrc} size={iconSize} />
+        ) : null}
         {Button ? (
           <View style={{flexDirection: 'row'}}>
-            <AppButton title="Button" onPress={() => {}} />
+            <AppButton
+              width={74}
+              height={40}
+              title="Button"
+              onPress={() => {}}
+            />
             <View />
             <View style={{width: 8}} />
 
-            <AppButton title="Button" onPress={() => {}} />
+            <AppButton
+              width={74}
+              height={40}
+              title="Button"
+              onPress={() => {}}
+            />
           </View>
         ) : null}
-        {iconBottomSrc ? (
-          <AppSvg svgSrc={iconBottomSrc} size={iconSize} />
-        ) : null}
       </View>
-      {iconRightSrc ? <AppSvg svgSrc={iconRightSrc} size={iconSize} /> : null}
+      {iconRightSrc ? <AppSvg SvgSrc={iconRightSrc} size={iconSize} /> : null}
     </View>
   );
 }
-export default TestCard;
+export default AppCard;

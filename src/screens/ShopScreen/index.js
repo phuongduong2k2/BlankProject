@@ -1,10 +1,10 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import TestCard from '../../components/TestCard';
 import {AppIcons} from '../../constants/AppIcons';
+import AppCard from '../../components/AppCard';
 
 const ShopScreen = () => {
-  return <TestCard Button="true" iconTopSrc={AppIcons.tag}></TestCard>;
+  return <AppCard Button="true" iconTopSrc={AppIcons.tag}></AppCard>;
 };
 
 export default ShopScreen;
