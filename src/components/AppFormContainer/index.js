@@ -78,12 +78,6 @@ function AppFormContainer(props) {
   return (
     <View>
       {_renderContent(errors)}
-      <Button
-        title="check"
-        onPress={() => {
-          console.log(children);
-        }}
-      />
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
       {customSubmitButton(handleError)}
     </View>

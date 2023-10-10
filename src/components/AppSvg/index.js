@@ -1,6 +1,11 @@
 import React from 'react';
 import {View} from 'react-native';
 import AppSvgProps from './type';
+
+AppSvg.defaultProps = {
+  size: '100%',
+};
+
 /**
  * @author phuongduong
  * @param {AppSvgProps} props
