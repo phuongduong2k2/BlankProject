@@ -22,7 +22,7 @@ export const InputType = {
   radio: 'radio',
 };
 
-export const SnackBarStatus = {
+export const AppSnackBarStatus = {
   success: 'success',
   error: 'error',
   warning: 'warning',

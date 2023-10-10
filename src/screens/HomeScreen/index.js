@@ -12,18 +12,19 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AppHeader from '../../components/AppHeader';
 import AppSvg from '../../components/AppSvg';
 import {AppIcons} from '../../constants/AppIcons';
-import Rating from '../../components/Rating';
+import AppRating from '../../components/AppRating';
 import {useDispatch, useSelector} from 'react-redux';
 import {baseApiUrl} from '../../../env.json';
-import FormContainer from '../../components/FormContainer';
-import CustomInputField from '../../components/InputField';
-import {LoadingPopupUtils} from '../../components/LoadingPopup';
+import AppFormContainer from '../../components/AppFormContainer';
+import AppTextInput from '../../components/AppTextInput';
+import {AppLoadingPopupUtils} from '../../components/AppLoadingPopup';
 import AppStepContainer, {
   AppStepContainerUtils,
 } from '../../components/AppStepContainer';
 import AppStepItem from '../../components/AppStepItem';
 import BaseDA from '../../axios/BaseDA';
 import AppButton from '../../components/AppButton';
+import {AppSnackBarUtils} from '../../components/AppSnackBar';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -36,14 +37,14 @@ const HomeScreen = () => {
       </AppHeader>
       <ScrollView>
         <View style={{flex: 1}}>
-          <Rating />
+          <AppRating />
 
           {data?.map(item => (
             <Text key={item.id}>{item.products[0].title}</Text>
           ))}
           <AppStepContainer
             onDone={() => {
-              console.log('Done step');
+              console.log('Done step ');
             }}
             onReset={() => {
               console.log('Reset step');
@@ -110,8 +111,6 @@ const HomeScreen = () => {
               dispatch({type: 'GET_DATA'});
             }}
           />
-          <AppSvg svgSrc={AppIcons.setting.active} size={24} />
-
           <Button
             title="call api"
             onPress={async () => {
@@ -122,21 +121,15 @@ const HomeScreen = () => {
           <Button
             title="popup"
             onPress={() => {
-              LoadingPopupUtils.showPopup({
-                indicatorComponent: () => (
-                  <View
-                    style={{height: 20, width: 20, backgroundColor: 'red'}}
-                  />
-                ),
-              });
+              AppLoadingPopupUtils.showPopup();
             }}
           />
-          <FormContainer
+          <AppFormContainer
             fields={[{name: 'name'}, {name: 'city'}]}
             onSubmitting={res => {
               console.log('submiting', res);
             }}>
-            <CustomInputField
+            <AppTextInput
               name={'name'}
               placeholder={'Type your name'}
               label={'Name'}
@@ -148,7 +141,7 @@ const HomeScreen = () => {
                 },
               }}
             />
-            <CustomInputField
+            <AppTextInput
               name={'city'}
               placeholder={'Type your city'}
               label={'City'}
@@ -159,7 +152,38 @@ const HomeScreen = () => {
                 },
               }}
             />
-          </FormContainer>
+          </AppFormContainer>
+          <Button
+            title="snackbar success"
+            onPress={() => {
+              AppSnackBarUtils.show({
+                title: 'test',
+                status: 'success',
+                duration: 1000,
+              });
+            }}
+          />
+          <Button
+            title="snackbar failed"
+            onPress={() => {
+              AppSnackBarUtils.show({
+                title: 'test',
+                status: 'failed',
+                duration: 1000,
+                textIconBtn: AppIcons.arrow_calendar_down,
+              });
+            }}
+          />
+          <Button
+            title="snackbar warning"
+            onPress={() => {
+              AppSnackBarUtils.show({
+                title: 'test',
+                status: 'warning',
+                duration: 1000,
+              });
+            }}
+          />
         </View>
       </ScrollView>
     </SafeAreaProvider>

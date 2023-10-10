@@ -27,7 +27,7 @@ AppButton.defaultProps = {
   title: '',
   icon: undefined,
   isReverse: false,
-  width: 96,
+  width: undefined,
   height: 48,
   textStyle: {
     color: 'white',
@@ -42,24 +42,24 @@ AppButton.defaultProps = {
 };
 
 function AppButton(props) {
-    const { 
-        onPress,
-        backgroundColor,
-        width,
-        height,
-        borderStyle,
-        icon,
-        iconSize,
-        isReverse,
-        title,
-        textStyle
-    } = props
+  const {
+    onPress,
+    backgroundColor,
+    width,
+    height,
+    borderStyle,
+    icon,
+    iconSize,
+    isReverse,
+    title,
+    textStyle,
+  } = props;
   return (
     <TouchableOpacity onPress={onPress}>
       <View
         style={{
           backgroundColor: backgroundColor,
-          alignSelf: 'flex-start',
+          alignSelf: width == undefined ? 'auto' :  'flex-start',
           width: title ? width : height,
           height: height,
           borderRadius: title ? borderStyle.borderRadius : 100,
@@ -70,7 +70,7 @@ function AppButton(props) {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        {icon && <AppSvg svgSrc={icon} size={iconSize} />}
+        {icon && <AppSvg SvgSrc={icon} size={iconSize} />}
         {title && (
           <Text
             style={{

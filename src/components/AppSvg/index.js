@@ -1,22 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {SvgXml} from 'react-native-svg';
 import {View} from 'react-native';
-
-AppSvg.propTypes = {
-  svgSrc: PropTypes.any,
-  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  style: PropTypes.object,
-};
-
-AppSvg.defaultProps = {
-  svgSrc: null,
-  size: '100%',
-  style: {},
-};
-
+import AppSvgProps from './type';
+/**
+ * @author phuongduong
+ * @param {AppSvgProps} props
+ * @returns {React.ReactElement}
+ */
 function AppSvg(props) {
-  const {svgSrc, size, style} = props;
+  const {SvgSrc, size, style, color} = props;
 
   return (
     <View
@@ -28,7 +19,7 @@ function AppSvg(props) {
         alignItems: 'center',
         ...style,
       }}>
-      <SvgXml height={'100%'} width={'100%'} xml={svgSrc} />
+      {SvgSrc && <SvgSrc height={size} width={size} fill={color} />}
     </View>
   );
 }

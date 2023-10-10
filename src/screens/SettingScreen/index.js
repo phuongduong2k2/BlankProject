@@ -27,7 +27,11 @@ const SettingScreen = () => {
       />
 
       <AppScrollBar
+<<<<<<< HEAD
         style={{backgroundColor:'red'}}
+=======
+      isHorizontal={true}
+>>>>>>> 5f92066a7f96191ce342a0c49d27b56092ee7021
       />
 
       <AppDateElement
