@@ -32,7 +32,7 @@ const AppSnackBar = () => {
           title,
           isSoft,
           duration,
-          textIconBtn,
+          textIconBt,
           func,
           status,
           primaryColor,
@@ -59,7 +59,7 @@ const AppSnackBar = () => {
           }
         }
         setTimer(duration);
-        setTextIconBtn(textIconBtn);
+        setTextIconBtn(textIconBt);
         setTitle(title);
         setState({
           isVisible: true,
@@ -154,7 +154,7 @@ const AppSnackBar = () => {
         <Text style={{color: 'white', fontWeight: '400'}}>{textIconBtn}</Text>
       );
     } else {
-      return <AppSvg SvgSrc={textIconBtn} size={16} />;
+      return <AppSvg SvgSrc={() => textIconBtn} size={16} />;
     }
   };
 
@@ -163,6 +163,10 @@ const AppSnackBar = () => {
       style={{
         width: '100%',
         position: 'absolute',
+        opacity: animated.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, 1],
+        }),
         bottom: -50,
         transform: [
           {

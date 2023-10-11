@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
-import {AppColors} from '../../constants/AppStyle';
 import PropTypes from 'prop-types';
+import {AppColors} from '../../constants/ColorSkin';
 
 AppDivider.propTypes = {
   color: PropTypes.string,
