@@ -1,7 +1,9 @@
 
-export default interface AppExtensionItemProps {
-    data: Array<{
+export default interface AppExpansionItemProps {
+    dataItem: Array<{
         title: string,
-        icon:string,
-}>
+        action: string,
+    }>,
+    title: string,
+    mediaUri: string,
 }

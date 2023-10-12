@@ -83,8 +83,15 @@ const FavoritesScreen = () => {
             }}
           />
         </View>
-        <AppCollapseItem title={'csdc'} />
-        <AppExpansionItem data={[{icon:"1",title:"1"}, {icon:"2",title:"2"}]}/>
+        <AppCollapseItem title={'123'} />
+        <AppExpansionItem dataItem={data}
+          title='testing'
+          mediaUri='https://avatars.githubusercontent.com/u/114985376?v=4'
+        />
+        <AppExpansionItem dataItem={data}
+          title='testing'
+          mediaUri='https://avatars.githubusercontent.com/u/114985376?v=4'
+        />
       </ScrollView>
       <AppActionSheet
         title={'A short description of the actions'}

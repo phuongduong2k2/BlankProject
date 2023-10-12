@@ -138,7 +138,7 @@ function AppListTile(props) {
                         textStyle={{
                           color: AppColors.typography.title,
                           fontSize: 14,
-                          fontWeight: 400,backgroundColor: 'red'
+                          fontWeight: 400,
                         }}
                         borderStyle={{
                           borderWidth: 0,

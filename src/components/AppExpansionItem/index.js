@@ -1,42 +1,74 @@
-import {useState} from 'react';
-import {View, Text, Pressable, FlatList} from 'react-native';
+import {useState, useEffect, useRef} from 'react';
+import {View, Pressable, Animated, LayoutAnimation} from 'react-native';
 import AppListTile from '../AppListTile';
-import { AppIcons } from '../../constants/AppIcons';
-import AppExtensionItemProps from './type';
+import {AppIcons} from '../../constants/AppIcons';
+import AppExpansionItemProps from './type';
+import { AppColors } from '../../constants/ColorSkin';
 
 /**
- * 
- * @param {AppExtensionItemProps} props 
- * @returns 
+ * @author longnp
+ * @param {AppExpansionItemProps} props
+ * @returns
  */
 function AppExpansionItem(props) {
-    const { data } = props;
-    const [isShow, setIsShow] = useState(false)
-    const renderItem = ({item}) => {
-        return (
-            <View><Text>{item.title}</Text></View>
-        )
-    }
+  const {dataItem, title, mediaUri} = props;
+  const [isShow, setIsShow] = useState(false);
+
+  const onExpansionItem = () => {
+    setIsShow(isShow => !isShow);
+    LayoutAnimation.easeInEaseOut();
+  };
+
+  useEffect(() => {
+    Animated.timing(animated, {
+      toValue: isShow ? 1 : 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  }, [isShow]);
+
+  const animated = useRef(new Animated.Value(0)).current;
+
   return (
-    <View>
-        <Pressable
-            onPress={() => {
-                setIsShow(isShow => !isShow);
-            }}
-        >
-            <AppListTile
-              contentAlign="left"
-              mediaUri={'https://avatars.githubusercontent.com/u/114985376?v=4'}
-              title="Content title"
-              // subTitle='Student'
-              // textButton='Change action view'
-              iconButton={AppIcons.arrow_up}
-            />
-        </Pressable>
-        {isShow && <FlatList
-            data={data}
-            renderItem={renderItem}
-        />}
+    <View
+      style={{
+                  borderTopColor: AppColors.background.grey3,
+                  borderTopWidth: 1
+                }}
+    >
+      <Pressable
+        onPress={() => {
+          onExpansionItem()
+        }}>
+        <AppListTile
+          contentAlign="left"
+          mediaUri={mediaUri}
+          title={title}
+          iconButton={isShow ? AppIcons.arrow_down : AppIcons.arrow_up}
+        />
+      </Pressable>
+      {isShow && (
+        <View>
+          {dataItem.map((item, index) => {
+            return (
+              <View
+                style={{
+                  borderTopColor: AppColors.background.grey3,
+                  borderTopWidth: 1
+                }}
+              >
+                <AppListTile
+                  key={index}
+                  contentAlign="left"
+                  title={item.title}
+                  textButton={item.action}
+                  iconButton={AppIcons.arrow_calendar_right}
+                />
+              </View>
+            );
+          })}
+        </View>
+      )}
     </View>
   );
 }
