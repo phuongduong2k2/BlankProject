@@ -5,6 +5,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -25,6 +26,8 @@ import AppStepItem from '../../components/AppStepItem';
 import BaseDA from '../../axios/BaseDA';
 import AppButton from '../../components/AppButton';
 import {AppSnackBarUtils} from '../../components/AppSnackBar';
+import AppCollapseItem from '../../components/AppCollapseItem';
+import {addUsers, getUsers} from '../../axios/middleware/api/DataDA';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -42,7 +45,7 @@ const HomeScreen = () => {
           {data?.map(item => (
             <Text key={item.id}>{item.products[0].title}</Text>
           ))}
-          <AppStepContainer
+          {/* <AppStepContainer
             onDone={() => {
               console.log('Done step ');
             }}
@@ -56,7 +59,7 @@ const HomeScreen = () => {
             <AppStepItem />
             <AppStepItem />
             <AppStepItem />
-          </AppStepContainer>
+          </AppStepContainer> */}
           <View style={{flexDirection: 'row'}}>
             <AppButton
               title="Back Step"
@@ -86,36 +89,11 @@ const HomeScreen = () => {
               }}
             />
           </View>
-          <AppButton
-            onPress={() => {
-              console.log('Click');
-            }}
-            backgroundColor="transparent"
-            borderStyle={{
-              borderWidth: 0,
-            }}
-            icon={AppIcons.chrome}
-            iconSize={16}
-            isReverse
-            title={'Change action view'}
-            width={142}
-            height={40}
-            textStyle={{
-              color: 'black',
-              fontSize: 14,
-            }}
-          />
-          <Button
-            title="call api"
-            onPress={() => {
-              dispatch({type: 'GET_DATA'});
-            }}
-          />
           <Button
             title="call api"
             onPress={async () => {
-              const data = await BaseDA.get(`${baseApiUrl}productss`);
-              console.log(data);
+              const data = await getUsers();
+              console.log('data : ', data);
             }}
           />
           <Button
@@ -125,9 +103,15 @@ const HomeScreen = () => {
             }}
           />
           <AppFormContainer
-            fields={[{name: 'name'}, {name: 'city'}]}
-            onSubmitting={res => {
-              console.log('submiting', res);
+            fields={[{name: 'name'}, {name: 'date'}]}
+            onSubmitting={async data => {
+              console.log('submiting', data);
+              const info = {
+                name: data.name,
+                data: data.date,
+              };
+              const res = await addUsers(info);
+              console.log('respon : ', res);
             }}>
             <AppTextInput
               name={'name'}
@@ -136,19 +120,18 @@ const HomeScreen = () => {
               rules={{
                 required: {
                   value: true,
-                  message:
-                    'This name is required ads dasd as da sda sda sd asd asd asd asjd fasd ofj poasdjf asdj fkja lskdfj aksd f;ka s;df lksaf jalskdfj aks ;dflka sdf;',
+                  message: 'This name is required',
                 },
               }}
             />
             <AppTextInput
-              name={'city'}
+              name={'date'}
               placeholder={'Type your city'}
-              label={'City'}
+              label={'Date'}
               rules={{
                 required: {
                   value: true,
-                  message: 'fasdfasdnkfj',
+                  message: 'This field is required',
                 },
               }}
             />
@@ -170,7 +153,7 @@ const HomeScreen = () => {
                 title: 'test',
                 status: 'failed',
                 duration: 1000,
-                textIconBtn: AppIcons.arrow_calendar_down,
+                textIconBt: AppIcons.arrow_calendar_down,
               });
             }}
           />

@@ -24,8 +24,13 @@ AppCollapseItem.propTypes = {
 AppCollapseItem.defaultProps = {
   onPress: () => {},
   title: '',
+<<<<<<< HEAD
   prefixIcon: AppIcons.icRatingActive,
   suffixIcon: AppIcons.arrow_up,
+=======
+  prefixIcon: AppIcons.star.active,
+  suffixIcon: AppIcons.icAppCollapseItem,
+>>>>>>> de67f35b2e7d804e8b4c98a7ce7a3e639a307d24
 };
 
 if (Platform.OS === 'android') {
@@ -71,7 +76,9 @@ function AppCollapseItem(props) {
           alignItems: 'center',
           paddingHorizontal: AppDimentions.mainPadding,
         }}>
-        <AppSvg SvgSrc={prefixIcon} />
+        <View style={{height: 20, width: 20, borderWidth: 1}}>
+          <AppSvg SvgSrc={prefixIcon} size={48} />
+        </View>
         <Text
           style={{
             flex: 1,
