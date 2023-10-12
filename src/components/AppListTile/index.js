@@ -15,7 +15,7 @@ import AppListTileProps from './type';
  */
 
 function AppListTile(props) {
-    const { contentAlign, mediaUri, title, subTitle, textButton } = props;
+    const { contentAlign, mediaUri, title, subTitle, textButton, iconButton } = props;
 
     switch (contentAlign) {
         case 'center':
@@ -132,13 +132,13 @@ function AppListTile(props) {
                       <AppButton
                         backgroundColor={AppColors.background.grey1}
                         title={textButton}
-                        icon={AppIcons.arrow_calendar_right}
-                        size={16}
+                        icon={iconButton}
+                        // sizeIcon={16}
                         isReverse
                         textStyle={{
                           color: AppColors.typography.title,
                           fontSize: 14,
-                          fontWeight: 400,
+                          fontWeight: 400,backgroundColor: 'red'
                         }}
                         borderStyle={{
                           borderWidth: 0,

@@ -1,5 +1,7 @@
 import rightCircle from '../../assets/icons/right-circle/right-circle.svg';
 import arrowLeft from '../../assets/icons/arrow-left/arrow-left.svg';
+import arrowUp from '../../assets/icons/arrow-up/arrow-up.svg'
+import arrowDown from '../../assets/icons/arrow-down/arrow-down.svg'
 import star from '../../assets/icons/star/star.svg';
 import starActive from '../../assets/icons/star/active/star.svg';
 import home from '../../assets/icons/home/home.svg';
@@ -41,6 +43,8 @@ import snackBarWarningFilled from '../../assets/icons/snack_bar_icons/warning/wa
 export const AppIcons = {
   right_circle: rightCircle,
   arrow_left: arrowLeft,
+  arrow_up: arrowUp,
+  arrow_down: arrowDown,
   star: {
     inactive: star,
     active: starActive,

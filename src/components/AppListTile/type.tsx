@@ -6,4 +6,5 @@ export default interface AppListTileProps {
     title: string | undefined;
     subTitle: string | undefined;
     textButton: string | undefined;
+    iconButton: string | undefined;
 }

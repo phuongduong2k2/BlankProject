@@ -25,7 +25,7 @@ AppCollapseItem.defaultProps = {
   onPress: () => {},
   title: '',
   prefixIcon: AppIcons.icRatingActive,
-  suffixIcon: AppIcons.icAppCollapseItem,
+  suffixIcon: AppIcons.arrow_up,
 };
 
 if (Platform.OS === 'android') {

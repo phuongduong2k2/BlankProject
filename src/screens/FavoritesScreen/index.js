@@ -13,6 +13,8 @@ import AppActionSheet, {
   AppActionSheetUtils,
 } from '../../components/AppActionSheet';
 import AppListTile from '../../components/AppListTile';
+import AppExpansionItem from '../../components/AppExpansionItem';
+import AppCollapseItem from '../../components/AppCollapseItem';
 
 const FavoritesScreen = () => {
   const data = [
@@ -75,19 +77,14 @@ const FavoritesScreen = () => {
           />
           <AppSwitch
             hasLabel
-            // isReverse
+            // isReverse4
             onChange={value => {
               console.log(value);
             }}
           />
         </View>
-        <AppListTile
-          // contentAlign="right"
-          mediaUri={'https://avatars.githubusercontent.com/u/114985376?v=4'}
-          title='Content title'
-          // subTitle='Student'
-          textButton='Change action view'
-        />
+        <AppCollapseItem title={'csdc'} />
+        <AppExpansionItem data={[{icon:"1",title:"1"}, {icon:"2",title:"2"}]}/>
       </ScrollView>
       <AppActionSheet
         title={'A short description of the actions'}
