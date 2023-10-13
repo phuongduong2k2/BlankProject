@@ -59,7 +59,7 @@ function AppContentText(props) {
     } = props;
 
   return (
-    <View style={[{flexDirection: 'column', alignSelf: 'center',}, containerStyle]}>
+    <View style={[{flexDirection: 'column', }, containerStyle]}>
       <Text style={titleStyle}>{titleContent}</Text>
       {(subTitleContent) && <Text style={subTitleStyle}>{subTitleContent}</Text>}
       {(bodyContent) && <Text style={bodyStyle}>{bodyContent}</Text>}

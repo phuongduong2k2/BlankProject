@@ -7,10 +7,56 @@ import AppMediaView from '../AppMediaView';
 import AppButton from '../AppButton';
 import AppCardProps from './type';
 
+AppCard.propTypes = {
+  renderLeftContent: PropTypes.func,
+  renderRightContent: PropTypes.func,
+  renderCenterContent: PropTypes.func,
+}
+
+AppCard.defaultProps = {
+  renderLeftContent: () => {},
+  renderCenterContent: () => {},
+  renderRightContent: () => {},
+}
 function AppCard(props) {
+
+  const {renderLeftContent, renderCenterContent, renderRightContent} = props;
+
   return (
-    <View>
-      <Text>index</Text>
+    <View style={{
+      width: 'auto',
+      height: 'auto',
+      flexDirection: 'row',
+      padding: 5,
+    }}>
+
+      {/* //left content */}
+      <View style={{
+        width: 'auto',
+        height: '100%',
+        padding: 5,
+      }}>
+        {renderLeftContent()}
+      </View>
+
+      {/* //center content */}
+      <View style={{
+        width: 'auto',
+        height: '100%',
+        flexDirection: 'column',
+      }}>
+        {renderCenterContent()}
+      </View>
+
+      {/* //right content */}
+      <View style={{
+        width: 'auto',
+        height: '100%',
+        padding: 5,
+      }}>
+        {renderRightContent()}
+      </View>
+
     </View>
   )
 }
