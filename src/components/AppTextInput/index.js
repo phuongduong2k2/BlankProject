@@ -53,39 +53,39 @@ import AppTextInputProps from './type';
 //   onChangeText: PropTypes.func,
 // };
 
-// AppTextInput.defaultProps = {
-//   name: '',
-//   status: 'default',
-//   style: {},
-//   backgroundColor: AppColors.background.grey1,
-//   borderWidth: 1,
-//   borderColor: 'transparent',
-//   borRadius: 8,
-//   prefixIcon: AppIcons.search,
-//   suffixIcon: AppIcons.close_circle,
-//   height: undefined,
-//   width: '100%',
-//   placeholder: 'Placeholder',
-//   value: '',
-//   label: undefined,
-//   aboveLabel: undefined,
-//   leftLabel: undefined,
-//   alertColor: AppColors.errorPrimary,
-//   control: any,
-//   errors: {},
-//   rules: {
-//     required: any,
-//     min: any,
-//     max: any,
-//     minLength: any,
-//     maxLength: any,
-//     pattern: any,
-//     validate: any,
-//   },
-//   onReset: () => {},
-//   keyboardType: KeyboardTypes.default,
-//   onChangeText: () => {},
-// };
+AppTextInput.defaultProps = {
+  name: '',
+  status: 'default',
+  style: {},
+  backgroundColor: AppColors.background.grey1,
+  borderWidth: 1,
+  borderColor: 'transparent',
+  borRadius: 8,
+  prefixIcon: AppIcons.search,
+  suffixIcon: AppIcons.close_circle,
+  height: undefined,
+  width: '100%',
+  placeholder: 'Placeholder',
+  value: '',
+  label: undefined,
+  aboveLabel: undefined,
+  leftLabel: undefined,
+  alertColor: AppColors.errorPrimary,
+  control: undefined,
+  errors: {},
+  // rules: {
+  //   required: any,
+  //   min: any,
+  //   max: any,
+  //   minLength: any,
+  //   maxLength: any,
+  //   pattern: any,
+  //   validate: any,
+  // },
+  onReset: () => {},
+  keyboardType: KeyboardTypes.default,
+  onChangeText: () => {},
+};
 /**
  *
  * @param {AppTextInputProps} props
@@ -226,7 +226,7 @@ function AppTextInput(props) {
                   console.log('focus');
                   if (inputRef) {
                     setFocused(true);
-                    inputRef.current.focus();
+                    inputRef.current?.focus();
                   }
                 }}
               />
