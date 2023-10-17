@@ -13,7 +13,7 @@ interface Rules {
   min: RuleItemValue;
   max: RuleItemValue;
   minLength: RuleItemValue;
-  maxLength: R;
+  maxLength: RuleItemValue;
 }
 
 export default interface AppTextInputProps {

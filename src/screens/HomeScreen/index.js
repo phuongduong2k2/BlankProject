@@ -28,10 +28,45 @@ import AppButton from '../../components/AppButton';
 import {AppSnackBarUtils} from '../../components/AppSnackBar';
 import AppCollapseItem from '../../components/AppCollapseItem';
 import {addUsers, getUsers} from '../../axios/middleware/api/DataDA';
+import YesNoChoice from '../../components/YesNoChoice';
+import CustomTextInputChoice from '../../components/CustomTextInputChoice';
+
+const dataApi = [
+  {
+    label: 'Câu 1:',
+    option: {
+      name: 'cau1',
+      label: 'Option 1',
+      rules: {required: {value: true, message: 'This field is required'}},
+    },
+  },
+  {
+    label: 'Câu 2:',
+    option: {
+      name: 'cau2',
+      label: 'Option 2',
+      rules: {
+        required: {value: true, message: 'This field is required'},
+        minLength: {value: 10, message: 'Tối thiểu 10 ký tự'},
+      },
+    },
+  },
+  {
+    label: 'Câu 3:',
+    option: {name: 'cau3', label: 'Option 3'},
+    rules: {required: {value: true, message: 'This field is required'}},
+  },
+  {
+    label: 'Câu 4:',
+    option: {name: 'cau4', label: 'Option 4'},
+    rules: {required: {value: true, message: 'This field is required'}},
+  },
+];
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
   const {config, data} = useSelector(state => state.app);
+
   return (
     <SafeAreaProvider>
       <AppHeader title={'New Project'}>
@@ -102,7 +137,7 @@ const HomeScreen = () => {
               AppLoadingPopupUtils.showPopup();
             }}
           />
-          <AppFormContainer
+          {/* <AppFormContainer
             fields={[{name: 'name'}, {name: 'date'}]}
             onSubmitting={async data => {
               console.log('submiting', data);
@@ -135,6 +170,25 @@ const HomeScreen = () => {
                 },
               }}
             />
+          </AppFormContainer> */}
+          <AppFormContainer
+            fields={[
+              {name: 'cau1'},
+              {name: 'cau2'},
+              {name: 'cau3'},
+              {name: 'cau4'},
+            ]}
+            onSubmitting={data => {
+              console.log('is submitting');
+              AppSnackBarUtils.show({
+                title: 'Submit success',
+                status: 'success',
+                duration: 500,
+              });
+            }}>
+            {dataApi.map(item => (
+              <CustomTextInputChoice key={item.label} data={item} />
+            ))}
           </AppFormContainer>
           <Button
             title="snackbar success"
