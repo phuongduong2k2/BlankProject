@@ -16,41 +16,42 @@ import styles from './style';
 import {AppColors} from '../../constants/ColorSkin';
 import AppSvg from '../AppSvg';
 import TextStyle from '../../constants/TextStyle';
+import AppTextInputProps from './type';
 
-AppTextInput.propTypes = {
-  name: PropTypes.string,
-  status: PropTypes.string,
-  style: PropTypes.object,
-  backgroundColor: PropTypes.string,
-  borderWidth: PropTypes.number,
-  borderColor: PropTypes.string,
-  borRadius: PropTypes.number,
-  prefixIcon: PropTypes.any,
-  suffixIcon: PropTypes.any,
-  height: PropTypes.any,
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
-  label: PropTypes.any,
-  aboveLabel: PropTypes.any,
-  leftLabel: PropTypes.any,
-  alertColor: PropTypes.string,
-  control: PropTypes.any,
-  render: PropTypes.object,
-  errors: PropTypes.object,
-  rules: PropTypes.exact({
-    required: PropTypes.any,
-    min: PropTypes.any,
-    max: PropTypes.any,
-    minLength: PropTypes.any,
-    maxLength: PropTypes.any,
-    pattern: PropTypes.any,
-    validate: PropTypes.any,
-  }),
-  onReset: PropTypes.func,
-  keyboardType: PropTypes.string,
-  onChangeText: PropTypes.func,
-};
+// AppTextInput.propTypes = {
+//   name: PropTypes.string,
+//   status: PropTypes.string,
+//   style: PropTypes.object,
+//   backgroundColor: PropTypes.string,
+//   borderWidth: PropTypes.number,
+//   borderColor: PropTypes.string,
+//   borRadius: PropTypes.number,
+//   prefixIcon: PropTypes.any,
+//   suffixIcon: PropTypes.any,
+//   height: PropTypes.any,
+//   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+//   placeholder: PropTypes.string,
+//   value: PropTypes.string,
+//   label: PropTypes.any,
+//   aboveLabel: PropTypes.any,
+//   leftLabel: PropTypes.any,
+//   alertColor: PropTypes.string,
+//   control: PropTypes.any,
+//   render: PropTypes.object,
+//   errors: PropTypes.object,
+//   rules: PropTypes.exact({
+//     required: PropTypes.any,
+//     min: PropTypes.any,
+//     max: PropTypes.any,
+//     minLength: PropTypes.any,
+//     maxLength: PropTypes.any,
+//     pattern: PropTypes.any,
+//     validate: PropTypes.any,
+//   }),
+//   onReset: PropTypes.func,
+//   keyboardType: PropTypes.string,
+//   onChangeText: PropTypes.func,
+// };
 
 AppTextInput.defaultProps = {
   name: '',
@@ -70,22 +71,26 @@ AppTextInput.defaultProps = {
   aboveLabel: undefined,
   leftLabel: undefined,
   alertColor: AppColors.errorPrimary,
-  control: any,
+  control: undefined,
   errors: {},
-  rules: {
-    required: any,
-    min: any,
-    max: any,
-    minLength: any,
-    maxLength: any,
-    pattern: any,
-    validate: any,
-  },
+  // rules: {
+  //   required: any,
+  //   min: any,
+  //   max: any,
+  //   minLength: any,
+  //   maxLength: any,
+  //   pattern: any,
+  //   validate: any,
+  // },
   onReset: () => {},
   keyboardType: KeyboardTypes.default,
   onChangeText: () => {},
 };
-
+/**
+ *
+ * @param {AppTextInputProps} props
+ * @returns
+ */
 function AppTextInput(props) {
   const {
     name,
@@ -221,7 +226,7 @@ function AppTextInput(props) {
                   console.log('focus');
                   if (inputRef) {
                     setFocused(true);
-                    inputRef.current.focus();
+                    inputRef.current?.focus();
                   }
                 }}
               />

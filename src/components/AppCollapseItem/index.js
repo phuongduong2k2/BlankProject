@@ -24,7 +24,7 @@ AppCollapseItem.propTypes = {
 AppCollapseItem.defaultProps = {
   onPress: () => {},
   title: '',
-  prefixIcon: AppIcons.icRatingActive,
+  prefixIcon: AppIcons.star.active,
   suffixIcon: AppIcons.icAppCollapseItem,
 };
 
@@ -71,7 +71,9 @@ function AppCollapseItem(props) {
           alignItems: 'center',
           paddingHorizontal: AppDimentions.mainPadding,
         }}>
-        <AppSvg SvgSrc={prefixIcon} />
+        <View style={{height: 20, width: 20, borderWidth: 1}}>
+          <AppSvg SvgSrc={prefixIcon} size={48} />
+        </View>
         <Text
           style={{
             flex: 1,

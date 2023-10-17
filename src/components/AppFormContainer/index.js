@@ -31,26 +31,6 @@ function AppFormContainer(props) {
     defaultValues: defaultValueFilter,
   });
 
-  // const textInput = (field, index, errors) => {
-  //   const { label, name, placeholder, rules, aboveLabel, leftLabel } = field;
-  //   return (
-  //     <AppTextInput
-  //       control={control}
-  //       onReset={resetField}
-  //       rules={{ ...rules }}
-  //       // borderWidth={1}
-  //       name={name}
-  //       key={index}
-  //       onChangeText={onChangeForm}
-  //       label={label}
-  //       aboveLabel={aboveLabel}
-  //       leftLabel={leftLabel}
-  //       errors={errors}
-  //       placeholder={placeholder}
-  //     />
-  //   );
-  // };
-
   const defaultValueFilter = {};
   fields.forEach(
     field =>
@@ -78,12 +58,6 @@ function AppFormContainer(props) {
   return (
     <View>
       {_renderContent(errors)}
-      <Button
-        title="check"
-        onPress={() => {
-          console.log(children);
-        }}
-      />
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
       {customSubmitButton(handleError)}
     </View>
