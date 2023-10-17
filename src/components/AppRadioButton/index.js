@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {AppColors} from '../../constants/ColorSkin';
 
 AppRadioButton.propTypes = {
-  onChange: PropTypes.func,
+  onPress: PropTypes.func,
   isReverse: PropTypes.bool,
   label: PropTypes.string,
   disabled: PropTypes.bool,
@@ -13,6 +13,7 @@ AppRadioButton.propTypes = {
     borderWidth: PropTypes.number,
     borderColor: PropTypes.string,
   }),
+  status: PropTypes.bool
 };
 
 AppRadioButton.defaultProps = {
@@ -27,8 +28,7 @@ AppRadioButton.defaultProps = {
 };
 
 function AppRadioButton(props) {
-  const {onChange, isReverse, label, disabled, borderStyle, size} = props;
-  const [isSelected, setSelected] = useState(true);
+  const {onPress, isReverse, label, disabled, borderStyle, size, status} = props;
   return (
     <View
       style={{
@@ -44,15 +44,10 @@ function AppRadioButton(props) {
           alignItems: 'center',
           borderRadius: 100,
           borderWidth: borderStyle.borderWidth,
-          borderColor: disabled ? AppColors.grey4 : (isSelected ? borderStyle.borderColor : AppColors.grey4),
+          borderColor: disabled ? AppColors.grey4 : (status ? borderStyle.borderColor : AppColors.grey4),
         }}
-        onPress={() => {
-          if (!disabled){
-            setSelected(!isSelected);
-            onChange(!isSelected);
-          }
-        }}>
-        {isSelected && (
+        onPress={onPress}>
+        {status && (
           <View
             style={{
               height: disabled ? size : size*3/5,
