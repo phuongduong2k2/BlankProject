@@ -4,15 +4,19 @@ import PropTypes from 'prop-types';
 import {AppColors} from '../../constants/ColorSkin';
 
 AppRadioButton.propTypes = {
-  onChange: PropTypes.func,
+  onPress: PropTypes.func,
   isReverse: PropTypes.bool,
   label: PropTypes.string,
   disabled: PropTypes.bool,
   size: PropTypes.number,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  color: PropTypes.string,
   borderStyle: PropTypes.exact({
     borderWidth: PropTypes.number,
     borderColor: PropTypes.string,
   }),
+  status: PropTypes.bool
 };
 
 AppRadioButton.defaultProps = {
@@ -20,6 +24,7 @@ AppRadioButton.defaultProps = {
   label: '',
   disabled: false,
   size: 20,
+  color: AppColors.primary,
   borderStyle: {
     borderWidth: 2,
     borderColor: AppColors.primary,
@@ -27,15 +32,18 @@ AppRadioButton.defaultProps = {
 };
 
 function AppRadioButton(props) {
-  const {onChange, isReverse, label, disabled, borderStyle, size} = props;
-  const [isSelected, setSelected] = useState(true);
+  const {onPress, isReverse, label, disabled, borderStyle, size, width, height, color, status} = props;
   return (
-    <View
+    <TouchableOpacity
       style={{
         flexDirection: isReverse ? 'row-reverse' : 'row',
+        alignItems: 'center',
         alignSelf: 'flex-start',
-      }}>
-      <TouchableOpacity
+        width: width,
+        height: height
+      }}
+      onPress={onPress}>
+      <View
         style={{
           height: size,
           width: undefined,
@@ -44,25 +52,21 @@ function AppRadioButton(props) {
           alignItems: 'center',
           borderRadius: 100,
           borderWidth: borderStyle.borderWidth,
-          borderColor: disabled ? AppColors.grey4 : (isSelected ? borderStyle.borderColor : AppColors.grey4),
+          borderColor: disabled ? AppColors.grey4 : (status ? borderStyle.borderColor : AppColors.grey4),
         }}
-        onPress={() => {
-          if (!disabled){
-            setSelected(!isSelected);
-            onChange(!isSelected);
-          }
-        }}>
-        {isSelected && (
+        >
+        {status && (
           <View
             style={{
               height: disabled ? size : size*3/5,
               width: disabled ? size : size*3/5,
               backgroundColor: disabled ? AppColors.grey3 : borderStyle.borderColor,
               borderRadius: 100,
+              backgroundColor: color
             }}
           />
         )}
-      </TouchableOpacity>
+      </View>
       {label && (
         <Text
           style={{
@@ -73,7 +77,7 @@ function AppRadioButton(props) {
           {label}
         </Text>
       )}
-    </View>
+    </TouchableOpacity>
   );
 }
 
