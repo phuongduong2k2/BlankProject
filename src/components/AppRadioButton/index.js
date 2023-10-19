@@ -9,6 +9,9 @@ AppRadioButton.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
   size: PropTypes.number,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  color: PropTypes.string,
   borderStyle: PropTypes.exact({
     borderWidth: PropTypes.number,
     borderColor: PropTypes.string,
@@ -21,6 +24,7 @@ AppRadioButton.defaultProps = {
   label: '',
   disabled: false,
   size: 20,
+  color: AppColors.primary,
   borderStyle: {
     borderWidth: 2,
     borderColor: AppColors.primary,
@@ -28,14 +32,18 @@ AppRadioButton.defaultProps = {
 };
 
 function AppRadioButton(props) {
-  const {onPress, isReverse, label, disabled, borderStyle, size, status} = props;
+  const {onPress, isReverse, label, disabled, borderStyle, size, width, height, color, status} = props;
   return (
-    <View
+    <TouchableOpacity
       style={{
         flexDirection: isReverse ? 'row-reverse' : 'row',
+        alignItems: 'center',
         alignSelf: 'flex-start',
-      }}>
-      <TouchableOpacity
+        width: width,
+        height: height
+      }}
+      onPress={onPress}>
+      <View
         style={{
           height: size,
           width: undefined,
@@ -46,7 +54,7 @@ function AppRadioButton(props) {
           borderWidth: borderStyle.borderWidth,
           borderColor: disabled ? AppColors.grey4 : (status ? borderStyle.borderColor : AppColors.grey4),
         }}
-        onPress={onPress}>
+        >
         {status && (
           <View
             style={{
@@ -54,10 +62,11 @@ function AppRadioButton(props) {
               width: disabled ? size : size*3/5,
               backgroundColor: disabled ? AppColors.grey3 : borderStyle.borderColor,
               borderRadius: 100,
+              backgroundColor: color
             }}
           />
         )}
-      </TouchableOpacity>
+      </View>
       {label && (
         <Text
           style={{
@@ -68,7 +77,7 @@ function AppRadioButton(props) {
           {label}
         </Text>
       )}
-    </View>
+    </TouchableOpacity>
   );
 }
 
