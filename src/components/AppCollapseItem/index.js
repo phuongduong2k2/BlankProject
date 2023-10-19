@@ -28,11 +28,11 @@ AppCollapseItem.defaultProps = {
   suffixIcon: AppIcons.icAppCollapseItem,
 };
 
-if (Platform.OS === 'android') {
-  if (UIManager.setLayoutAnimationEnabledExperimental) {
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-  }
-}
+// if (Platform.OS === 'android') {
+//   if (UIManager.setLayoutAnimationEnabledExperimental) {
+//     UIManager.setLayoutAnimationEnabledExperimental(true);
+//   }
+// }
 
 function AppCollapseItem(props) {
   const {onPress, title, prefixIcon, suffixIcon} = props;

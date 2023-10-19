@@ -1,5 +1,7 @@
 import {View, Text, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
+import {AppColors} from '../../constants/ColorSkin';
+import {AppDimentions} from '../../constants/constants';
 
 const YesNoChoice = props => {
   const {onValueChange} = props;
@@ -13,39 +15,92 @@ const YesNoChoice = props => {
       style={{
         flexDirection: 'row',
         alignItems: 'center',
-        alignSelf: 'flex-start',
-        width: 100,
+        // alignSelf: 'flex-start',
         justifyContent: 'space-between',
+        // paddingVertical: AppDimentions.thirdPadding,
+
+        // backgroundColor: 'red',
+        paddingVertical: 8,
       }}>
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+      <View
+        style={{
+          width: '50%',
+          flexDirection: 'row',
+        }}>
         <TouchableOpacity
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
           onPress={() => {
             handleSelect(true);
-          }}
-          style={{
-            height: 30,
-            width: 30,
-            borderWidth: 1,
-            backgroundColor:
-              isSelected !== undefined && isSelected ? 'red' : undefined,
-            borderRadius: 1000,
-          }}></TouchableOpacity>
-        <Text>Có</Text>
+          }}>
+          <View
+            style={{
+              height: 20,
+              width: 20,
+              borderWidth: 2,
+              borderColor:
+                isSelected !== undefined && isSelected
+                  ? 'red'
+                  : AppColors.background.grey4,
+              borderRadius: 1000,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            {isSelected && (
+              <View
+                style={{
+                  height: 10,
+                  width: 10,
+                  borderRadius: 100,
+                  backgroundColor: 'red',
+                }}
+              />
+            )}
+          </View>
+          <Text style={{marginLeft: 10}}>Có</Text>
+        </TouchableOpacity>
       </View>
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+      <View
+        style={{
+          width: '50%',
+          flexDirection: 'row',
+        }}>
         <TouchableOpacity
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
           onPress={() => {
             handleSelect(false);
-          }}
-          style={{
-            height: 30,
-            width: 30,
-            borderWidth: 1,
-            backgroundColor:
-              isSelected !== undefined && !isSelected ? 'red' : undefined,
-            borderRadius: 1000,
-          }}></TouchableOpacity>
-        <Text>Không</Text>
+          }}>
+          <View
+            style={{
+              height: 20,
+              width: 20,
+              borderWidth: 2,
+              borderColor:
+                isSelected !== undefined && !isSelected
+                  ? 'red'
+                  : AppColors.background.grey4,
+              borderRadius: 1000,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            {isSelected !== undefined && !isSelected && (
+              <View
+                style={{
+                  height: 10,
+                  width: 10,
+                  borderRadius: 100,
+                  backgroundColor: 'red',
+                }}
+              />
+            )}
+          </View>
+          <Text style={{marginLeft: 10}}>Không</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

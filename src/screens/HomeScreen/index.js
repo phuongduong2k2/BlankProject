@@ -1,4 +1,4 @@
-import React, {createRef, useState} from 'react';
+import React, {createRef, useEffect, useRef, useState} from 'react';
 import {
   Button,
   FlatList,
@@ -30,50 +30,37 @@ import AppCollapseItem from '../../components/AppCollapseItem';
 import {addUsers, getUsers} from '../../axios/middleware/api/DataDA';
 import YesNoChoice from '../../components/YesNoChoice';
 import CustomTextInputChoice from '../../components/CustomTextInputChoice';
-
-const dataApi = [
-  {
-    label: 'Câu 1:',
-    option: {
-      name: 'cau1',
-      label: 'Option 1',
-      rules: {required: {value: true, message: 'This field is required'}},
-    },
-  },
-  {
-    label: 'Câu 2:',
-    option: {
-      name: 'cau2',
-      label: 'Option 2',
-      rules: {
-        required: {value: true, message: 'This field is required'},
-        minLength: {value: 10, message: 'Tối thiểu 10 ký tự'},
-      },
-    },
-  },
-  {
-    label: 'Câu 3:',
-    option: {name: 'cau3', label: 'Option 3'},
-    rules: {required: {value: true, message: 'This field is required'}},
-  },
-  {
-    label: 'Câu 4:',
-    option: {name: 'cau4', label: 'Option 4'},
-    rules: {required: {value: true, message: 'This field is required'}},
-  },
-];
+import {InputType} from '../../constants/constants';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const {config, data} = useSelector(state => state.app);
+  const {config, data, layoutList} = useSelector(state => state.app);
+  // const [filterFields, setFilterFields] = useState([]);
 
+  // useEffect(() => {
+  //   let arr = [];
+  //   dataApi.forEach(data => {
+  //     arr.push({name: data.label, type: InputType.radio});
+  //     data.options.map(item => arr.push({name: item.name, type: item.type}));
+  //   });
+  //   setFilterFields(arr);
+  // }, []);
+
+  const refScroll = useRef(null);
+
+  useEffect(() => {
+    console.log(refScroll);
+  }, []);
+
+  const [layout, setLayout] = useState([]);
+  const refListItem = useRef();
   return (
     <SafeAreaProvider>
       <AppHeader title={'New Project'}>
         <></>
         <></>
       </AppHeader>
-      <ScrollView>
+      <ScrollView ref={refScroll}>
         <View style={{flex: 1}}>
           <AppRating />
 
@@ -124,7 +111,7 @@ const HomeScreen = () => {
               }}
             />
           </View>
-          <Button
+          {/* <Button
             title="call api"
             onPress={async () => {
               const data = await getUsers();
@@ -136,61 +123,25 @@ const HomeScreen = () => {
             onPress={() => {
               AppLoadingPopupUtils.showPopup();
             }}
-          />
-          {/* <AppFormContainer
-            fields={[{name: 'name'}, {name: 'date'}]}
-            onSubmitting={async data => {
-              console.log('submiting', data);
-              const info = {
-                name: data.name,
-                data: data.date,
-              };
-              const res = await addUsers(info);
-              console.log('respon : ', res);
-            }}>
-            <AppTextInput
-              name={'name'}
-              placeholder={'Type your name'}
-              label={'Name'}
-              rules={{
-                required: {
-                  value: true,
-                  message: 'This name is required',
-                },
-              }}
-            />
-            <AppTextInput
-              name={'date'}
-              placeholder={'Type your city'}
-              label={'Date'}
-              rules={{
-                required: {
-                  value: true,
-                  message: 'This field is required',
-                },
-              }}
-            />
-          </AppFormContainer> */}
-          <AppFormContainer
-            fields={[
-              {name: 'cau1'},
-              {name: 'cau2'},
-              {name: 'cau3'},
-              {name: 'cau4'},
-            ]}
-            onSubmitting={data => {
-              console.log('is submitting');
-              AppSnackBarUtils.show({
-                title: 'Submit success',
-                status: 'success',
-                duration: 500,
-              });
-            }}>
-            {dataApi.map(item => (
-              <CustomTextInputChoice key={item.label} data={item} />
-            ))}
-          </AppFormContainer>
+          /> */}
+
           <Button
+            title="genarate date picker"
+            onPress={() => {
+              // const firstDayOfMonth = new Date(2023, 9, 2);
+              // console.log(firstDayOfMonth, firstDayOfMonth.getDay());
+              // let arr = [];
+              // for (let j = 0; j < 6; j++) {
+              //   for (let i = 0; i < 7; i++) {
+              //     let dateNumber = i + j + j * 6;
+              //     arr.push(dateNumber);
+              //   }
+              // }
+              // console.log(arr, arr.length);
+              // console.log(filterFields);
+            }}
+          />
+          {/* <Button
             title="snackbar success"
             onPress={() => {
               AppSnackBarUtils.show({
@@ -220,7 +171,7 @@ const HomeScreen = () => {
                 duration: 1000,
               });
             }}
-          />
+          /> */}
         </View>
       </ScrollView>
     </SafeAreaProvider>
