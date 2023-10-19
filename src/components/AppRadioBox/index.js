@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import {Animated, Text, View} from 'react-native';
+import {Animated, Text, TouchableOpacity, View} from 'react-native';
 import {AppIcons} from '../../constants/AppIcons';
 import PropTypes, {any} from 'prop-types';
 import {Controller} from 'react-hook-form';
@@ -28,6 +28,9 @@ AppRadioBox.propTypes = {
   textStyle: PropTypes.object,
   disable: PropTypes.bool,
   iconComponent: PropTypes.func,
+  fields: PropTypes.array,
+  onValueChange: PropTypes.func,
+  onMessage: PropTypes.func,
 };
 
 AppRadioBox.defaultProps = {
@@ -38,17 +41,20 @@ AppRadioBox.defaultProps = {
   },
   name: '',
   errors: {},
-  messageColor: AppColors.error,
+  messageColor: AppColors.errorPrimary,
   labelLeft: undefined,
   labelRight: undefined,
   checkedIconSource: undefined,
-  fillColor: 'red',
+  fillColor: AppColors.errorPrimary,
   innerColor: 'white',
   iconStyle: {},
   innerIconStyle: {},
   textStyle: {},
   disable: false,
   iconComponent: () => {},
+  fields: [],
+  onValueChange: () => {},
+  onMessage: () => {},
 };
 
 function AppRadioBox(props) {
@@ -68,19 +74,21 @@ function AppRadioBox(props) {
     textStyle,
     disable,
     iconComponent,
+    fields,
+    onValueChange,
   } = props;
 
   const animated = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    console.log(errors);
+    console.log('[AppRadioBox]', errors);
     if (errors && errors[name]) {
       Animated.timing(animated, {
         toValue: 1,
         duration: 300,
         useNativeDriver: false,
       }).start();
-      console.log('have error');
+      console.log('[AppRadioBox] have error');
     } else {
       Animated.timing(animated, {
         toValue: 0,
@@ -129,42 +137,70 @@ function AppRadioBox(props) {
             {labelLeft}
           </Text>
         )}
-        <View>
+        <View style={{width: '100%'}}>
           <Controller
             control={control}
             rules={{required: {...required}}}
             name={name}
-            render={({field: {onChange, onBlur, value}}) => (
-              <BouncyCheckbox
-                size={20}
-                fillColor={
-                  // Color outside
-                  disable
-                    ? 'rgba(217, 217, 217, 1)'
-                    : value
-                    ? fillColor
-                    : 'rgba(232, 232, 232, 1)'
-                }
-                unfillColor={'transparent'}
-                disableText
+            render={({field: {onChange, onBlur, value, name}}) => (
+              <View
                 style={{
-                  borderRadius: 1000,
-                }}
-                disabled={disable}
-                iconImageStyle={{resizeMode: 'contain', zIndex: 0}}
-                iconStyle={{
-                  borderColor: 'black',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  ...iconStyle,
-                }}
-                iconComponent={renderIconComponent(value)}
-                checkIconImageSource={checkedIconSource}
-                innerIconStyle={{borderWidth: 2, ...innerIconStyle}}
-                onPress={isChecked => {
-                  onChange(isChecked);
-                }}
-              />
+                  flexDirection: 'row',
+                  width: '100%',
+                }}>
+                {fields.map((item, index) => (
+                  <View
+                    key={index}
+                    style={{width: '50%', flexDirection: 'row'}}>
+                    <View
+                      style={{justifyContent: 'center', alignItems: 'center'}}>
+                      <BouncyCheckbox
+                        size={20}
+                        fillColor={
+                          // Color outside
+                          disable
+                            ? 'rgba(217, 217, 217, 1)'
+                            : item === value
+                            ? fillColor
+                            : 'rgba(232, 232, 232, 1)'
+                        }
+                        unfillColor={'transparent'}
+                        disableText
+                        style={{
+                          borderRadius: 1000,
+                        }}
+                        disabled={disable}
+                        iconImageStyle={{resizeMode: 'contain', zIndex: 0}}
+                        iconStyle={{
+                          borderColor: 'black',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          ...iconStyle,
+                        }}
+                        iconComponent={renderIconComponent(value)}
+                        checkIconImageSource={checkedIconSource}
+                        innerIconStyle={{borderWidth: 2, ...innerIconStyle}}
+                        onPress={isChecked => {
+                          onChange(item);
+                          onValueChange(index === 0 ? true : false);
+                        }}
+                      />
+                      {/* {item === value && (
+                        <View
+                          style={{
+                            height: 10,
+                            width: 10,
+                            position: 'absolute',
+                            backgroundColor: 'red',
+                            borderRadius: 1000,
+                          }}
+                        />
+                      )} */}
+                    </View>
+                    <Text style={{marginLeft: 10}}>{item}</Text>
+                  </View>
+                ))}
+              </View>
             )}
           />
         </View>
@@ -197,7 +233,7 @@ function AppRadioBox(props) {
         {errors && errors[name] && (
           <Text
             style={{
-              color: messageColor && messageColor,
+              color: messageColor,
               fontFamily: AppFonts.regular,
               fontSize: AppFontSize.s_12,
             }}>

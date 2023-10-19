@@ -61,8 +61,8 @@ AppTextInput.defaultProps = {
   borderWidth: 1,
   borderColor: 'transparent',
   borRadius: 8,
-  prefixIcon: AppIcons.search,
-  suffixIcon: AppIcons.close_circle,
+  prefixIcon: undefined,
+  suffixIcon: undefined,
   height: undefined,
   width: '100%',
   placeholder: 'Placeholder',
@@ -162,9 +162,13 @@ function AppTextInput(props) {
     }
   }, [isFocused]);
 
-  useEffect(() => {
-    LayoutAnimation.easeInEaseOut();
-  }, [errors, errors[name]]);
+  // useEffect(() => {
+  //   // LayoutAnimation.easeInEaseOut();
+  //   // if (errors && errors[0]) {
+
+  //   // }
+  //   console.log(errors[Object.keys(errors)[0]]);
+  // }, [errors, errors[name]]);
 
   // Input Ref
   const inputRef = useRef(null);
@@ -184,7 +188,7 @@ function AppTextInput(props) {
       <View
         style={{
           flexDirection: 'row',
-          width: '100%',
+          width: width,
         }}>
         {leftLabel && (
           <View
@@ -215,9 +219,11 @@ function AppTextInput(props) {
             borderColor: errors && errors[name] ? alertColor : borderColor,
             ...styles.container,
           }}>
-          <View style={{...styles.centerContainer}}>
-            <AppSvg SvgSrc={prefixIcon} size={16} />
-          </View>
+          {prefixIcon && (
+            <View style={{...styles.centerContainer}}>
+              <AppSvg SvgSrc={prefixIcon} size={16} />
+            </View>
+          )}
           <View style={{...styles.containerInput}}>
             {!isFocused && (
               <TouchableOpacity
@@ -268,6 +274,7 @@ function AppTextInput(props) {
                         ref={inputRef}
                         keyboardType={keyboardType}
                         placeholder={placeholder}
+                        placeholderTextColor={'rgba(191, 191, 191, 1)'}
                         style={{...TextStyle.body.b_2, margin: 0, padding: 0}}
                         onBlur={onBlur}
                         onChangeText={value => {
@@ -284,19 +291,21 @@ function AppTextInput(props) {
               </View>
             }
           </View>
-          <TouchableOpacity
-            style={{
-              ...styles.centerContainer,
-              paddingHorizontal: AppDimentions.fourthPadding,
-              marginRight:
-                AppDimentions.secondPadding - AppDimentions.fourthPadding,
-            }}
-            onPress={() => {
-              Keyboard.dismiss();
-              onReset(name);
-            }}>
-            <AppSvg SvgSrc={suffixIcon} size={16} />
-          </TouchableOpacity>
+          {suffixIcon && (
+            <TouchableOpacity
+              style={{
+                ...styles.centerContainer,
+                paddingHorizontal: AppDimentions.fourthPadding,
+                marginRight:
+                  AppDimentions.secondPadding - AppDimentions.fourthPadding,
+              }}
+              onPress={() => {
+                Keyboard.dismiss();
+                onReset(name);
+              }}>
+              <AppSvg SvgSrc={suffixIcon} size={16} />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
 

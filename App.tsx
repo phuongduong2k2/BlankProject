@@ -14,11 +14,11 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import AppLoadingPopup from './src/components/AppLoadingPopup';
 import AppSnackBar from './src/components/AppSnackBar';
 
-if (Platform.OS === 'android') {
-  if (UIManager.setLayoutAnimationEnabledExperimental) {
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-  }
-}
+// if (Platform.OS === 'android') {
+//   if (UIManager.setLayoutAnimationEnabledExperimental) {
+//     UIManager.setLayoutAnimationEnabledExperimental(true);
+//   }
+// }
 function App(): JSX.Element {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
