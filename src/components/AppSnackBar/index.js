@@ -1,13 +1,19 @@
-import React, {createRef, useEffect, useRef, useState} from 'react';
+import React, {
+  createRef,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import {Animated, Text, TouchableOpacity, View} from 'react-native';
 import {AppDimentions, AppSnackBarStatus} from '../../constants/constants';
 import {AppIcons} from '../../constants/AppIcons';
 import AppSvg from '../AppSvg';
-import AppSnackBarProps from './type';
 
 const ref = createRef();
 
-const AppSnackBar = () => {
+const AppSnackBar = forwardRef((props, ref) => {
   const [state, setState] = useState({
     isVisible: false,
     status: AppSnackBarStatus.default,
@@ -23,54 +29,49 @@ const AppSnackBar = () => {
 
   const iCount = useRef(0);
 
+  const propsRef = createRef(ref);
+
   const animated = useRef(new Animated.Value(0)).current;
 
-  useEffect(() => {
-    ref.current = {
-      show: data => {
-        const {
-          title,
-          isSoft,
-          duration,
-          textIconBt,
-          func,
-          status,
-          primaryColor,
-        } = data;
-        let pmColor;
-        if (primaryColor) {
-          pmColor = primaryColor;
-        } else {
-          switch (data.status) {
-            case 'success':
-              pmColor = 'rgba(46, 181, 83, 1)';
-              break;
-            case 'failed':
-              pmColor = 'rgba(245, 34, 45, 1)';
-              break;
-            case 'warning':
-              pmColor = 'rgba(250, 140, 22, 1)';
-              break;
-            case 'info':
-              pmColor = 'rgba(24, 144, 255, 1)';
-              break;
-            default:
-              pmColor = 'rgba(38, 38, 38, 1)';
-          }
-        }
-        setTimer(duration);
-        setTextIconBtn(textIconBt);
-        setTitle(title);
-        setState({
-          isVisible: true,
-          status: status,
-          isSoft: isSoft,
-        });
-        setPrimaryColor(pmColor);
-        setOnPress(() => func ?? (() => {}));
-      },
-    };
-  }, [state]);
+  const show = data => {
+    const {title, isSoft, duration, textIconBt, func, status, primaryColor} =
+      data;
+    let pmColor;
+    if (primaryColor) {
+      pmColor = primaryColor;
+    } else {
+      switch (data.status) {
+        case 'success':
+          pmColor = 'rgba(46, 181, 83, 1)';
+          break;
+        case 'failed':
+          pmColor = 'rgba(245, 34, 45, 1)';
+          break;
+        case 'warning':
+          pmColor = 'rgba(250, 140, 22, 1)';
+          break;
+        case 'info':
+          pmColor = 'rgba(24, 144, 255, 1)';
+          break;
+        default:
+          pmColor = 'rgba(38, 38, 38, 1)';
+      }
+    }
+    setTimer(duration);
+    setTextIconBtn(textIconBt);
+    setTitle(title);
+    setState({
+      isVisible: true,
+      status: status,
+      isSoft: isSoft,
+    });
+    setPrimaryColor(pmColor);
+    setOnPress(() => func ?? (() => {}));
+  };
+
+  useImperativeHandle(ref, () => ({
+    show,
+  }));
 
   useEffect(() => {
     let interval;
@@ -167,7 +168,7 @@ const AppSnackBar = () => {
           inputRange: [0, 1],
           outputRange: [0, 1],
         }),
-        bottom: -50,
+        bottom: 0,
         transform: [
           {
             translateY: animated.interpolate({
@@ -249,18 +250,6 @@ const AppSnackBar = () => {
       </View>
     </Animated.View>
   );
-};
+});
 
 export default AppSnackBar;
-
-export const AppSnackBarUtils = {
-  /**
-   * @author phuongduong
-   * @param {AppSnackBarProps} data
-   */
-  show: data => {
-    if (ref.current) {
-      ref.current.show(data);
-    }
-  },
-};

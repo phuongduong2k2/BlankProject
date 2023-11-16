@@ -25,12 +25,12 @@ import AppStepContainer, {
 import AppStepItem from '../../components/AppStepItem';
 import BaseDA from '../../axios/BaseDA';
 import AppButton from '../../components/AppButton';
-import {AppSnackBarUtils} from '../../components/AppSnackBar';
 import AppCollapseItem from '../../components/AppCollapseItem';
 import {addUsers, getUsers} from '../../axios/middleware/api/DataDA';
 import YesNoChoice from '../../components/YesNoChoice';
 import CustomTextInputChoice from '../../components/CustomTextInputChoice';
 import {InputType} from '../../constants/constants';
+import {AppSnackBarUtils} from '../../components/SnackBarManager';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -54,6 +54,9 @@ const HomeScreen = () => {
 
   const [layout, setLayout] = useState([]);
   const refListItem = useRef();
+
+  const [count, setCount] = useState(0);
+  const snackBarRefs = useRef([]);
   return (
     <SafeAreaProvider>
       <AppHeader title={'New Project'}>
@@ -139,6 +142,27 @@ const HomeScreen = () => {
               // }
               // console.log(arr, arr.length);
               // console.log(filterFields);
+            }}
+          />
+
+          <Button
+            title="check"
+            onPress={() => {
+              AppSnackBarUtils.showSnackBar({
+                title: 'loi nay',
+                duration: 1000,
+                status: 'failed',
+              });
+            }}
+          />
+          <Button
+            title="check"
+            onPress={() => {
+              AppSnackBarUtils.showSnackBar({
+                title: 'loi nay',
+                duration: 1000,
+                status: 'success',
+              });
             }}
           />
           {/* <Button
